@@ -23,14 +23,14 @@ class Assistance
     private ?string $reponse = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_assistance = null;
+    private ?\DateTimeInterface $dateAssistance = null;
 
-    #[ORM\OneToMany(mappedBy: 'assistance', targetEntity: reclamation::class)]
-    private Collection $reclamation;
+    #[ORM\OneToMany(mappedBy: 'assistance', targetEntity: Reclamation::class)]
+    private Collection $reclamations;
 
     public function __construct()
     {
-        $this->reclamation = new ArrayCollection();
+        $this->reclamations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -64,37 +64,37 @@ class Assistance
 
     public function getDateAssistance(): ?\DateTimeInterface
     {
-        return $this->date_assistance;
+        return $this->dateAssistance;
     }
 
-    public function setDateAssistance(\DateTimeInterface $date_assistance): self
+    public function setDateAssistance(\DateTimeInterface $dateAssistance): self
     {
-        $this->date_assistance = $date_assistance;
+        $this->dateAssistance = $dateAssistance;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, reclamation>
+     * @return Collection<int, Reclamation>
      */
-    public function getReclamation(): Collection
+    public function getReclamations(): Collection
     {
-        return $this->reclamation;
+        return $this->reclamations;
     }
 
-    public function addReclamation(reclamation $reclamation): self
+    public function addReclamation(Reclamation $reclamation): self
     {
-        if (!$this->reclamation->contains($reclamation)) {
-            $this->reclamation->add($reclamation);
+        if (!$this->reclamations->contains($reclamation)) {
+            $this->reclamations->add($reclamation);
             $reclamation->setAssistance($this);
         }
 
         return $this;
     }
 
-    public function removeReclamation(reclamation $reclamation): self
+    public function removeReclamation(Reclamation $reclamation): self
     {
-        if ($this->reclamation->removeElement($reclamation)) {
+        if ($this->reclamations->removeElement($reclamation)) {
             // set the owning side to null (unless already changed)
             if ($reclamation->getAssistance() === $this) {
                 $reclamation->setAssistance(null);

@@ -15,22 +15,22 @@ class Reclamation
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_rec = null;
+    private ?\DateTimeInterface $dateRec = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $sujet = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $contenu = null;
 
-    #[ORM\Column(length: 40)]
+    #[ORM\Column(length: 50)]
     private ?string $etat = null;
 
     #[ORM\ManyToOne(inversedBy: 'reclamations')]
     private ?utilisateur $utilisateur = null;
 
-    #[ORM\ManyToOne(inversedBy: 'reclamation')]
-    private ?Assistance $assistance = null;
+    #[ORM\ManyToOne(inversedBy: 'reclamations')]
+    private ?assistance $assistance = null;
 
     public function getId(): ?int
     {
@@ -39,12 +39,12 @@ class Reclamation
 
     public function getDateRec(): ?\DateTimeInterface
     {
-        return $this->date_rec;
+        return $this->dateRec;
     }
 
-    public function setDateRec(\DateTimeInterface $date_rec): self
+    public function setDateRec(\DateTimeInterface $dateRec): self
     {
-        $this->date_rec = $date_rec;
+        $this->dateRec = $dateRec;
 
         return $this;
     }
@@ -97,12 +97,12 @@ class Reclamation
         return $this;
     }
 
-    public function getAssistance(): ?Assistance
+    public function getAssistance(): ?assistance
     {
         return $this->assistance;
     }
 
-    public function setAssistance(?Assistance $assistance): self
+    public function setAssistance(?assistance $assistance): self
     {
         $this->assistance = $assistance;
 

@@ -42,7 +42,7 @@ class Bmc
     private ?float $revenus = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?annonce $id_annonce = null;
+    private ?annonce $annonce = null;
 
     public function getId(): ?int
     {
@@ -157,14 +157,14 @@ class Bmc
         return $this;
     }
 
-    public function getIdAnnonce(): ?annonce
+    public function getAnnonce(): ?annonce
     {
-        return $this->id_annonce;
+        return $this->annonce;
     }
 
-    public function setIdAnnonce(?annonce $id_annonce): self
+    public function setAnnonce(?annonce $annonce): self
     {
-        $this->id_annonce = $id_annonce;
+        $this->annonce = $annonce;
 
         return $this;
     }

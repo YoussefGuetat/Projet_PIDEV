@@ -19,19 +19,19 @@ class Annonce
     #[ORM\Column(type: Types::TEXT)]
     private ?string $titre = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $description = null;
+
     #[ORM\Column(length: 100)]
     private ?string $domaine = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
-
-    #[ORM\Column(length: 200)]
     private ?string $image = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateCrea = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 60)]
     private ?string $statut = null;
 
     #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: RendezVous::class)]
@@ -62,18 +62,6 @@ class Annonce
         return $this;
     }
 
-    public function getDomaine(): ?string
-    {
-        return $this->domaine;
-    }
-
-    public function setDomaine(string $domaine): self
-    {
-        $this->domaine = $domaine;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -82,6 +70,18 @@ class Annonce
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getDomaine(): ?string
+    {
+        return $this->domaine;
+    }
+
+    public function setDomaine(string $domaine): self
+    {
+        $this->domaine = $domaine;
 
         return $this;
     }

@@ -18,16 +18,16 @@ class Ticket
     private ?string $reference = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_reservation = null;
+    private ?\DateTimeInterface $dateReservation = null;
 
     #[ORM\Column]
-    private ?int $nbr_pers = null;
-
-    #[ORM\ManyToOne(inversedBy: 'tickets')]
-    private ?event $event = null;
+    private ?int $nbrPrs = null;
 
     #[ORM\ManyToOne(inversedBy: 'tickets')]
     private ?utilisateur $utilisateur = null;
+
+    #[ORM\ManyToOne(inversedBy: 'tickets')]
+    private ?event $event = null;
 
     public function getId(): ?int
     {
@@ -48,36 +48,24 @@ class Ticket
 
     public function getDateReservation(): ?\DateTimeInterface
     {
-        return $this->date_reservation;
+        return $this->dateReservation;
     }
 
-    public function setDateReservation(\DateTimeInterface $date_reservation): self
+    public function setDateReservation(\DateTimeInterface $dateReservation): self
     {
-        $this->date_reservation = $date_reservation;
+        $this->dateReservation = $dateReservation;
 
         return $this;
     }
 
-    public function getNbrPers(): ?int
+    public function getNbrPrs(): ?int
     {
-        return $this->nbr_pers;
+        return $this->nbrPrs;
     }
 
-    public function setNbrPers(int $nbr_pers): self
+    public function setNbrPrs(int $nbrPrs): self
     {
-        $this->nbr_pers = $nbr_pers;
-
-        return $this;
-    }
-
-    public function getEvent(): ?event
-    {
-        return $this->event;
-    }
-
-    public function setEvent(?event $event): self
-    {
-        $this->event = $event;
+        $this->nbrPrs = $nbrPrs;
 
         return $this;
     }
@@ -90,6 +78,18 @@ class Ticket
     public function setUtilisateur(?utilisateur $utilisateur): self
     {
         $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    public function getEvent(): ?event
+    {
+        return $this->event;
+    }
+
+    public function setEvent(?event $event): self
+    {
+        $this->event = $event;
 
         return $this;
     }

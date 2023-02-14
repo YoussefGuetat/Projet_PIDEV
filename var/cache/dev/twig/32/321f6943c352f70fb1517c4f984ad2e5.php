@@ -331,6 +331,6 @@ class __TwigTemplate_570e7196daebcbe41c6b1cf20999f8f5 extends Template
 {%block insc%}
 <a href=\"{{path('app_signup')}}\" class=\"btn slide-button button\">S'inscrire</a>
 {%endblock%}
-", "front/GestionUtilisateur/home-2.html.twig", "C:\\Users\\Dell\\Desktop\\pidev\\templates\\front\\GestionUtilisateur\\home-2.html.twig");
+", "front/GestionUtilisateur/home-2.html.twig", "C:\\Users\\Dell\\Desktop\\FirstProject\\templates\\front\\GestionUtilisateur\\home-2.html.twig");
     }
 }

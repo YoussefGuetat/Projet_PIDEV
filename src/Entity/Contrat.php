@@ -15,81 +15,81 @@ class Contrat
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_contrat = null;
+    private ?\DateTimeInterface $dateContart = null;
 
     #[ORM\Column]
-    private ?float $duree_contrat = null;
+    private ?float $dureeContart = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $image_contrat = null;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $image = null;
 
     #[ORM\Column]
-    private ?float $taux_profit = null;
+    private ?float $tauxProfit = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?rendezvous $rendzVous = null;
+    private ?rendezVous $rendezVous = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDateContrat(): ?\DateTimeInterface
+    public function getDateContart(): ?\DateTimeInterface
     {
-        return $this->date_contrat;
+        return $this->dateContart;
     }
 
-    public function setDateContrat(\DateTimeInterface $date_contrat): self
+    public function setDateContart(\DateTimeInterface $dateContart): self
     {
-        $this->date_contrat = $date_contrat;
+        $this->dateContart = $dateContart;
 
         return $this;
     }
 
-    public function getDureeContrat(): ?float
+    public function getDureeContart(): ?float
     {
-        return $this->duree_contrat;
+        return $this->dureeContart;
     }
 
-    public function setDureeContrat(float $duree_contrat): self
+    public function setDureeContart(float $dureeContart): self
     {
-        $this->duree_contrat = $duree_contrat;
+        $this->dureeContart = $dureeContart;
 
         return $this;
     }
 
-    public function getImageContrat(): ?string
+    public function getImage(): ?string
     {
-        return $this->image_contrat;
+        return $this->image;
     }
 
-    public function setImageContrat(string $image_contrat): self
+    public function setImage(string $image): self
     {
-        $this->image_contrat = $image_contrat;
+        $this->image = $image;
 
         return $this;
     }
 
     public function getTauxProfit(): ?float
     {
-        return $this->taux_profit;
+        return $this->tauxProfit;
     }
 
-    public function setTauxProfit(float $taux_profit): self
+    public function setTauxProfit(float $tauxProfit): self
     {
-        $this->taux_profit = $taux_profit;
+        $this->tauxProfit = $tauxProfit;
 
         return $this;
     }
 
-    public function getRendzVous(): ?rendezvous
+    public function getRendezVous(): ?rendezVous
     {
-        return $this->rendzVous;
+        return $this->rendezVous;
     }
 
-    public function setRendzVous(?rendezvous $rendzVous): self
+    public function setRendezVous(?rendezVous $rendezVous): self
     {
-        $this->rendzVous = $rendzVous;
+        $this->rendezVous = $rendezVous;
 
         return $this;
     }

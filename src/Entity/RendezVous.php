@@ -25,18 +25,18 @@ class RendezVous
     #[ORM\Column(type: Types::TEXT)]
     private ?string $message = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 60)]
     private ?string $typeLieu = null;
+
+    #[ORM\ManyToMany(targetEntity: utilisateur::class, inversedBy: 'rendezVouses')]
+    private Collection $utilsateur;
 
     #[ORM\ManyToOne(inversedBy: 'rendezVouses')]
     private ?annonce $annonce = null;
 
-    #[ORM\ManyToMany(targetEntity: utilisateur::class, inversedBy: 'rendezVouses')]
-    private Collection $utilisateur;
-
     public function __construct()
     {
-        $this->utilisateur = new ArrayCollection();
+        $this->utilsateur = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,6 +92,30 @@ class RendezVous
         return $this;
     }
 
+    /**
+     * @return Collection<int, utilisateur>
+     */
+    public function getUtilsateur(): Collection
+    {
+        return $this->utilsateur;
+    }
+
+    public function addUtilsateur(utilisateur $utilsateur): self
+    {
+        if (!$this->utilsateur->contains($utilsateur)) {
+            $this->utilsateur->add($utilsateur);
+        }
+
+        return $this;
+    }
+
+    public function removeUtilsateur(utilisateur $utilsateur): self
+    {
+        $this->utilsateur->removeElement($utilsateur);
+
+        return $this;
+    }
+
     public function getAnnonce(): ?annonce
     {
         return $this->annonce;
@@ -100,30 +124,6 @@ class RendezVous
     public function setAnnonce(?annonce $annonce): self
     {
         $this->annonce = $annonce;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, utilisateur>
-     */
-    public function getUtilisateur(): Collection
-    {
-        return $this->utilisateur;
-    }
-
-    public function addUtilisateur(utilisateur $utilisateur): self
-    {
-        if (!$this->utilisateur->contains($utilisateur)) {
-            $this->utilisateur->add($utilisateur);
-        }
-
-        return $this;
-    }
-
-    public function removeUtilisateur(utilisateur $utilisateur): self
-    {
-        $this->utilisateur->removeElement($utilisateur);
 
         return $this;
     }

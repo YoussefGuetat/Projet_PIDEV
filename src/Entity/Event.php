@@ -16,26 +16,26 @@ class Event
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
     #[ORM\Column(length: 100)]
     private ?string $addresse = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 255)]
     private ?string $photo = null;
 
     #[ORM\Column]
-    private ?int $nbr_places = null;
+    private ?int $nbrPlaces = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $objet = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_event = null;
+    private ?\DateTimeInterface $dateEvent = null;
 
     #[ORM\OneToMany(mappedBy: 'event', targetEntity: Ticket::class)]
     private Collection $tickets;
@@ -88,12 +88,12 @@ class Event
 
     public function getNbrPlaces(): ?int
     {
-        return $this->nbr_places;
+        return $this->nbrPlaces;
     }
 
-    public function setNbrPlaces(int $nbr_places): self
+    public function setNbrPlaces(int $nbrPlaces): self
     {
-        $this->nbr_places = $nbr_places;
+        $this->nbrPlaces = $nbrPlaces;
 
         return $this;
     }
@@ -124,12 +124,12 @@ class Event
 
     public function getDateEvent(): ?\DateTimeInterface
     {
-        return $this->date_event;
+        return $this->dateEvent;
     }
 
-    public function setDateEvent(\DateTimeInterface $date_event): self
+    public function setDateEvent(\DateTimeInterface $dateEvent): self
     {
-        $this->date_event = $date_event;
+        $this->dateEvent = $dateEvent;
 
         return $this;
     }
