@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\AssistanceRepository;
+use App\Repository\AssistancesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AssistanceRepository::class)]
-class Assistance
+#[ORM\Entity(repositoryClass: AssistancesRepository::class)]
+class Assistances
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -23,9 +23,9 @@ class Assistance
     private ?string $reponse = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateAssistance = null;
+    private ?\DateTimeInterface $dateassistance = null;
 
-    #[ORM\OneToMany(mappedBy: 'assistance', targetEntity: Reclamation::class)]
+    #[ORM\OneToMany(mappedBy: 'assistances', targetEntity: Reclamation::class)]
     private Collection $reclamations;
 
     public function __construct()
@@ -62,14 +62,14 @@ class Assistance
         return $this;
     }
 
-    public function getDateAssistance(): ?\DateTimeInterface
+    public function getDateassistance(): ?\DateTimeInterface
     {
-        return $this->dateAssistance;
+        return $this->dateassistance;
     }
 
-    public function setDateAssistance(\DateTimeInterface $dateAssistance): self
+    public function setDateassistance(\DateTimeInterface $dateassistance): self
     {
-        $this->dateAssistance = $dateAssistance;
+        $this->dateassistance = $dateassistance;
 
         return $this;
     }
@@ -86,7 +86,7 @@ class Assistance
     {
         if (!$this->reclamations->contains($reclamation)) {
             $this->reclamations->add($reclamation);
-            $reclamation->setAssistance($this);
+            $reclamation->setAssistances($this);
         }
 
         return $this;
@@ -96,8 +96,8 @@ class Assistance
     {
         if ($this->reclamations->removeElement($reclamation)) {
             // set the owning side to null (unless already changed)
-            if ($reclamation->getAssistance() === $this) {
-                $reclamation->setAssistance(null);
+            if ($reclamation->getAssistances() === $this) {
+                $reclamation->setAssistances(null);
             }
         }
 

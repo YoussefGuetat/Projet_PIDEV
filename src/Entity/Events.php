@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\EventRepository;
+use App\Repository\EventsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: EventRepository::class)]
-class Event
+#[ORM\Entity(repositoryClass: EventsRepository::class)]
+class Events
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,14 +19,14 @@ class Event
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $addresse = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $photo = null;
 
     #[ORM\Column]
-    private ?int $nbrPlaces = null;
+    private ?int $nbrplaces = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $objet = null;
@@ -35,9 +35,9 @@ class Event
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateEvent = null;
+    private ?\DateTimeInterface $dateevent = null;
 
-    #[ORM\OneToMany(mappedBy: 'event', targetEntity: Ticket::class)]
+    #[ORM\OneToMany(mappedBy: 'events', targetEntity: Ticket::class)]
     private Collection $tickets;
 
     public function __construct()
@@ -86,14 +86,14 @@ class Event
         return $this;
     }
 
-    public function getNbrPlaces(): ?int
+    public function getNbrplaces(): ?int
     {
-        return $this->nbrPlaces;
+        return $this->nbrplaces;
     }
 
-    public function setNbrPlaces(int $nbrPlaces): self
+    public function setNbrplaces(int $nbrplaces): self
     {
-        $this->nbrPlaces = $nbrPlaces;
+        $this->nbrplaces = $nbrplaces;
 
         return $this;
     }
@@ -122,14 +122,14 @@ class Event
         return $this;
     }
 
-    public function getDateEvent(): ?\DateTimeInterface
+    public function getDateevent(): ?\DateTimeInterface
     {
-        return $this->dateEvent;
+        return $this->dateevent;
     }
 
-    public function setDateEvent(\DateTimeInterface $dateEvent): self
+    public function setDateevent(\DateTimeInterface $dateevent): self
     {
-        $this->dateEvent = $dateEvent;
+        $this->dateevent = $dateevent;
 
         return $this;
     }
@@ -146,7 +146,7 @@ class Event
     {
         if (!$this->tickets->contains($ticket)) {
             $this->tickets->add($ticket);
-            $ticket->setEvent($this);
+            $ticket->setEvents($this);
         }
 
         return $this;
@@ -156,8 +156,8 @@ class Event
     {
         if ($this->tickets->removeElement($ticket)) {
             // set the owning side to null (unless already changed)
-            if ($ticket->getEvent() === $this) {
-                $ticket->setEvent(null);
+            if ($ticket->getEvents() === $this) {
+                $ticket->setEvents(null);
             }
         }
 

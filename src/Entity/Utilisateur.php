@@ -72,6 +72,9 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Annonce::class)]
     private Collection $annonces;
 
+    #[ORM\Column(length: 60)]
+    private ?string $role = null;
+
     public function __construct()
     {
         $this->rendezVouses = new ArrayCollection();
@@ -402,6 +405,18 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
                 $annonce->setUtilisateur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): self
+    {
+        $this->role = $role;
 
         return $this;
     }

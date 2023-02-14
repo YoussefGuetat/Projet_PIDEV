@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Assistance;
+use App\Entity\Assistances;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Assistance>
+ * @extends ServiceEntityRepository<Assistances>
  *
- * @method Assistance|null find($id, $lockMode = null, $lockVersion = null)
- * @method Assistance|null findOneBy(array $criteria, array $orderBy = null)
- * @method Assistance[]    findAll()
- * @method Assistance[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Assistances|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Assistances|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Assistances[]    findAll()
+ * @method Assistances[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AssistanceRepository extends ServiceEntityRepository
+class AssistancesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Assistance::class);
+        parent::__construct($registry, Assistances::class);
     }
 
-    public function save(Assistance $entity, bool $flush = false): void
+    public function save(Assistances $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class AssistanceRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Assistance $entity, bool $flush = false): void
+    public function remove(Assistances $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class AssistanceRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Assistance[] Returns an array of Assistance objects
+//     * @return Assistances[] Returns an array of Assistances objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class AssistanceRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Assistance
+//    public function findOneBySomeField($value): ?Assistances
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')

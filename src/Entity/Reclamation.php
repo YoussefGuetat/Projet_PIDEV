@@ -30,8 +30,8 @@ class Reclamation
     private ?utilisateur $utilisateur = null;
 
     #[ORM\ManyToOne(inversedBy: 'reclamations')]
-    private ?assistance $assistance = null;
-
+    private ?assistances $assistances = null;
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -97,14 +97,14 @@ class Reclamation
         return $this;
     }
 
-    public function getAssistance(): ?assistance
+    public function getAssistances(): ?assistances
     {
-        return $this->assistance;
+        return $this->assistances;
     }
 
-    public function setAssistance(?assistance $assistance): self
+    public function setAssistances(?assistances $assistances): self
     {
-        $this->assistance = $assistance;
+        $this->assistances = $assistances;
 
         return $this;
     }
