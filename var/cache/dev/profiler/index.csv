@@ -1043,3 +1043,8 @@ a7547b,127.0.0.1,GET,http://127.0.0.1:8000/assets/img/team/3.jpg,1676395345,2dc1
 2dc125,127.0.0.1,GET,http://127.0.0.1:8000/assets/img/team/3.jpg,1676395345,,404
 4bade3,127.0.0.1,GET,http://127.0.0.1:8000/assets/img/icons/spot-illustrations/47.png,1676395346,2426cb,404
 2426cb,127.0.0.1,GET,http://127.0.0.1:8000/assets/img/icons/spot-illustrations/47.png,1676395346,,404
+3ab808,127.0.0.1,GET,http://127.0.0.1:8000/,1676400997,,200
+406bcc,127.0.0.1,GET,http://127.0.0.1:8000/front/revsilder/css/settings.css,1676400998,1859f2,404
+1859f2,127.0.0.1,GET,http://127.0.0.1:8000/front/revsilder/css/settings.css,1676400998,,404
+9a0bee,127.0.0.1,GET,http://127.0.0.1:8000/front/images/effect/03.jpg%22%20alt=%22drive02,1676400998,184f42,404
+184f42,127.0.0.1,GET,http://127.0.0.1:8000/front/images/effect/03.jpg%22%20alt=%22drive02,1676400998,,404
