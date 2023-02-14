@@ -12,7 +12,7 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* front/GestionUtilisateur/signup.html.twig */
+/* front/GestionUtilisateur/Signup.html.twig */
 class __TwigTemplate_71a525f0fde9e43efd648ce4689c3f3a extends Template
 {
     private $source;
@@ -40,12 +40,12 @@ class __TwigTemplate_71a525f0fde9e43efd648ce4689c3f3a extends Template
     {
         $macros = $this->macros;
         $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "front/GestionUtilisateur/signup.html.twig"));
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "front/GestionUtilisateur/Signup.html.twig"));
 
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "front/GestionUtilisateur/signup.html.twig"));
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "front/GestionUtilisateur/Signup.html.twig"));
 
-        $this->parent = $this->loadTemplate("front/GestionUtilisateur/home-2.html.twig", "front/GestionUtilisateur/signup.html.twig", 1);
+        $this->parent = $this->loadTemplate("front/GestionUtilisateur/home-2.html.twig", "front/GestionUtilisateur/Signup.html.twig", 1);
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -183,7 +183,7 @@ class __TwigTemplate_71a525f0fde9e43efd648ce4689c3f3a extends Template
 
     public function getTemplateName()
     {
-        return "front/GestionUtilisateur/signup.html.twig";
+        return "front/GestionUtilisateur/Signup.html.twig";
     }
 
     public function isTraitable()
@@ -280,6 +280,6 @@ class __TwigTemplate_71a525f0fde9e43efd648ce4689c3f3a extends Template
       </div>
    </section>
 {%endblock%}
-", "front/GestionUtilisateur/signup.html.twig", "C:\\Users\\Dell\\Desktop\\FirstProject\\templates\\front\\GestionUtilisateur\\Signup.html.twig");
+", "front/GestionUtilisateur/Signup.html.twig", "C:\\Users\\Dell\\Desktop\\PI_DEV\\Projet_PIDEV\\templates\\front\\GestionUtilisateur\\Signup.html.twig");
     }
 }

@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Events;
+use App\Entity\Evenement;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Events>
+ * @extends ServiceEntityRepository<Evenement>
  *
- * @method Events|null find($id, $lockMode = null, $lockVersion = null)
- * @method Events|null findOneBy(array $criteria, array $orderBy = null)
- * @method Events[]    findAll()
- * @method Events[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Evenement|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Evenement|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Evenement[]    findAll()
+ * @method Evenement[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EventsRepository extends ServiceEntityRepository
+class EvenementRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Events::class);
+        parent::__construct($registry, Evenement::class);
     }
 
-    public function save(Events $entity, bool $flush = false): void
+    public function save(Evenement $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class EventsRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Events $entity, bool $flush = false): void
+    public function remove(Evenement $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class EventsRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Events[] Returns an array of Events objects
+//     * @return Evenement[] Returns an array of Evenement objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class EventsRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Events
+//    public function findOneBySomeField($value): ?Evenement
 //    {
 //        return $this->createQueryBuilder('e')
 //            ->andWhere('e.exampleField = :val')

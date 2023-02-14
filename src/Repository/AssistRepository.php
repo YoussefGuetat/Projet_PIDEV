@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Assistances;
+use App\Entity\Assist;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Assistances>
+ * @extends ServiceEntityRepository<Assist>
  *
- * @method Assistances|null find($id, $lockMode = null, $lockVersion = null)
- * @method Assistances|null findOneBy(array $criteria, array $orderBy = null)
- * @method Assistances[]    findAll()
- * @method Assistances[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Assist|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Assist|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Assist[]    findAll()
+ * @method Assist[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AssistancesRepository extends ServiceEntityRepository
+class AssistRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Assistances::class);
+        parent::__construct($registry, Assist::class);
     }
 
-    public function save(Assistances $entity, bool $flush = false): void
+    public function save(Assist $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class AssistancesRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Assistances $entity, bool $flush = false): void
+    public function remove(Assist $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class AssistancesRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Assistances[] Returns an array of Assistances objects
+//     * @return Assist[] Returns an array of Assist objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class AssistancesRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Assistances
+//    public function findOneBySomeField($value): ?Assist
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')

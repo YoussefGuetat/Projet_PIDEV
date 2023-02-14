@@ -8,10 +8,13 @@
 return [
     false, // $matchHost
     [ // $staticRoutes
+        '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
+        '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
+        '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
         '/utilisateur' => [[['_route' => 'app_utilisateur', '_controller' => 'App\\Controller\\UtilisateurController::index'], null, null, null, false, false, null]],
         '/profile' => [[['_route' => 'app_profile', '_controller' => 'App\\Controller\\UtilisateurController::profile'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_landing', '_controller' => 'App\\Controller\\UtilisateurController::landing'], null, null, null, false, false, null]],
-        '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\UtilisateurController::login'], null, null, null, false, false, null]],
+        '/loginn' => [[['_route' => 'app_loginn', '_controller' => 'App\\Controller\\UtilisateurController::loginn'], null, null, null, false, false, null]],
         '/signup' => [[['_route' => 'app_signup', '_controller' => 'App\\Controller\\UtilisateurController::sigup'], null, null, null, false, false, null]],
         '/changepwd' => [[['_route' => 'app_changepwd', '_controller' => 'App\\Controller\\UtilisateurController::changemdp'], null, null, null, false, false, null]],
         '/modifierpro' => [[['_route' => 'app_modifierpro', '_controller' => 'App\\Controller\\UtilisateurController::modifierpro'], null, null, null, false, false, null]],

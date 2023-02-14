@@ -27,7 +27,7 @@ class Ticket
     private ?utilisateur $utilisateur = null;
 
     #[ORM\ManyToOne(inversedBy: 'tickets')]
-    private ?events $events = null;
+    private ?Evenement $evenements = null;
 
     public function getId(): ?int
     {
@@ -82,14 +82,14 @@ class Ticket
         return $this;
     }
 
-    public function getEvents(): ?events
+    public function getEvenements(): ?Evenement
     {
-        return $this->events;
+        return $this->evenements;
     }
 
-    public function setEvents(?events $events): self
+    public function setEvenements(?Evenement $evenements): self
     {
-        $this->events = $events;
+        $this->evenements = $evenements;
 
         return $this;
     }

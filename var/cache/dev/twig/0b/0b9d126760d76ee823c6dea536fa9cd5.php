@@ -568,6 +568,6 @@ class __TwigTemplate_a2f21e7e596bcce07bd128bd1a05fb47 extends Template
          <div data-bottom=\"transform:translatex(-300px)\" data-top=\"transform:translatex(0);\">In a Nutshell</div>
       </div>
    </section>
-{% endblock%}", "front/GestionUtilisateur/profile.html.twig", "C:\\Users\\Dell\\Desktop\\FirstProject\\templates\\front\\GestionUtilisateur\\profile.html.twig");
+{% endblock%}", "front/GestionUtilisateur/profile.html.twig", "C:\\Users\\Dell\\Desktop\\PI_DEV\\Projet_PIDEV\\templates\\front\\GestionUtilisateur\\profile.html.twig");
     }
 }

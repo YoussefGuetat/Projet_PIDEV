@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-GestionUser(Youssef)',
+        'version' => 'dev-GestionUser(Youssef)',
+        'reference' => '99912dc8f282eb28b8fb7ad2e8e15432af422e6a',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-GestionUser(Youssef)',
+            'version' => 'dev-GestionUser(Youssef)',
+            'reference' => '99912dc8f282eb28b8fb7ad2e8e15432af422e6a',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

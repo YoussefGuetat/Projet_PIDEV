@@ -30,8 +30,8 @@ class UtilisateurController extends AbstractController
             'controller_name' => 'UtilisateurController',
         ]);
     }
-    #[Route('/login', name: 'app_login')]
-    public function login(): Response
+    #[Route('/loginn', name: 'app_loginn')]
+    public function loginn(): Response
     {
         return $this->render('front/GestionUtilisateur/login.html.twig', [
             'controller_name' => 'UtilisateurController',

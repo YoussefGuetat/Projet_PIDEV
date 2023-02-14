@@ -2,25 +2,25 @@
 
 namespace App\Entity;
 
-use App\Repository\EventsRepository;
+use App\Repository\EvenementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: EventsRepository::class)]
-class Events
+#[ORM\Entity(repositoryClass: EvenementRepository::class)]
+class Evenement
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 60)]
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $addresse = null;
+    private ?string $adresse = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $photo = null;
@@ -37,7 +37,7 @@ class Events
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateevent = null;
 
-    #[ORM\OneToMany(mappedBy: 'events', targetEntity: Ticket::class)]
+    #[ORM\OneToMany(mappedBy: 'evenements', targetEntity: Ticket::class)]
     private Collection $tickets;
 
     public function __construct()
@@ -62,14 +62,14 @@ class Events
         return $this;
     }
 
-    public function getAddresse(): ?string
+    public function getAdresse(): ?string
     {
-        return $this->addresse;
+        return $this->adresse;
     }
 
-    public function setAddresse(string $addresse): self
+    public function setAdresse(string $adresse): self
     {
-        $this->addresse = $addresse;
+        $this->adresse = $adresse;
 
         return $this;
     }
@@ -146,7 +146,7 @@ class Events
     {
         if (!$this->tickets->contains($ticket)) {
             $this->tickets->add($ticket);
-            $ticket->setEvents($this);
+            $ticket->setEvenements($this);
         }
 
         return $this;
@@ -156,8 +156,8 @@ class Events
     {
         if ($this->tickets->removeElement($ticket)) {
             // set the owning side to null (unless already changed)
-            if ($ticket->getEvents() === $this) {
-                $ticket->setEvents(null);
+            if ($ticket->getEvenements() === $this) {
+                $ticket->setEvenements(null);
             }
         }
 
