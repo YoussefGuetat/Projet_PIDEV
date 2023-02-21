@@ -20,6 +20,7 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
     use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'app_login';
+    public const LOGIN_ROUTE2 = 'app_dashLog';
 
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
@@ -42,17 +43,38 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        $user = $token->getUser();
+        $data = ['nom' => $user->getNom(),'prenom' => $user->getPrenom(),'id' => $user->getId()];
+        $request->getSession()->set('data', $data);
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
-        return new RedirectResponse($this->urlGenerator->generate('home'));
-        // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        $refererUrl = $request->headers->get('referer');
+        if($user->isIsActif()){
+        if (strpos($refererUrl, $this->urlGenerator->generate(self::LOGIN_ROUTE)) !== false) {
+            return new RedirectResponse($this->urlGenerator->generate('app_acceuil'));
+        } else {
+            if($user->getRole() == "Admin" || $user->getRole() == "Super_Admin")
+            return new RedirectResponse($this->urlGenerator->generate('app_monprofil'));
+            else
+            return new RedirectResponse($this->urlGenerator->generate('app_acceuil'));
+        }
+    }
+    else
+    {
+        return new RedirectResponse($this->urlGenerator->generate('app_landing'));
+    }
     }
 
     protected function getLoginUrl(Request $request): string
     {
+        
+        $refererUrl = $request->headers->get('referer');
+    if (strpos($refererUrl, $this->urlGenerator->generate(self::LOGIN_ROUTE)) !== false) {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
+    } else {
+        return $this->urlGenerator->generate(self::LOGIN_ROUTE2);
+    }
     }
 }

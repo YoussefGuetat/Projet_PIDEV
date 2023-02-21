@@ -77,7 +77,7 @@ class __TwigTemplate_1253cca9b72c57b2fe383e3e92cbd138 extends Template
                  
                <li><a class=\"button btn-hdr\" href=\"";
         // line 9
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_signup");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
         echo "\">S'inscrire</a></li>
             </ul>
 ";
@@ -115,27 +115,59 @@ class __TwigTemplate_1253cca9b72c57b2fe383e3e92cbd138 extends Template
                  <span class=\"text-warning\">Bienvenue chez SandBoX</span>
                  <h2 class=\"title\">Connexion</h2>
               </div>
-              <form  class=\"contact-us\" id=\"contact\" method=\"post\">
-                 <div class=\"row\">
-                    <div class=\"col-xl-12\">
-                       <label>Nom de l'utilisation ou Adresse E-mail<br>
-                       <span class=\"form-control-wrap your-subject\">
-                       <input type=\"text\" name=\"username\" Placeholder=\"username\" class=\"form-control text\" aria-invalid=\"false\"></span>
-                       </label>
-                    </div>
-                    <div class=\"col-xl-12\">
-                       <label>Mot de passe<br>
-                       <span class=\"form-control-wrap your-subject\">
-                       <input type=\"password\" name=\"password\" Placeholder=\"password\" class=\"form-control text\" aria-invalid=\"false\"></span>
-                       </label>
-                    </div>
-                    <div class=\"col-xl-12\">
-                     <a href=\"forget-password.html\" style=\"color: gray;\">mot de passe oublié ?</a>
-                    </div>
-                    <div class=\"col-xl-12\">
-                       <button id=\"submit\" name=\"submit\" type=\"submit\" value=\"Send\" class=\"button btn-yellow\" >Se connecter</button>
-                    </div>
-                 </div>
+              <form  class=\"contact-us\" method=\"post\">
+               ";
+        // line 26
+        if ((isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 26, $this->source); })())) {
+            // line 27
+            echo "               <div class=\"alert alert-danger\"> Merci de verifier votre Email et mot de passe</div>
+           ";
+        }
+        // line 29
+        echo "       
+           ";
+        // line 30
+        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 30, $this->source); })()), "user", [], "any", false, false, false, 30)) {
+            // line 31
+            echo "               <div class=\"mb-3\">
+                   You are logged in as ";
+            // line 32
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 32, $this->source); })()), "user", [], "any", false, false, false, 32), "userIdentifier", [], "any", false, false, false, 32), "html", null, true);
+            echo ", <a href=\"";
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
+            echo "\">Logout</a>
+               </div>
+           ";
+        }
+        // line 35
+        echo "       
+           <h1 class=\"h3 mb-3 font-weight-normal\">Connecter s'il vous plait</h1>
+           <label for=\"inputEmail\">Email</label>
+           <input type=\"email\" value=\"";
+        // line 38
+        echo twig_escape_filter($this->env, (isset($context["last_username"]) || array_key_exists("last_username", $context) ? $context["last_username"] : (function () { throw new RuntimeError('Variable "last_username" does not exist.', 38, $this->source); })()), "html", null, true);
+        echo "\" name=\"email\" id=\"inputEmail\" class=\"form-control text\" autocomplete=\"email\" required autofocus>
+           <label for=\"inputPassword\">Mot de passe</label>
+           <input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control text\" autocomplete=\"current-password\" required>
+       
+           <input type=\"hidden\" name=\"_csrf_token\"
+                  value=\"";
+        // line 43
+        echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken("authenticate"), "html", null, true);
+        echo "\"
+           >
+           <a style=\"color:#6f6f6f;\" href=\"";
+        // line 45
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_forget");
+        echo "\">J'oublie mon mot de passe</a>
+           ";
+        // line 56
+        echo "           <br>
+           <div class=\"col-xl-12\" style=\"position: relative;left:77%;\">
+           <button class=\"button btn-yellow\" type=\"submit\">
+               Se connecter
+           </button>
+         </div>
               </form>
            </div>
         </div>
@@ -162,7 +194,7 @@ class __TwigTemplate_1253cca9b72c57b2fe383e3e92cbd138 extends Template
 
     public function getDebugInfo()
     {
-        return array (  111 => 19,  103 => 13,  93 => 12,  80 => 9,  74 => 6,  69 => 3,  59 => 2,  36 => 1,);
+        return array (  165 => 56,  161 => 45,  156 => 43,  148 => 38,  143 => 35,  135 => 32,  132 => 31,  130 => 30,  127 => 29,  123 => 27,  121 => 26,  111 => 19,  103 => 13,  93 => 12,  80 => 9,  74 => 6,  69 => 3,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -175,7 +207,7 @@ class __TwigTemplate_1253cca9b72c57b2fe383e3e92cbd138 extends Template
                      <a href=\"{{path('app_landing')}}\">Acceuil</a>
                   </li>
                  
-               <li><a class=\"button btn-hdr\" href=\"{{path('app_signup')}}\">S'inscrire</a></li>
+               <li><a class=\"button btn-hdr\" href=\"{{path('app_register')}}\">S'inscrire</a></li>
             </ul>
 {%endblock%}
 {%block contenu%}
@@ -191,27 +223,43 @@ class __TwigTemplate_1253cca9b72c57b2fe383e3e92cbd138 extends Template
                  <span class=\"text-warning\">Bienvenue chez SandBoX</span>
                  <h2 class=\"title\">Connexion</h2>
               </div>
-              <form  class=\"contact-us\" id=\"contact\" method=\"post\">
-                 <div class=\"row\">
-                    <div class=\"col-xl-12\">
-                       <label>Nom de l'utilisation ou Adresse E-mail<br>
-                       <span class=\"form-control-wrap your-subject\">
-                       <input type=\"text\" name=\"username\" Placeholder=\"username\" class=\"form-control text\" aria-invalid=\"false\"></span>
-                       </label>
-                    </div>
-                    <div class=\"col-xl-12\">
-                       <label>Mot de passe<br>
-                       <span class=\"form-control-wrap your-subject\">
-                       <input type=\"password\" name=\"password\" Placeholder=\"password\" class=\"form-control text\" aria-invalid=\"false\"></span>
-                       </label>
-                    </div>
-                    <div class=\"col-xl-12\">
-                     <a href=\"forget-password.html\" style=\"color: gray;\">mot de passe oublié ?</a>
-                    </div>
-                    <div class=\"col-xl-12\">
-                       <button id=\"submit\" name=\"submit\" type=\"submit\" value=\"Send\" class=\"button btn-yellow\" >Se connecter</button>
-                    </div>
-                 </div>
+              <form  class=\"contact-us\" method=\"post\">
+               {% if error %}
+               <div class=\"alert alert-danger\"> Merci de verifier votre Email et mot de passe</div>
+           {% endif %}
+       
+           {% if app.user %}
+               <div class=\"mb-3\">
+                   You are logged in as {{ app.user.userIdentifier }}, <a href=\"{{ path('app_logout') }}\">Logout</a>
+               </div>
+           {% endif %}
+       
+           <h1 class=\"h3 mb-3 font-weight-normal\">Connecter s'il vous plait</h1>
+           <label for=\"inputEmail\">Email</label>
+           <input type=\"email\" value=\"{{ last_username }}\" name=\"email\" id=\"inputEmail\" class=\"form-control text\" autocomplete=\"email\" required autofocus>
+           <label for=\"inputPassword\">Mot de passe</label>
+           <input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control text\" autocomplete=\"current-password\" required>
+       
+           <input type=\"hidden\" name=\"_csrf_token\"
+                  value=\"{{ csrf_token('authenticate') }}\"
+           >
+           <a style=\"color:#6f6f6f;\" href=\"{{path('app_forget')}}\">J'oublie mon mot de passe</a>
+           {#
+               Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+               See https://symfony.com/doc/current/security/remember_me.html
+       
+               <div class=\"checkbox mb-3\">
+                   <label>
+                       <input type=\"checkbox\" name=\"_remember_me\"> Remember me
+                   </label>
+               </div>
+           #}
+           <br>
+           <div class=\"col-xl-12\" style=\"position: relative;left:77%;\">
+           <button class=\"button btn-yellow\" type=\"submit\">
+               Se connecter
+           </button>
+         </div>
               </form>
            </div>
         </div>

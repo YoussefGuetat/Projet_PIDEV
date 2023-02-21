@@ -29,6 +29,7 @@ class __TwigTemplate_40bf3fcdab245f634c9916879a2d7f62 extends Template
         $this->blocks = [
             'head' => [$this, 'block_head'],
             'header' => [$this, 'block_header'],
+            'prof' => [$this, 'block_prof'],
             'contenu' => [$this, 'block_contenu'],
             'insc' => [$this, 'block_insc'],
             'footer' => [$this, 'block_footer'],
@@ -181,7 +182,12 @@ class __TwigTemplate_40bf3fcdab245f634c9916879a2d7f62 extends Template
                     >
                   </li>
                   <li class=\"phone-header\">
-                    <span class=\"text-warning\">Bienvenue Guetat youssef</span>
+                    <span class=\"text-warning\">Bienvenue ";
+        // line 56
+        echo twig_escape_filter($this->env, (isset($context["nom"]) || array_key_exists("nom", $context) ? $context["nom"] : (function () { throw new RuntimeError('Variable "nom" does not exist.', 56, $this->source); })()), "html", null, true);
+        echo " ";
+        echo twig_escape_filter($this->env, (isset($context["prenom"]) || array_key_exists("prenom", $context) ? $context["prenom"] : (function () { throw new RuntimeError('Variable "prenom" does not exist.', 56, $this->source); })()), "html", null, true);
+        echo "</span>
                   </li>
                 </ul>
               </div>
@@ -239,14 +245,14 @@ class __TwigTemplate_40bf3fcdab245f634c9916879a2d7f62 extends Template
                   <li class=\"active\">
                      <a href=\"";
         // line 109
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_utilisateur");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_acceuil");
         echo "\">ACCEUIL</a>
                   </li>
                   <li>
-                     <a href=\"";
+                   ";
         // line 112
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile");
-        echo "\">PROFILE</a>
+        $this->displayBlock('prof', $context, $blocks);
+        echo " 
                </li>
                <li>
                   <a href=\"javascript:void(0)\">ANNONCES</a>
@@ -263,7 +269,10 @@ class __TwigTemplate_40bf3fcdab245f634c9916879a2d7f62 extends Template
                   <a href=\"reclamation.html\">RECLAMATION</a>
                   <!-- drop down multilevel  -->
                </li>
-               <li><a class=\"button btn-hdr\" href=\"javascript:void(0)\">Déconnecter</a></li>
+               <li><a class=\"button btn-hdr\" href=\"";
+        // line 129
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
+        echo "\">Déconnecter</a></li>
             </ul>
               </div>
             </div>
@@ -273,6 +282,27 @@ class __TwigTemplate_40bf3fcdab245f634c9916879a2d7f62 extends Template
       <!-- menu end -->
     </header>
     ";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+    }
+
+    // line 112
+    public function block_prof($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "prof"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "prof"));
+
+        echo "  <a href=\"";
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile", ["id" => (isset($context["idp"]) || array_key_exists("idp", $context) ? $context["idp"] : (function () { throw new RuntimeError('Variable "idp" does not exist.', 112, $this->source); })())]), "html", null, true);
+        echo "\">PROFILE</a> ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -1200,7 +1230,7 @@ class __TwigTemplate_40bf3fcdab245f634c9916879a2d7f62 extends Template
 
     public function getDebugInfo()
     {
-        return array (  1185 => 881,  1179 => 878,  1173 => 875,  1168 => 873,  1163 => 871,  1158 => 869,  1153 => 867,  1148 => 865,  1143 => 863,  1138 => 861,  1133 => 859,  1128 => 857,  1123 => 855,  1119 => 853,  1109 => 852,  1002 => 755,  969 => 724,  959 => 723,  941 => 153,  914 => 706,  904 => 699,  894 => 692,  884 => 685,  847 => 651,  823 => 630,  798 => 608,  720 => 533,  686 => 502,  652 => 471,  618 => 440,  584 => 409,  464 => 292,  454 => 285,  444 => 278,  431 => 268,  326 => 166,  312 => 154,  310 => 153,  295 => 140,  285 => 139,  248 => 112,  242 => 109,  231 => 101,  160 => 33,  156 => 31,  146 => 30,  133 => 25,  128 => 23,  123 => 21,  118 => 19,  113 => 17,  108 => 15,  103 => 13,  92 => 4,  82 => 3,  70 => 883,  67 => 852,  64 => 723,  61 => 139,  59 => 30,  55 => 28,  53 => 3,  49 => 1,);
+        return array (  1215 => 881,  1209 => 878,  1203 => 875,  1198 => 873,  1193 => 871,  1188 => 869,  1183 => 867,  1178 => 865,  1173 => 863,  1168 => 861,  1163 => 859,  1158 => 857,  1153 => 855,  1149 => 853,  1139 => 852,  1032 => 755,  999 => 724,  989 => 723,  971 => 153,  944 => 706,  934 => 699,  924 => 692,  914 => 685,  877 => 651,  853 => 630,  828 => 608,  750 => 533,  716 => 502,  682 => 471,  648 => 440,  614 => 409,  494 => 292,  484 => 285,  474 => 278,  461 => 268,  356 => 166,  342 => 154,  340 => 153,  325 => 140,  315 => 139,  294 => 112,  274 => 129,  254 => 112,  248 => 109,  237 => 101,  187 => 56,  161 => 33,  157 => 31,  147 => 30,  134 => 25,  129 => 23,  124 => 21,  119 => 19,  114 => 17,  109 => 15,  104 => 13,  93 => 4,  83 => 3,  71 => 883,  68 => 852,  65 => 723,  62 => 139,  60 => 30,  56 => 28,  54 => 3,  50 => 1,);
     }
 
     public function getSourceContext()
@@ -1260,7 +1290,7 @@ class __TwigTemplate_40bf3fcdab245f634c9916879a2d7f62 extends Template
                     >
                   </li>
                   <li class=\"phone-header\">
-                    <span class=\"text-warning\">Bienvenue Guetat youssef</span>
+                    <span class=\"text-warning\">Bienvenue {{ nom }} {{ prenom }}</span>
                   </li>
                 </ul>
               </div>
@@ -1313,10 +1343,10 @@ class __TwigTemplate_40bf3fcdab245f634c9916879a2d7f62 extends Template
                 <ul class=\"menu-links\">
                   <!-- active class -->
                   <li class=\"active\">
-                     <a href=\"{{path('app_utilisateur')}}\">ACCEUIL</a>
+                     <a href=\"{{path('app_acceuil')}}\">ACCEUIL</a>
                   </li>
                   <li>
-                     <a href=\"{{path('app_profile')}}\">PROFILE</a>
+                   {%block prof%}  <a href=\"{{path('app_profile', {'id': idp})}}\">PROFILE</a> {%endblock%} 
                </li>
                <li>
                   <a href=\"javascript:void(0)\">ANNONCES</a>
@@ -1333,7 +1363,7 @@ class __TwigTemplate_40bf3fcdab245f634c9916879a2d7f62 extends Template
                   <a href=\"reclamation.html\">RECLAMATION</a>
                   <!-- drop down multilevel  -->
                </li>
-               <li><a class=\"button btn-hdr\" href=\"javascript:void(0)\">Déconnecter</a></li>
+               <li><a class=\"button btn-hdr\" href=\"{{ path('app_logout') }}\">Déconnecter</a></li>
             </ul>
               </div>
             </div>

@@ -53,7 +53,7 @@
                     >
                   </li>
                   <li class="phone-header">
-                    <span class="text-warning">Bienvenue Guetat youssef</span>
+                    <span class="text-warning">Bienvenue {{ nom }} {{ prenom }}</span>
                   </li>
                 </ul>
               </div>
@@ -106,10 +106,10 @@
                 <ul class="menu-links">
                   <!-- active class -->
                   <li class="active">
-                     <a href="{{path('app_utilisateur')}}">ACCEUIL</a>
+                     <a href="{{path('app_acceuil')}}">ACCEUIL</a>
                   </li>
                   <li>
-                     <a href="{{path('app_profile')}}">PROFILE</a>
+                   {%block prof%}  <a href="{{path('app_profile', {'id': idp})}}">PROFILE</a> {%endblock%} 
                </li>
                <li>
                   <a href="javascript:void(0)">ANNONCES</a>
@@ -126,7 +126,7 @@
                   <a href="reclamation.html">RECLAMATION</a>
                   <!-- drop down multilevel  -->
                </li>
-               <li><a class="button btn-hdr" href="javascript:void(0)">Déconnecter</a></li>
+               <li><a class="button btn-hdr" href="{{ path('app_logout') }}">Déconnecter</a></li>
             </ul>
               </div>
             </div>

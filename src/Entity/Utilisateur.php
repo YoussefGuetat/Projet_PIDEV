@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
@@ -21,6 +21,8 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\NotBlank(message:"il faut entrer votre email")]
+    #[Assert\Email(message:"exemple : ******@****.***")]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -33,9 +35,11 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message:"il faut entrer votre nom")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message:"il faut entrer votre prenom")]
     private ?string $prenom = null;
 
     #[ORM\Column(nullable: true)]
@@ -46,9 +50,6 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateNaiss = null;
-
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateCompte = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $token = null;
@@ -75,6 +76,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $annonces;
 
     #[ORM\Column(length: 60)]
+    #[Assert\NotBlank(message:"il faut entrer votre role")]
     private ?string $role = null;
 
     public function __construct()
@@ -230,18 +232,6 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDateNaiss(?\DateTimeInterface $dateNaiss): self
     {
         $this->dateNaiss = $dateNaiss;
-
-        return $this;
-    }
-
-    public function getDateCompte(): ?\DateTimeInterface
-    {
-        return $this->dateCompte;
-    }
-
-    public function setDateCompte(\DateTimeInterface $dateCompte): self
-    {
-        $this->dateCompte = $dateCompte;
 
         return $this;
     }

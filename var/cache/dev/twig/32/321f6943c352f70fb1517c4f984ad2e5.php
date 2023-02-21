@@ -208,7 +208,7 @@ class __TwigTemplate_570e7196daebcbe41c6b1cf20999f8f5 extends Template
 
         // line 94
         echo "<a href=\"";
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_signup");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
         echo "\" class=\"btn slide-button button\">S'inscrire</a>
 ";
         
@@ -329,7 +329,7 @@ class __TwigTemplate_570e7196daebcbe41c6b1cf20999f8f5 extends Template
 </header>
 {%endblock%}
 {%block insc%}
-<a href=\"{{path('app_signup')}}\" class=\"btn slide-button button\">S'inscrire</a>
+<a href=\"{{path('app_register')}}\" class=\"btn slide-button button\">S'inscrire</a>
 {%endblock%}
 ", "front/GestionUtilisateur/home-2.html.twig", "C:\\Users\\Dell\\Desktop\\PI_DEV\\Projet_PIDEV\\templates\\front\\GestionUtilisateur\\home-2.html.twig");
     }

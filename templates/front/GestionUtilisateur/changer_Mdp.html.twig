@@ -12,32 +12,23 @@
                  <span class="text-warning">Bienvenue chez SandBoX</span>
                  <h2 class="title">Changer votre mot de passe</h2>
               </div>
-              <form  class="contact-us" id="contact" method="post">
+              {{ form_start(form,{'attr':{'class':'contact-us'}}) }}
                  <div class="row">
                      <div class="col-xl-12">
                          <label>Ancien mot de passe<br>
                          <span class="form-control-wrap your-subject">
-                         <input type="password" name="password" Placeholder="Ancien mot de passe" class="form-control text" aria-invalid="false"></span>
+                           {{form_widget(form.currentPassword,{'attr':{'class':'form-control text'}})}}
+                        </span>
                          </label>
                  </div>
                  <div class="col-xl-12">
-                     <label>Nouveau mot de passe<br>
-                     <span class="form-control-wrap your-subject">
-                     <input type="password" name="password" Placeholder="Nouveau mot de passe" class="form-control text" aria-invalid="false"></span>
-                     </label>
+                  {{form_row(form.newPassword,{'attr':{'class':'form-control text'}})}}
                   </div>
-                    <div class="col-xl-12">
-                       <label>Confirmer mot de passe<br>
-                       <span class="form-control-wrap your-subject">
-                       <input type="password" name="password" Placeholder="Confirmer mot de passe" class="form-control text" aria-invalid="false"></span>
-                       </label>
-                    </div>
-                 
                     <div class="col-xl-12" style="position: relative;left:73%;">
-                       <button id="submit" name="submit" type="submit" value="Send" class="button btn-yellow" >Changer</button>
+                       <button id="submit" name="submit" type="submit" value="Send" class="button btn-yellow" >{{button_label|default('Changer')}}</button>
                     </div>
                  </div>
-              </form>
+                 {{ form_end(form) }}
            </div>
         </div>
      </div>

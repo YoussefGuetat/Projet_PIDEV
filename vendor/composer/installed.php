@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-GestionUser(Youssef)',
         'version' => 'dev-GestionUser(Youssef)',
-        'reference' => '99912dc8f282eb28b8fb7ad2e8e15432af422e6a',
+        'reference' => 'dcc1075a29de02bbd06bf164e6b3f98ce32a1e2c',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-GestionUser(Youssef)',
             'version' => 'dev-GestionUser(Youssef)',
-            'reference' => '99912dc8f282eb28b8fb7ad2e8e15432af422e6a',
+            'reference' => 'dcc1075a29de02bbd06bf164e6b3f98ce32a1e2c',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
