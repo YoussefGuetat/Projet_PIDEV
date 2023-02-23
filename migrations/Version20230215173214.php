@@ -34,13 +34,7 @@ final class Version20230215173214 extends AbstractMigration
         $this->addSql('ALTER TABLE ticket ADD CONSTRAINT FK_97A0ADA3FB88E14F FOREIGN KEY (utilisateur_id) REFERENCES utilisateur (id)');
         $this->addSql('CREATE INDEX IDX_97A0ADA3FB88E14F ON ticket (utilisateur_id)');
 
-        Schema::table('bmc', function (Blueprint $table) {
-            $table->unsignedBigInteger('annonce_id')->nullable();
-            $table->foreign('annonce_id')
-                ->references('id')
-                ->on('annonce')
-                ->onDelete('set null'); // or onUpdate('set null')
-        });
+       
     }
 
   

@@ -115,19 +115,27 @@ class AnnonceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_annonce_delete', methods: ['POST'])]
-    public function delete(Request $request, Annonce $annonce, AnnonceRepository $annonceRepository,BmcRepository $repo,Bmc $bmc): Response
+    #[Route('/{id}', name: 'app_annonce_delete_front', methods: ['POST'])]
+    public function delete(Request $request, Annonce $annonce, AnnonceRepository $annonceRepository): Response
     {
    
         if ($this->isCsrfTokenValid('delete'.$annonce->getId(), $request->request->get('_token'))) {
-            $bmcs = $repo->findBy(['annonce' => $annonce->getId()]);
-            foreach ($bmcs as $bmc) {
-                $repo->remove($bmc);
-            }
-            $annonceRepository->remove($annonce);
+            $annonceRepository->remove($annonce, true);
         }
 
         return $this->redirectToRoute('app_annonce_index_front', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+    #[Route('/back/delete/{id}', name: 'app_annonce_delete_back', methods: ['POST'])]
+    public function deleteback(Request $request, Annonce $annonce, AnnonceRepository $annonceRepository): Response
+    {
+   
+        if ($this->isCsrfTokenValid('delete'.$annonce->getId(), $request->request->get('_token'))) {
+            $annonceRepository->remove($annonce, true);
+        }
+
+        return $this->redirectToRoute('app_annonce_index_back', [], Response::HTTP_SEE_OTHER);
     }
 
 

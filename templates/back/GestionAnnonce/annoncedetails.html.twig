@@ -3487,7 +3487,7 @@
 
               <div class="portfolio-button">
                 <a class="btn btn-sm btn-primary d-lg-block mt-lg-2" href="#">Rendez-vous</a>
-                <form method="post" action="{{ path('app_annonce_delete', {'id': annonce.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                <form method="post" action="{{ path('app_annonce_delete_back', {'id': annonce.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ annonce.id) }}">
     <button class="btn btn-sm btn-primary d-lg-block mt-lg-2">Delete</button>
 </form>
