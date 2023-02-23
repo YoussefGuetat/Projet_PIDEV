@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bmc index{% endblock %}
+
+{% block body %}
+    <h1>Bmc index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Partenaires_cles</th>
+                <th>Activites_cles</th>
+                <th>Ressources_cles</th>
+                <th>Proposition_valeur</th>
+                <th>Relations_client</th>
+                <th>Canaux</th>
+                <th>Segments_marche</th>
+                <th>Couts</th>
+                <th>Revenus</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bmc in bmcs %}
+            <tr>
+                <td>{{ bmc.id }}</td>
+                <td>{{ bmc.partenairesCles }}</td>
+                <td>{{ bmc.activitesCles }}</td>
+                <td>{{ bmc.ressourcesCles }}</td>
+                <td>{{ bmc.propositionValeur }}</td>
+                <td>{{ bmc.relationsClient }}</td>
+                <td>{{ bmc.canaux }}</td>
+                <td>{{ bmc.segmentsMarche }}</td>
+                <td>{{ bmc.couts }}</td>
+                <td>{{ bmc.revenus }}</td>
+                <td>
+                    <a href="{{ path('app_bmc_show', {'id': bmc.id}) }}">show</a>
+                    <a href="{{ path('app_bmc_edit', {'id': bmc.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_bmc_new') }}">Create new</a>
+{% endblock %}

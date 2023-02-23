@@ -1,0 +1,82 @@
+{% extends 'front/GestionUtilisateur/home-2.html.twig' %}
+{%block navMenu%}
+<ul class="menu-links">
+   <!-- active class -->
+   <li>
+      <a href="{{path('app_landing')}}">Acceuil</a>
+   </li>
+  
+<li><a class="button btn-hdr" href="{{path('app_login')}}">Se Connecter</a></li>
+</ul>
+{%endblock%}
+{%block contenu%}
+<div class="main-content">
+   <!-- Contact Us Start -->
+   <section class="iq-contactus gray-bg">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-6">
+               <img src="{{asset('front/images/project/02.png')}}" alt="login"></div>
+            <div class="col-lg-6">
+               <div class="title-box  text-left">
+                  <span class="text-warning">Bienvenue chez SandBoX</span>
+                  <h2 class="title">Inscription</h2>
+               </div>
+               <form  class="contact-us" id="contact" method="post">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <label>Votre nom<br>
+                        <span class="form-control-wrap your-name">
+                        <input type="text" name="fname" Placeholder="Votre nom" class="form-control text" aria-required="true" aria-invalid="false"></span>
+                        </label>
+                     </div>
+                     <div class="col-md-6">
+                        <label>Votre Prénom<br>
+                        <span class="form-control-wrap your-name">
+                        <input type="text" name="lname" Placeholder="Votre Prénom" class="form-control text email" aria-required="true" aria-invalid="false"></span>
+                        </label>
+                     </div>
+                     <div class="col-md-6">
+                        <label>Votre E-mail<br>
+                        <span class="form-control-wrap your-email">
+                        <input type="email" name="email" Placeholder="Votre E-mail" class="form-control text" aria-invalid="false"></span>
+                        </label>
+                     </div>
+                     <div class="col-md-6">
+                        <label>Votre nom de l'utilasateur<br>
+                        <span class="form-control-wrap your-name">
+                        <input type="text" name="usename" Placeholder="Votre nom de l'utilasateur" class="form-control text email" aria-required="true" aria-invalid="false"></span>
+                        </label>
+                     </div>
+                     <div class="col-md-6">
+                        <label>votre mot de passe<br>
+                        <span class="form-control-wrap your-email">
+                        <input type="password" name="password" Placeholder="votre mot de passe" class="form-control text" aria-invalid="false"></span>
+                        </label>
+                     </div>
+                     <div class="col-md-6">
+                        <label>Confirmer votre mot de passe<br>
+                        <span class="form-control-wrap your-name">
+                        <input type="password" name="cpassword" Placeholder="Confirmer votre mot de passe" class="form-control text" aria-required="true" aria-invalid="false"></span>
+                        </label>
+                     </div>
+                     <div class="col-xl-10">
+                        <label>Votre role<br>
+                        <span class="form-control-wrap your-name">
+                           <select name="role" id="role">
+                              <option value="">Selectionnez votre role</option>
+                              <option value="investisseur">Investisseur</option>
+                              <option value="entrepreneur">Entrepreneur</option>
+                              </select>
+                        </label>
+                     </div>
+                     <div class="col-xl-12" style="position: relative;left:73%;">
+                        <button id="submit" name="submit" type="submit" value="Send" class="button btn-yellow" >S'inscrire</button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </section>
+{%endblock%}

@@ -1,0 +1,319 @@
+{% extends 'front/homeC.html.twig' %}
+
+{%block contenu%}
+
+    <!-- Breadcrumb Start -->
+    <section class="iq-breadcrumb text-left">
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-8 col-md-8 text-left mb-4 mb-lg-0 align-self-center"
+          >
+            <h2 class="title">Project details</h2>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="index.html"
+                    ><i class="fa fa-home" aria-hidden="true"></i>Home</a
+                  >
+                </li>
+                <li class="breadcrumb-item active">Project details</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-lg-4 col-md-4 text-right">
+            <img src="images/blog/01.png" class="img-fluid" alt="#" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Breadcrumb End -->
+    <!-- Main-Content Start -->
+    <div class="main-content">
+      <!-- Portfolio deatils Start -->
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-sm-12">
+            {% set img = annonce.image %}
+              <div class="iq-portfolio-image">
+                <img class="img-fluid"src="{{ asset(img) }}" alt="Annonce Image"  />
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-12 mt-5 mt-lg-0">
+              <h4>{{annonce.titre}}</h4>
+              <p>
+                {{ annonce.description}}
+              </p>
+              <ul class="portfolio-meta bottommargin">
+                <li>
+                  <span class="lead">Created by:</span>
+                  <span class="float-right">{{annonce.utilisateur}}</span>
+                </li>
+                <li>
+                  <span class="lead">Catégorie:</span>
+                  <span class="float-right">{{annonce.domaine}}</span>
+                </li>
+                <li>
+                  <span class="lead">Date de publication:</span>
+                  <span class="float-right">{{ annonce.dateCrea ? annonce.dateCrea|date('Y-m-d') : '' }}</span>
+                </li>
+                <li>
+                  <span class="lead">Budget demandé:</span>
+                  <span class="float-right">150 000 000 dt</span>
+                </li>
+                <li></li>
+              </ul>
+
+              <div class="portfolio-button">
+                <a class="button" href="#">Rendez-vous</a>
+                <form method="post" action="{{ path('app_annonce_delete', {'id': annonce.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ annonce.id) }}">
+    <button class="button">Delete</button>
+</form>
+
+{% for b in bmc %}
+{% set mys = annonce.titre ~ '' %}
+{% if b.annonce  == mys %}
+                <a class="button"  
+                 href="{{path('app_bmc_show',{'id':b.id})}}" >Voir Bmc</a>
+                  {%endif%}
+                 {%endfor%}
+                
+
+                <a class="button" href="{{path('app_annonce_edit',{'id':annonce.id})}}">Update</a>
+
+
+
+                
+    
+</form>
+
+              </div>
+
+             
+          
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio deatils Start -->
+      <!-- Our Portfolio Start -->
+      <section class="Our-portfolio overview-block-pb">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="title-box text-center">
+                <span>View Recent Portfolio</span>
+                <h2 class="title">Recent Portfolio</h2>
+                <p class="mb-0">
+                  It is a long established fact that a reader will be distracted
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+              <div
+                class="owl-carousel"
+                data-autoplay="true"
+                data-loop="true"
+                data-nav="false"
+                data-dots="true"
+                data-items="3"
+                data-items-laptop="3"
+                data-items-tab="2"
+                data-items-mobile="1"
+                data-items-mobile-sm="1"
+                data-margin="15"
+              >
+                <div class="item">
+                  <div class="iq-portfolio">
+                    <a href="masonry-4-columns.html" class="iq-portfolio-img"
+                      ><img
+                        src="images/portfolio/01.jpg"
+                        class="img-fluid"
+                        alt="#"
+                    /></a>
+                    <div class="iq-portfolio-content">
+                      <h6><a href="masonry-4-columns.html">Projects 11</a></h6>
+                      <ul>
+                        <li>Illustration</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="iq-portfolio">
+                    <a href="masonry-4-columns.html" class="iq-portfolio-img"
+                      ><img
+                        src="images/portfolio/02.jpg"
+                        class="img-fluid"
+                        alt="#"
+                    /></a>
+                    <div class="iq-portfolio-content">
+                      <h6><a href="masonry-4-columns.html">Projects 11</a></h6>
+                      <ul>
+                        <li>Illustration</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="iq-portfolio">
+                    <a href="masonry-4-columns.html" class="iq-portfolio-img"
+                      ><img
+                        src="images/portfolio/03.jpg"
+                        class="img-fluid"
+                        alt="#"
+                    /></a>
+                    <div class="iq-portfolio-content">
+                      <h6><a href="masonry-4-columns.html">Projects 11</a></h6>
+                      <ul>
+                        <li>Illustration</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="iq-portfolio">
+                    <a href="masonry-4-columns.html" class="iq-portfolio-img"
+                      ><img
+                        src="images/portfolio/04.jpg"
+                        class="img-fluid"
+                        alt="#"
+                    /></a>
+                    <div class="iq-portfolio-content">
+                      <h6><a href="masonry-4-columns.html">Projects 11</a></h6>
+                      <ul>
+                        <li>Illustration</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="iq-portfolio">
+                    <a href="masonry-4-columns.html" class="iq-portfolio-img"
+                      ><img
+                        src="images/portfolio/05.jpg"
+                        class="img-fluid"
+                        alt="#"
+                    /></a>
+                    <div class="iq-portfolio-content">
+                      <h6><a href="masonry-4-columns.html">Projects 11</a></h6>
+                      <ul>
+                        <li>Illustration</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="iq-portfolio">
+                    <a href="masonry-4-columns.html" class="iq-portfolio-img"
+                      ><img
+                        src="images/portfolio/06.jpg"
+                        class="img-fluid"
+                        alt="#"
+                    /></a>
+                    <div class="iq-portfolio-content">
+                      <h6><a href="masonry-4-columns.html">Projects 11</a></h6>
+                      <ul>
+                        <li>Illustration</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="iq-portfolio">
+                    <a href="masonry-4-columns.html" class="iq-portfolio-img"
+                      ><img
+                        src="images/portfolio/01.jpg"
+                        class="img-fluid"
+                        alt="#"
+                    /></a>
+                    <div class="iq-portfolio-content">
+                      <h6><a href="masonry-4-columns.html">Projects 11</a></h6>
+                      <ul>
+                        <li>Illustration</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="iq-portfolio">
+                    <a href="masonry-4-columns.html" class="iq-portfolio-img"
+                      ><img
+                        src="images/portfolio/04.jpg"
+                        class="img-fluid"
+                        alt="#"
+                    /></a>
+                    <div class="iq-portfolio-content">
+                      <h6><a href="masonry-4-columns.html">Projects 11</a></h6>
+                      <ul>
+                        <li>Illustration</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="iq-portfolio">
+                    <a href="masonry-4-columns.html" class="iq-portfolio-img"
+                      ><img
+                        src="images/portfolio/06.jpg"
+                        class="img-fluid"
+                        alt="#"
+                    /></a>
+                    <div class="iq-portfolio-content">
+                      <h6><a href="masonry-4-columns.html">Projects 11</a></h6>
+                      <ul>
+                        <li>Illustration</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Our Portfolio End -->
+    </div>
+    <!-- Main-Content End -->
+
+    <!-- back-to-top -->
+    <div id="back-to-top">
+      <a class="top" id="top" href="#top"> <i class="ion-ios-arrow-up"></i> </a>
+    </div>
+    <!-- back-to-top End -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <!-- popper  -->
+    <script src="js/popper.min.js"></script>
+    <!--  bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Appear JavaScript -->
+    <script src="js/appear.js"></script>
+    <!-- Mega menu JavaScript -->
+    <script src="js/mega_menu.min.js"></script>
+    <!-- Count Down JavaScript -->
+    <script src="js/countdown.min.js"></script>
+    <!-- Owl Carousel JavaScript -->
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- Magnific Popup JavaScript -->
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <!--  Counter -->
+    <script src="js/jquery.countTo.js"></script>
+    <!-- Skrollr JavaScript -->
+    <script src="js/skrollr.js"></script>
+    <!-- Isotope JavaScript -->
+    <script src="js/isotope.pkgd.min.js"></script>
+    <!-- Retina JavaScript -->
+    <script src="js/retina.min.js"></script>
+    <!--  Custom -->
+    <script src="js/custom.js"></script>
+  </body>
+</html>
+
+{%endblock%}

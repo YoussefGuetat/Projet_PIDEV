@@ -1,0 +1,304 @@
+{% extends 'front/homeC.html.twig' %}
+
+{%block contenu%}
+
+
+      <!-- Breadcrumb Start -->
+      <section class="iq-breadcrumb text-left">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-8 col-md-8 text-left mb-4 mb-lg-0 align-self-center">
+                  <h2 class="title">Ajouter le BMC</h2>
+                  <nav aria-label="breadcrumb">
+                     <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i>ACCEUIL</a></li>
+                        <li class="breadcrumb-item active">ANNONCES</li>
+                     </ol>
+                  </nav>
+               </div>
+               <div class="col-lg-4 col-md-4 text-right">
+                  <img  src="{{ asset('front/images/contact-us/02.png')}}" class="img-fluid" alt="#"/>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Breadcrumb End -->
+      <!-- Main-Content Start -->
+      
+      <div class="main-content">
+         <!-- Contact Us Start -->
+         
+         <section class="iq-contactus gray-bg">
+         
+            <div class="container" style="position:relative;left:20%;"  >
+
+
+               <div class="row">
+                  
+                  <div class="col-lg-6">
+                     <div class="title-box  text-left">
+                        <span class="text-warning">Show the world your wonderful ideas</span>
+                        <h2 class="title">Continuer à developper le BMC</h2>
+                        <p class="mb-0">It is a long established fact that a reader will be distracted</p>
+                     </div>
+                      
+                    {{ form_start(form,{'attr':{'class':'contact-us','novalidate':'novalidate'}}) }}
+
+
+
+
+                         <div class="my-element">
+                <img class="my-element"style="width: 100px; height: 50px;" style="float: right;" src=" {{ asset('front/images/blog/01.jpg') }}" alt="my-element"  />
+              </div>
+
+
+                           <div class="col-xl-12">
+                              <label>Partenaires clés<br>
+                              <span class="form-control-wrap your-subject">
+                              <input {{ form_widget(form.partenaires_cles,{'attr':{'class':'form-control text'}}) }}</span>
+                              {% if form_errors(form.partenaires_cles) is not empty %}
+                              <div class="alert alert-danger">
+                              {{ form_errors(form.partenaires_cles) }}
+                              </div> {% endif %}
+                              </label>
+                           </div>
+
+
+
+ <div class="col-xl-12">
+                              <label>Activités clés<br>
+                              <span class="form-control-wrap your-subject">
+                              <input {{ form_widget(form.activites_cles,{'attr':{'class':'form-control text'}}) }}</span>
+                              {% if form_errors(form.activites_cles) is not empty %}
+                              <div class="alert alert-danger">
+                              {{ form_errors(form.activites_cles) }}
+                              </div> {% endif %}
+                              </label>
+                           </div>
+
+
+ <div class="col-xl-12">
+                              <label>Ressources clés<br>
+                              <span class="form-control-wrap your-subject">
+                              <input {{ form_widget(form.ressources_cles,{'attr':{'class':'form-control text'}}) }}</span>
+                              {% if form_errors(form.ressources_cles) is not empty %}
+                              <div class="alert alert-danger">
+                              {{ form_errors(form.ressources_cles) }}
+                              </div> {% endif %}
+                              </label>
+                           </div>
+
+
+ <div class="col-xl-12">
+                              <label>Proposition de valeurs<br>
+                              <span class="form-control-wrap your-subject">
+                              <input {{ form_widget(form.proposition_valeur,{'attr':{'class':'form-control text'}}) }}</span>
+                              {% if form_errors(form.proposition_valeur) is not empty %}
+                              <div class="alert alert-danger">
+                              {{ form_errors(form.proposition_valeur) }}
+                              </div> {% endif %}
+                              </label>
+                           </div>
+
+                           
+<div class="col-xl-12">
+                              <label>Relations client<br>
+                              <span class="form-control-wrap your-subject">
+                              <input {{ form_widget(form.relations_client,{'attr':{'class':'form-control text'}}) }}</span>
+                              {% if form_errors(form.relations_client) is not empty %}
+                              <div class="alert alert-danger">
+                              {{ form_errors(form.relations_client) }}
+                              </div> {% endif %}
+                              </label>
+                           </div>
+
+
+                           <div class="col-xl-12">
+                              <label>Canaux<br>
+                              <span class="form-control-wrap your-subject">
+                              <input {{ form_widget(form.canaux,{'attr':{'class':'form-control text'}}) }}</span>
+                              {% if form_errors(form.canaux) is not empty %}
+                              <div class="alert alert-danger">
+                              {{ form_errors(form.canaux) }}
+                              </div> {% endif %}
+                              </label>
+                           </div>
+
+
+                            <div class="col-xl-12">
+                              <label>Segments de marché<br>
+                              <span class="form-control-wrap your-subject">
+                              <input {{ form_widget(form.segments_marche,{'attr':{'class':'form-control text'}}) }}</span>
+                              {% if form_errors(form.segments_marche) is not empty %}
+                              <div class="alert alert-danger" >
+                              {{ form_errors(form.segments_marche) }}
+                              </div> {% endif %}
+                              </label>
+                           </div>
+
+                         
+
+                           
+
+                           
+
+                           <div class="col-xl-12">
+                              <label>Couts<br>
+                              <span class="form-control-wrap your-subject">
+                              <input {{ form_widget(form.couts,{'attr':{'class':'form-control text'}}) }}</span>
+                              {% if form_errors(form.couts) is not empty %}
+                              <div class="alert alert-danger">
+                              {{ form_errors(form.couts) }}
+                              </div> {% endif %}
+                              </label>
+                           </div>
+
+                           <div class="col-xl-12">
+                              <label>Revenus<br>
+                              <span class="form-control-wrap your-subject">
+                              <input {{ form_widget(form.revenus,{'attr':{'class':'form-control text'}}) }}</span>
+                              {% if form_errors(form.revenus) is not empty %}
+                              <div class="alert alert-danger">
+                              {{ form_errors(form.revenus) }}
+                              </div> {% endif %}
+                              </label>
+                           </div>
+
+                           <div class="col-md-7">
+                              <label>Nom de l'annonce<br>
+                              <span class="form-control-wrap your-email">
+                              {{ form_widget(form.annonce,{'attr':{'class':'form-control text email'}}) }}
+                              
+                              </label>
+                           </div>
+
+                           
+                           <div class="col-xl-12">
+                              <button class="button btn-yellow">{{ button_label|default('Save') }}</button>
+                           
+                           
+                           
+                           
+                           
+                           </div>
+                        </div>
+                        {{ form_end(form) }}
+                        
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </section> 
+         <!-- Contact Us End -->
+         <!-- Fancy-box Start -->
+         <section class="overview-block-ptb">
+            <div class="container">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="title-box  text-center">
+                        <span class="text-warning">Get In Touch</span>
+                        <h2 class="title">Quick Support</h2>
+                        <p class="mb-0">You can get all the contact information.</p>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-4">
+                     <div class="iq-fancy-box text-center">
+                        <div class="iq-icon">
+                           <i aria-hidden="true" class="ion ion-ios-location-outline"></i>
+                        </div>
+                        <div class="fancy-content">
+                           <h4>Our Address</h4>
+                           <p>1234 North Avenue Luke Lane, South Bend, IN 360001</p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-4">
+                     <div class="iq-fancy-box text-center">
+                        <div class="iq-icon">
+                           <i aria-hidden="true" class="ion ion-ios-email-outline"></i>
+                        </div>
+                        <div class="fancy-content">
+                           <h4>Our Email Address</h4>
+                           <p>support@bizbag.com<br>
+                              support@demo.com
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-4">
+                     <div class="iq-fancy-box text-center">
+                        <div class="iq-icon">
+                           <i aria-hidden="true" class="ion ion-ios-telephone-outline"></i>
+                        </div>
+                        <div class="fancy-content">
+                           <h4>Our Phone Number</h4>
+                           <p>+11 123 456 7890<br>
+                              +11 123 456 7890
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- Fancy-box End -->
+         <div class="footer-subscribe">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h3 class="subscribe-heading">Abonnez-Vous Maintenant</h3>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-fields">
+                    <input
+                      type="email"
+                      name="EMAIL"
+                      placeholder="Votre E-mail"
+                      required=""
+                    />
+                    <a class="button btn-yellow" href="#">S'inscrire</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Main Content End -->
+
+      <!-- back-to-top -->
+      <div id="back-to-top">
+         <a class="top" id="top" href="#top"> <i class="ion-ios-arrow-up"></i> </a>
+      </div>
+      <!-- back-to-top End -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="js/jquery-1.11.1.min.js" ></script>
+<!-- popper  -->
+<script src="js/popper.min.js"></script>
+<!--  bootstrap -->
+<script src="js/bootstrap.min.js" ></script>
+<!-- Appear JavaScript -->
+<script src="js/appear.js"></script>
+<!-- Mega menu JavaScript -->
+<script src="js/mega_menu.min.js"></script>
+<!-- Count Down JavaScript -->
+<script src="js/countdown.min.js"></script>
+<!-- Owl Carousel JavaScript -->
+<script src="js/owl.carousel.min.js"></script>
+<!-- Magnific Popup JavaScript -->
+<script src="js/jquery.magnific-popup.min.js"></script>
+<!--  Counter -->
+<script src="js/jquery.countTo.js" ></script>
+<!-- Skrollr JavaScript -->
+<script src="js/skrollr.js"></script>
+<!-- Isotope JavaScript -->
+<script src="js/isotope.pkgd.min.js"></script>
+<!-- Retina JavaScript -->
+<script src="js/retina.min.js"></script>
+<!--  Custom -->
+<script src="js/custom.js" ></script>
+   </body>
+
+
+{%endblock%}

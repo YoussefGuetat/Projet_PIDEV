@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Bmc{% endblock %}
+
+{% block body %}
+    <h1>Edit Bmc</h1>
+
+    {{ include('bmc/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_bmc_index') }}">back to list</a>
+
+    {{ include('bmc/_delete_form.html.twig') }}
+{% endblock %}
