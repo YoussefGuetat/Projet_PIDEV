@@ -1,0 +1,84 @@
+{% extends 'front/GestionUtilisateur/home-2.html.twig' %}
+{% block contenu %}
+      <section class="iq-breadcrumb text-left">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-8 col-md-8 text-left mb-4 mb-lg-0 align-self-center">
+                  <h2 class="title">Nos Evenements</h2>
+                  <nav aria-label="breadcrumb">
+                     <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+                        <li class="breadcrumb-item active">Evenements</li>
+                     </ol>
+                  </nav>
+               </div>
+               <div class="col-lg-4 col-md-4 text-right">
+                  <img  src="{{asset('front/images/blog/01.png')}}" class="img-fluid" alt="#"/>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Breadcrumb End -->
+      <!-- Main-Content Start -->
+      <div class="main-content">
+         <!-- Our Blog Start -->
+         <section id="our-blog" class="blog has-post-thumbnail gray-bg">
+            <div class="container">
+               <div class="row">
+                  <div class="col-lg-4 col-md-4 order-lg-2 order-2">
+                     <div id="search-2" class="widget widget_search">
+                        <form method="get" class="search-form">
+                           <label>
+                           <span class="screen-reader-text">Search for:</span>
+                           </label>
+                           <input type="search" id="search-form-5cf6041521a93" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+                           <button type="submit" class="search-submit"><i class="fa fa-search"></i><span class="screen-reader-text">Search</span></button>
+                        </form>
+                     </div>
+                    
+                  </div>
+                  <div class="col-lg-8 col-md-8 order-lg-1 order-2">
+                  {% for event in evenements %}
+                     <div class="iq-blog-box">
+                        <div class="iq-blog-image clearfix">
+                        {% set img = event.photo %}
+                           <img src="{{asset(img)}}" class="img-fluid center-block" alt="blogimage0">
+                           <ul class="iq-blogtag">
+                              <li><a >{{event.nom}}</a></li>
+                           </ul>
+                        </div>
+                        <div class="iq-blog-detail">
+                           <div class="iq-blog-meta">
+                              <ul>
+                                 <li class="list-inline-item">
+                                    <p class="main-color" rel="bookmark">{{event.dateevent ? event.dateevent|date('d-m-Y') : '' }}</p>
+                                 </li>
+                              </ul>
+                           </div>
+                           <div class="blog-title">
+                              
+                                 <h5>objet</h5>
+                                 <p>{{event.objet}} </p>
+                                 <h5>Description</h5>
+                                 <p>{{event.description}} </p>
+                                 <h5>NB Place</h5>
+                                 <p>{{event.nbrplaces}} </p>
+                                 <h5>Adresse</h5>
+                                 <p>{{event.adresse}} </p>
+
+                           </div>
+                           </div>
+                           <a class="button btn-hdr" href="{{path('app_ticket_new',{'id':event.id})}}">Rejoindre Nous</a>
+
+                     </div>
+                     {% endfor %}
+                     <ul class="page-numbers">
+                        <li><span aria-current="page" class="page-numbers current">1</span></li>
+                        <li><a class="page-numbers" href="#">2</a></li>
+                        <li><a class="next page-numbers" href="#">Next page</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </section>
+ {% endblock %}

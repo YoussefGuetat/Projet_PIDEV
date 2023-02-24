@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+  
+<!-- Mirrored from prium.github.io/falcon/v3.3.0/pages/user/profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Nov 2021 08:41:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>Falcon | Dashboard &amp; Web App Template</title>
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+    <script src="assets/js/config.js"></script>
+    <script src="vendors/overlayscrollbars/OverlayScrollbars.min.js"></script>
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="vendors/glightbox/glightbox.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
+    <link href="vendors/overlayscrollbars/OverlayScrollbars.min.css" rel="stylesheet">
+    <link href="assets/css/theme-rtl.min.css" rel="stylesheet" id="style-rtl">
+    <link href="assets/css/theme.min.css" rel="stylesheet" id="style-default">
+    <link href="assets/css/user-rtl.min.css" rel="stylesheet" id="user-style-rtl">
+    <link href="assets/css/user.min.css" rel="stylesheet" id="user-style-default">
+    <script>
+      var isRTL = JSON.parse(localStorage.getItem('isRTL'));
+      if (isRTL) {
+        var linkDefault = document.getElementById('style-default');
+        var userLinkDefault = document.getElementById('user-style-default');
+        linkDefault.setAttribute('disabled', true);
+        userLinkDefault.setAttribute('disabled', true);
+        document.querySelector('html').setAttribute('dir', 'rtl');
+      } else {
+        var linkRTL = document.getElementById('style-rtl');
+        var userLinkRTL = document.getElementById('user-style-rtl');
+        linkRTL.setAttribute('disabled', true);
+        userLinkRTL.setAttribute('disabled', true);
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+      <div class="container" data-layout="container">
+        <script>
+          var isFluid = JSON.parse(localStorage.getItem('isFluid'));
+          if (isFluid) {
+            var container = document.querySelector('[data-layout]');
+            container.classList.remove('container');
+            container.classList.add('container-fluid');
+          }
+        </script>
+				<nav class="navbar navbar-light navbar-vertical navbar-expand-xl" style="display: none">
+					<script>
+						var navbarStyle = localStorage.getItem("navbarStyle");
+if (navbarStyle && navbarStyle !== "transparent") {
+document.querySelector(".navbar-vertical").classList.add(`navbar-${navbarStyle}`);
+}
+					</script>
+					<div class="d-flex align-items-center">
+						<div class="toggle-icon-wrapper">
+							<button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Toggle Navigation">
+								<span class="navbar-toggle-icon">
+									<span class="toggle-line"></span>
+								</span>
+							</button>
+						</div>
+						<a class="navbar-brand" href="index.html">
+							<div class="d-flex align-items-center py-3">
+								<img class="me-2" src="assets/img/logo.png" alt="" width="140"/><span class="font-sans-serif"></span>
+							</div>
+						</a>
+					</div>
+					<div class="collapse navbar-collapse" id="navbarVerticalCollapse">
+						<div class="navbar-vertical-content scrollbar">
+							<ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
+								<li
+									class="nav-item">
+									<!-- parent pages-->
+									<a class="nav-link" href="#dashboard" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="dashboard">
+										<div class="d-flex align-items-center">
+											<span class="nav-link-icon">
+												<span class="fas fa-chart-pie"></span>
+											</span>
+											<span class="nav-link-text ps-1">Dashboard</span>
+										</div>
+									</a>
+								</li>
+								<li
+									class="nav-item">
+									<!-- label-->
+									<div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+										<div class="col-auto navbar-vertical-label">Pages</div>
+										<div class="col ps-0">
+											<hr class="mb-0 navbar-vertical-divider"/>
+										</div>
+									</div>
+                  <a class="nav-link dropdown-indicator" href="#user" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="user">
+										<div class="d-flex align-items-center">
+											<span class="nav-link-icon">
+												<span class="fas fa-user"></span>
+											</span>
+											<span class="nav-link-text ps-1">Utilisateurs</span>
+										</div>
+									</a>
+									<ul class="nav collapse false" id="user">
+										<li class="nav-item">
+											<a class="nav-link" href="profile.html" aria-expanded="false">
+												<div class="d-flex align-items-center">
+													<span class="nav-link-text ps-1">Mon profile</span>
+												</div>
+											</a>
+											<!-- more inner pages-->
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="followers.html" aria-expanded="false">
+												<div class="d-flex align-items-center">
+													<span class="nav-link-text ps-1">Liste des utilisateurs</span>
+												</div>
+											</a>
+											<!-- more inner pages-->
+										</li>
+                    <li class="nav-item">
+											<a class="nav-link" href="index-2.html#authentication-modal" data-bs-toggle="modal" aria-expanded="false">
+												<div class="d-flex align-items-center">
+													<span class="nav-link-text ps-1">Ajouter un admin</span>
+												</div>
+											</a>
+											<!-- more inner pages-->
+										</li>
+									</ul>
+                  <a class="nav-link dropdown-indicator" href="#authentication" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="authentication">
+										<div class="d-flex align-items-center">
+											<span class="nav-link-icon">
+												<span class="fas fa-calendar-day"></span>
+											</span>
+											<span class="nav-link-text ps-1">Evènements</span>
+										</div>
+									</a>
+									<ul class="nav collapse false" id="authentication">
+										<li class="nav-item">
+											<a class="nav-link" href="create-an-event.html" aria-expanded="false">
+												<div class="d-flex align-items-center">
+													<span class="nav-link-text ps-1">Ajouter un évènement</span>
+												</div>
+											</a>
+											<!-- more inner pages-->
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="event-list.html" aria-expanded="false">
+												<div class="d-flex align-items-center">
+													<span class="nav-link-text ps-1">Liste des évènements</span>
+												</div>
+											</a>
+											<!-- more inner pages-->
+										</li>
+									</ul>
+									<!-- parent pages-->
+									<!-- parent pages-->
+									<a class="nav-link dropdown-indicator" href="#pricing" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="pricing">
+										<div class="d-flex align-items-center">
+											<span class="nav-link-icon">
+												<span class="fas fa-tags"></span>
+											</span>
+											<span class="nav-link-text ps-1">Annonces</span>
+										</div>
+									</a>
+									<ul class="nav collapse false" id="pricing">
+										<li class="nav-item">
+											<a class="nav-link" href="annonces.html" aria-expanded="false">
+												<div class="d-flex align-items-center">
+													<span class="nav-link-text ps-1">Liste des annonces</span>
+												</div>
+											</a>
+											<!-- more inner pages-->
+										</li>
+									</ul>
+									<!-- parent pages-->
+									<a class="nav-link dropdown-indicator" href="#faq" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="faq">
+										<div class="d-flex align-items-center">
+											<span class="nav-link-icon">
+												<span class="fas fa-question-circle"></span>
+											</span>
+											<span class="nav-link-text ps-1">Rendez-vous</span>
+										</div>
+									</a>
+									<ul class="nav collapse false" id="faq">
+										<li class="nav-item">
+											<a class="nav-link" href="pages/faq/faq-basic.html" aria-expanded="false">
+												<div class="d-flex align-items-center">
+													<span class="nav-link-text ps-1">Liste des rendez-vous</span>
+												</div>
+											</a>
+											<!-- more inner pages-->
+										</li>
+									</ul>
+									<!-- parent pages-->
+									<a class="nav-link dropdown-indicator" href="#errors" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="errors">
+										<div class="d-flex align-items-center">
+											<span class="nav-link-icon">
+												<span class="fas fa-exclamation-triangle"></span>
+											</span>
+											<span class="nav-link-text ps-1">Réclamations</span>
+										</div>
+									</a>
+									<ul class="nav collapse false" id="errors">
+										<li class="nav-item">
+											<a class="nav-link" href="pages/errors/404.html" aria-expanded="false">
+												<div class="d-flex align-items-center">
+													<span class="nav-link-text ps-1">Listes des réclamation</span>
+												</div>
+											</a>
+											<!-- more inner pages-->
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+        <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand-xl" style="display: none;">
+          <button class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarStandard" aria-controls="navbarStandard" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+          <a class="navbar-brand me-1 me-sm-3" href="index.html">
+            <div class="d-flex align-items-center"><img class="me-2" src="assets/img/looo.png" alt="" width="40" /><span class="font-sans-serif"></span></div>
+          </a>
+          <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
+            <ul class="navbar-nav" data-top-nav-dropdowns="data-top-nav-dropdowns">
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dashboards">Dashboard</a>
+                <div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="dashboards">
+                  <div class="bg-white dark__bg-1000 rounded-3 py-2"><a class="dropdown-item link-600 fw-medium" href="index.html">Default</a><a class="dropdown-item link-600 fw-medium" href="dashboard/analytics.html">Analytics</a><a class="dropdown-item link-600 fw-medium" href="dashboard/crm.html">CRM</a><a class="dropdown-item link-600 fw-medium" href="dashboard/e-commerce.html">E commerce</a><a class="dropdown-item link-600 fw-medium" href="dashboard/project-management.html">Management</a><a class="dropdown-item link-600 fw-medium" href="dashboard/saas.html">SaaS</a></div>
+                </div>
+              </li>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="apps">App</a>
+                <div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="apps">
+                  <div class="card navbar-card-app shadow-none dark__bg-1000">
+                    <div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown" src="assets/img/icons/spot-illustrations/authentication-corner.png" width="130" alt="" />
+                      <div class="row">
+                        <div class="col-6 col-md-5">
+                          <div class="nav flex-column"><a class="nav-link py-1 link-600 fw-medium" href="app/calendar.html">Calendar</a><a class="nav-link py-1 link-600 fw-medium" href="app/chat.html">Chat</a><a class="nav-link py-1 link-600 fw-medium" href="app/kanban.html">Kanban</a>
+                            <p class="nav-link text-700 mb-0 fw-bold">Email</p><a class="nav-link py-1 link-600 fw-medium" href="app/email/inbox.html">Inbox</a><a class="nav-link py-1 link-600 fw-medium" href="app/email/email-detail.html">Email detail</a><a class="nav-link py-1 link-600 fw-medium" href="app/email/compose.html">Compose</a>
+                            <p class="nav-link text-700 mb-0 fw-bold">Events</p><a class="nav-link py-1 link-600 fw-medium" href="app/events/create-an-event.html">Create an event</a><a class="nav-link py-1 link-600 fw-medium" href="app/events/event-detail.html">Event detail</a><a class="nav-link py-1 link-600 fw-medium" href="app/events/event-list.html">Event list</a>
+                            <p class="nav-link text-700 mb-0 fw-bold">Social</p><a class="nav-link py-1 link-600 fw-medium" href="app/social/feed.html">Feed</a><a class="nav-link py-1 link-600 fw-medium" href="app/social/activity-log.html">Activity log</a><a class="nav-link py-1 link-600 fw-medium" href="app/social/notifications.html">Notifications</a><a class="nav-link py-1 link-600 fw-medium" href="app/social/followers.html">Followers</a>
+                          </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                          <div class="nav flex-column">
+                            <p class="nav-link text-700 mb-0 fw-bold">E-Commerce</p><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/product/product-list.html">Product list</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/product/product-grid.html">Product grid</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/product/product-details.html">Product details</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/orders/order-list.html">Order list</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/orders/order-details.html">Order details</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/customers.html">Customers</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/customer-details.html">Customer details</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/shopping-cart.html">Shopping cart</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/checkout.html">Checkout</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/billing.html">Billing</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/invoice.html">Invoice</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="pagess">Pages</a>
+                <div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="pagess">
+                  <div class="card navbar-card-pages shadow-none dark__bg-1000">
+                    <div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown" src="assets/img/icons/spot-illustrations/authentication-corner.png" width="130" alt="" />
+                      <div class="row">
+                        <div class="col-6 col-xxl-3">
+                          <div class="nav flex-column">
+                            <p class="nav-link text-700 mb-0 fw-bold">Simple Auth</p><a class="nav-link py-1 link-600 fw-medium" href="../authentication/simple/login.html">Login</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/simple/logout.html">Logout</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/simple/register.html">Register</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/simple/forgot-password.html">Forgot password</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/simple/confirm-mail.html">Confirm mail</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/simple/reset-password.html">Reset password</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/simple/lock-screen.html">Lock screen</a>
+                          </div>
+                        </div>
+                        <div class="col-6 col-xxl-3">
+                          <div class="nav flex-column">
+                            <p class="nav-link text-700 mb-0 fw-bold">Card Auth</p><a class="nav-link py-1 link-600 fw-medium" href="../authentication/card/login.html">Login</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/card/logout.html">Logout</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/card/register.html">Register</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/card/forgot-password.html">Forgot password</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/card/confirm-mail.html">Confirm mail</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/card/reset-password.html">Reset password</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/card/lock-screen.html">Lock screen</a>
+                          </div>
+                        </div>
+                        <div class="col-6 col-xxl-3">
+                          <div class="nav flex-column">
+                            <p class="nav-link text-700 mb-0 fw-bold">Split Auth</p><a class="nav-link py-1 link-600 fw-medium" href="../authentication/split/login.html">Login</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/split/logout.html">Logout</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/split/register.html">Register</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/split/forgot-password.html">Forgot password</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/split/confirm-mail.html">Confirm mail</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/split/reset-password.html">Reset password</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/split/lock-screen.html">Lock screen</a>
+                          </div>
+                        </div>
+                        <div class="col-6 col-xxl-3">
+                          <div class="nav flex-column">
+                            <p class="nav-link text-700 mb-0 fw-bold">Other Auth</p><a class="nav-link py-1 link-600 fw-medium" href="../authentication/wizard.html">Wizard</a><a class="nav-link py-1 link-600 fw-medium" href="index-2.html#authentication-modal" data-bs-toggle="modal">Modal</a>
+                            <p class="nav-link text-700 mb-0 fw-bold">Miscellaneous</p><a class="nav-link py-1 link-600 fw-medium" href="../miscellaneous/associations.html">Associations</a><a class="nav-link py-1 link-600 fw-medium" href="../miscellaneous/invite-people.html">Invite people</a><a class="nav-link py-1 link-600 fw-medium" href="../miscellaneous/privacy-policy.html">Privacy policy</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6 col-xxl-3">
+                          <div class="nav flex-column">
+                            <p class="nav-link text-700 mb-0 fw-bold">User</p><a class="nav-link py-1 link-600 fw-medium" href="profile.html">Profile</a><a class="nav-link py-1 link-600 fw-medium" href="settings.html">Settings</a>
+                          </div>
+                        </div>
+                        <div class="col-6 col-xxl-3">
+                          <div class="nav flex-column">
+                            <p class="nav-link text-700 mb-0 fw-bold">Pricing</p><a class="nav-link py-1 link-600 fw-medium" href="../pricing/pricing-default.html">Pricing default</a><a class="nav-link py-1 link-600 fw-medium" href="../pricing/pricing-alt.html">Pricing alt</a>
+                          </div>
+                        </div>
+                        <div class="col-6 col-xxl-3">
+                          <div class="nav flex-column">
+                            <p class="nav-link text-700 mb-0 fw-bold">Errors</p><a class="nav-link py-1 link-600 fw-medium" href="../errors/404.html">404</a><a class="nav-link py-1 link-600 fw-medium" href="../errors/500.html">500</a>
+                          </div>
+                        </div>
+                        <div class="col-6 col-xxl-3">
+                          <div class="nav flex-column">
+                            <p class="nav-link text-700 mb-0 fw-bold">Others</p><a class="nav-link py-1 link-600 fw-medium" href="../starter.html">Starter</a><a class="nav-link py-1 link-600 fw-medium" href="../landing.html">Landing</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="moduless">Modules</a>
+                <div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="moduless">
+                  <div class="card navbar-card-components shadow-none dark__bg-1000">
+                    <div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown" src="assets/img/icons/spot-illustrations/authentication-corner.png" width="130" alt="" />
+                      <div class="row">
+                        <div class="col-6 col-xxl-3">
+                          <div class="nav flex-column">
+                            <p class="nav-link text-700 mb-0 fw-bold">Components</p><a class="nav-link py-1 link-600 fw-medium" href="modules/components/accordion.html">Accordion</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/alerts.html">Alerts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/anchor.html">Anchor</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/animated-icons.html">Animated icons</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/background.html">Background</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/badges.html">Badges</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/breadcrumbs.html">Breadcrumbs</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/buttons.html">Buttons</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/calendar.html">Calendar</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/cards.html">Cards</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/carousel/bootstrap.html">Bootstrap carousel</a>
+                          </div>
+                        </div>
+                        <div class="col-6 col-xxl-3">
+                          <div class="nav flex-column mt-md-4 pt-md-1"><a class="nav-link py-1 link-600 fw-medium" href="modules/components/carousel/swiper.html">Swiper</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/collapse.html">Collapse</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/cookie-notice.html">Cookie notice</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/countup.html">Countup</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/draggable.html">Draggable</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/dropdowns.html">Dropdowns</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/list-group.html">List group</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/modals.html">Modals</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/navs-and-tabs/navs.html">Navs</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/navs-and-tabs/navbar.html">Navbar</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/navs-and-tabs/vertical-navbar.html">Vertical navbar</a></div>
+                        </div>
+                        <div class="col-6 col-xxl-3">
+                          <div class="nav flex-column mt-xxl-4 pt-xxl-1"><a class="nav-link py-1 link-600 fw-medium" href="modules/components/navs-and-tabs/top-navbar.html">Top navbar</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/navs-and-tabs/combo-navbar.html">Combo navbar</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/navs-and-tabs/tabs.html">Tabs</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/offcanvas.html">Offcanvas</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/pictures/avatar.html">Avatar</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/pictures/images.html">Images</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/pictures/figures.html">Figures</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/pictures/hoverbox.html">Hoverbox</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/pictures/lightbox.html">Lightbox</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/progress-bar.html">Progress bar</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/placeholder.html">Placeholder</a></div>
+                        </div>
+                        <div class="col-6 col-xxl-3">
+                          <div class="nav flex-column mt-xxl-4 pt-xxl-1"><a class="nav-link py-1 link-600 fw-medium" href="modules/components/pagination.html">Pagination</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/popovers.html">Popovers</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/scrollspy.html">Scrollspy</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/search.html">Search</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/spinners.html">Spinners</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/toasts.html">Toasts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/tooltips.html">Tooltips</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/typed-text.html">Typed text</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/videos/embed.html">Embed</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/videos/plyr.html">Plyr</a></div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6 col-xxl-3">
+                          <div class="nav flex-column">
+                            <p class="nav-link text-700 mb-0 fw-bold">Forms</p><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/basic/form-control.html">Form control</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/basic/input-group.html">Input group</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/basic/select.html">Select</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/basic/checks.html">Checks</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/basic/range.html">Range</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/basic/layout.html">Layout</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/advance/advance-select.html">Advance select</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/advance/date-picker.html">Date picker</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/advance/editor.html">Editor</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/advance/emoji-button.html">Emoji button</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/advance/file-uploader.html">File uploader</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/advance/rating.html">Rating</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/floating-labels.html">Floating labels</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/wizard.html">Wizard</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/validation.html">Validation</a>
+                          </div>
+                        </div>
+                        <div class="col-6 col-xxl-3">
+                          <div class="nav flex-column">
+                            <p class="nav-link text-700 mb-0 fw-bold">Tables</p><a class="nav-link py-1 link-600 fw-medium" href="modules/tables/basic-tables.html">Basic tables</a><a class="nav-link py-1 link-600 fw-medium" href="modules/tables/advance-tables.html">Advance tables</a><a class="nav-link py-1 link-600 fw-medium" href="modules/tables/bulk-select.html">Bulk select</a>
+                            <p class="nav-link text-700 mb-0 fw-bold">Charts</p><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/chartjs.html">Chartjs</a>
+                            <p class="nav-link text-700 mb-0 fw-bold">ECharts</p><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/line-charts.html">Line charts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/bar-charts.html">Bar charts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/candlestick-charts.html">Candlestick charts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/geo-map.html">Geo map</a><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/scatter-charts.html">Scatter charts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/pie-charts.html">Pie charts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/radar-charts.html">Radar charts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/heatmap-charts.html">Heatmap charts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/how-to-use.html">How to use</a>
+                          </div>
+                        </div>
+                        <div class="col-6 col-xxl-3">
+                          <div class="nav flex-column">
+                            <p class="nav-link text-700 mb-0 fw-bold">Utilities</p><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/borders.html">Borders</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/clearfix.html">Clearfix</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/colors.html">Colors</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/colored-links.html">Colored links</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/display.html">Display</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/flex.html">Flex</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/float.html">Float</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/grid.html">Grid</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/overlayscrollbars.html">Overlayscrollbars</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/position.html">Position</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/spacing.html">Spacing</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/sizing.html">Sizing</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/stretched-link.html">Stretched link</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/text-truncation.html">Text truncation</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/typography.html">Typography</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/vertical-align.html">Vertical align</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/visibility.html">Visibility</a>
+                          </div>
+                        </div>
+                        <div class="col-6 col-xxl-3">
+                          <div class="nav flex-column mt-xxl-4 pt-xxl-1">
+                            <p class="nav-link text-700 mb-0 fw-bold">Icons</p><a class="nav-link py-1 link-600 fw-medium" href="modules/icons/font-awesome.html">Font awesome</a><a class="nav-link py-1 link-600 fw-medium" href="modules/icons/bootstrap-icons.html">Bootstrap icons</a><a class="nav-link py-1 link-600 fw-medium" href="modules/icons/feather.html">Feather</a><a class="nav-link py-1 link-600 fw-medium" href="modules/icons/material-icons.html">Material icons</a>
+                            <p class="nav-link text-700 mb-0 fw-bold">Maps</p><a class="nav-link py-1 link-600 fw-medium" href="modules/maps/google-map.html">Google map</a><a class="nav-link py-1 link-600 fw-medium" href="modules/maps/leaflet-map.html">Leaflet map</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="documentations">Documentation</a>
+                <div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="documentations">
+                  <div class="bg-white dark__bg-1000 rounded-3 py-2"><a class="dropdown-item link-600 fw-medium" href="documentation/getting-started.html">Getting started</a><a class="dropdown-item link-600 fw-medium" href="documentation/customization/configuration.html">Configuration</a><a class="dropdown-item link-600 fw-medium" href="documentation/customization/styling.html">Styling</a><a class="dropdown-item link-600 fw-medium" href="documentation/customization/dark-mode.html">Dark mode<span class="badge rounded-pill ms-2 badge-soft-success">New</span></a><a class="dropdown-item link-600 fw-medium" href="documentation/customization/plugin.html">Plugin</a><a class="dropdown-item link-600 fw-medium" href="documentation/gulp.html">Gulp</a><a class="dropdown-item link-600 fw-medium" href="documentation/design-file.html">Design file</a><a class="dropdown-item link-600 fw-medium" href="changelog.html">Changelog</a></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
+            <li class="nav-item">
+              <div class="theme-control-toggle fa-icon-wait px-2"><input class="form-check-input ms-0 theme-control-toggle-input" id="themeControlToggle" type="checkbox" data-theme-control="theme" value="dark" /><label class="mb-0 theme-control-toggle-label theme-control-toggle-light" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Switch to light theme"><span class="fas fa-sun fs-0"></span></label><label class="mb-0 theme-control-toggle-label theme-control-toggle-dark" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Switch to dark theme"><span class="fas fa-moon fs-0"></span></label></div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-0 notification-indicator notification-indicator-warning notification-indicator-fill fa-icon-wait" href="app/e-commerce/shopping-cart.html"><span class="fas fa-shopping-cart" data-fa-transform="shrink-7" style="font-size: 33px;"></span><span class="notification-indicator-number">1</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait" id="navbarDropdownNotification" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-bell" data-fa-transform="shrink-6" style="font-size: 33px;"></span></a>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-card dropdown-menu-notification" aria-labelledby="navbarDropdownNotification">
+                <div class="card card-notification shadow-none">
+                  <div class="card-header">
+                    <div class="row justify-content-between align-items-center">
+                      <div class="col-auto">
+                        <h6 class="card-header-title mb-0">Notifications</h6>
+                      </div>
+                      <div class="col-auto ps-0 ps-sm-3"><a class="card-link fw-normal" href="#">Mark all as read</a></div>
+                    </div>
+                  </div>
+                  <div class="scrollbar-overlay" style="max-height:19rem">
+                    <div class="list-group list-group-flush fw-normal fs--1">
+                      <div class="list-group-title border-bottom">NEW</div>
+                      <div class="list-group-item">
+                        <a class="notification notification-flush notification-unread" href="#!">
+                          <div class="notification-avatar">
+                            <div class="avatar avatar-2xl me-3">
+                              <img class="rounded-circle" src="assets/img/team/1-thumb.png" alt="" />
+                            </div>
+                          </div>
+                          <div class="notification-body">
+                            <p class="mb-1"><strong>Emma Watson</strong> replied to your comment : "Hello world 😍"</p>
+                            <span class="notification-time"><span class="me-2" role="img" aria-label="Emoji">💬</span>Just now</span>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="list-group-item">
+                        <a class="notification notification-flush notification-unread" href="#!">
+                          <div class="notification-avatar">
+                            <div class="avatar avatar-2xl me-3">
+                              <div class="avatar-name rounded-circle"><span>AB</span></div>
+                            </div>
+                          </div>
+                          <div class="notification-body">
+                            <p class="mb-1"><strong>Albert Brooks</strong> reacted to <strong>Mia Khalifa's</strong> status</p>
+                            <span class="notification-time"><span class="me-2 fab fa-gratipay text-danger"></span>9hr</span>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="list-group-title border-bottom">EARLIER</div>
+                      <div class="list-group-item">
+                        <a class="notification notification-flush" href="#!">
+                          <div class="notification-avatar">
+                            <div class="avatar avatar-2xl me-3">
+                              <img class="rounded-circle" src="assets/img/icons/weather-sm.jpg" alt="" />
+                            </div>
+                          </div>
+                          <div class="notification-body">
+                            <p class="mb-1">The forecast today shows a low of 20&#8451; in California. See today's weather.</p>
+                            <span class="notification-time"><span class="me-2" role="img" aria-label="Emoji">🌤️</span>1d</span>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="list-group-item">
+                        <a class="border-bottom-0 notification-unread  notification notification-flush" href="#!">
+                          <div class="notification-avatar">
+                            <div class="avatar avatar-xl me-3">
+                              <img class="rounded-circle" src="assets/img/logos/oxford.png" alt="" />
+                            </div>
+                          </div>
+                          <div class="notification-body">
+                            <p class="mb-1"><strong>University of Oxford</strong> created an event : "Causal Inference Hilary 2019"</p>
+                            <span class="notification-time"><span class="me-2" role="img" aria-label="Emoji">✌️</span>1w</span>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="list-group-item">
+                        <a class="border-bottom-0 notification notification-flush" href="#!">
+                          <div class="notification-avatar">
+                            <div class="avatar avatar-xl me-3">
+                              <img class="rounded-circle" src="assets/img/team/10.jpg" alt="" />
+                            </div>
+                          </div>
+                          <div class="notification-body">
+                            <p class="mb-1"><strong>James Cameron</strong> invited to join the group: United Nations International Children's Fund</p>
+                            <span class="notification-time"><span class="me-2" role="img" aria-label="Emoji">🙋‍</span>2d</span>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer text-center border-top"><a class="card-link d-block" href="app/social/notifications.html">View all</a></div>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item dropdown"><a class="nav-link pe-0" id="navbarDropdownUser" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="avatar avatar-xl">
+                  <img class="rounded-circle" src="assets/img/team/3-thumb.png" alt="" />
+                </div>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="navbarDropdownUser">
+                <div class="bg-white dark__bg-1000 rounded-2 py-2">
+                  <a class="dropdown-item fw-bold text-warning" href="#!"><span class="fas fa-crown me-1"></span><span>Go Pro</span></a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#!">Set status</a>
+                  <a class="dropdown-item" href="profile.html">Profile &amp; account</a>
+                  <a class="dropdown-item" href="#!">Feedback</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="settings.html">Settings</a>
+                  <a class="dropdown-item" href="../authentication/card/logout.html">Logout</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <div class="content">
+          <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand" style="display: none;">
+            <button class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+            <a class="navbar-brand me-1 me-sm-3" href="index.html">
+              <div class="d-flex align-items-center"><img class="me-2" src="assets/img/looo.png" alt="" width="40" /><span class="font-sans-serif">a</span></div>
+            </a>
+            <ul class="navbar-nav align-items-center d-none d-lg-block">
+              <li class="nav-item">
+                <div class="search-box" data-list='{"valueNames":["title"]}'>
+                  <form class="position-relative" data-bs-toggle="search" data-bs-display="static"><input class="form-control search-input fuzzy-search" type="search" placeholder="Rechercher..." aria-label="Search" />
+                    <span class="fas fa-search search-box-icon"></span>
+                  </form>
+                  <div class="btn-close-falcon-container position-absolute end-0 top-50 translate-middle shadow-none" data-bs-dismiss="search">
+                    <div class="btn-close-falcon" aria-label="Close"></div>
+                  </div>
+                  <div class="dropdown-menu border font-base start-0 mt-2 py-0 overflow-hidden w-100">
+                    <div class="scrollbar list py-3" style="max-height: 24rem;">
+                      <h6 class="dropdown-header fw-medium text-uppercase px-card fs--2 pt-0 pb-2">Recently Browsed</h6><a class="dropdown-item fs--1 px-card py-1 hover-primary" href="app/events/event-detail.html">
+                        <div class="d-flex align-items-center">
+                          <span class="fas fa-circle me-2 text-300 fs--2"></span>
+                          <div class="fw-normal title">Pages <span class="fas fa-chevron-right mx-1 text-500 fs--2" data-fa-transform="shrink-2"></span> Events</div>
+                        </div>
+                      </a>
+                      <a class="dropdown-item fs--1 px-card py-1 hover-primary" href="app/e-commerce/customers.html">
+                        <div class="d-flex align-items-center">
+                          <span class="fas fa-circle me-2 text-300 fs--2"></span>
+                          <div class="fw-normal title">E-commerce <span class="fas fa-chevron-right mx-1 text-500 fs--2" data-fa-transform="shrink-2"></span> Customers</div>
+                        </div>
+                      </a>
+                      <hr class="bg-200 dark__bg-900" />
+                      <h6 class="dropdown-header fw-medium text-uppercase px-card fs--2 pt-0 pb-2">Suggested Filter</h6><a class="dropdown-item px-card py-1 fs-0" href="app/e-commerce/customers.html">
+                        <div class="d-flex align-items-center"><span class="badge fw-medium text-decoration-none me-2 badge-soft-warning">customers:</span>
+                          <div class="flex-1 fs--1 title">All customers list</div>
+                        </div>
+                      </a>
+                      <a class="dropdown-item px-card py-1 fs-0" href="app/events/event-detail.html">
+                        <div class="d-flex align-items-center"><span class="badge fw-medium text-decoration-none me-2 badge-soft-success">events:</span>
+                          <div class="flex-1 fs--1 title">Latest events in current month</div>
+                        </div>
+                      </a>
+                      <a class="dropdown-item px-card py-1 fs-0" href="app/e-commerce/product/product-grid.html">
+                        <div class="d-flex align-items-center"><span class="badge fw-medium text-decoration-none me-2 badge-soft-info">products:</span>
+                          <div class="flex-1 fs--1 title">Most popular products</div>
+                        </div>
+                      </a>
+                      <hr class="bg-200 dark__bg-900" />
+                      <h6 class="dropdown-header fw-medium text-uppercase px-card fs--2 pt-0 pb-2">Files</h6><a class="dropdown-item px-card py-2" href="#!">
+                        <div class="d-flex align-items-center">
+                          <div class="file-thumbnail me-2"><img class="border h-100 w-100 fit-cover rounded-3" src="assets/img/products/3-thumb.png" alt="" /></div>
+                          <div class="flex-1">
+                            <h6 class="mb-0 title">iPhone</h6>
+                            <p class="fs--2 mb-0 d-flex"><span class="fw-semi-bold">Antony</span><span class="fw-medium text-600 ms-2">27 Sep at 10:30 AM</span></p>
+                          </div>
+                        </div>
+                      </a>
+                      <a class="dropdown-item px-card py-2" href="#!">
+                        <div class="d-flex align-items-center">
+                          <div class="file-thumbnail me-2"><img class="img-fluid" src="assets/img/icons/zip.png" alt="" /></div>
+                          <div class="flex-1">
+                            <h6 class="mb-0 title">Falcon v1.8.2</h6>
+                            <p class="fs--2 mb-0 d-flex"><span class="fw-semi-bold">John</span><span class="fw-medium text-600 ms-2">30 Sep at 12:30 PM</span></p>
+                          </div>
+                        </div>
+                      </a>
+                      <hr class="bg-200 dark__bg-900" />
+                      <h6 class="dropdown-header fw-medium text-uppercase px-card fs--2 pt-0 pb-2">Members</h6><a class="dropdown-item px-card py-2" href="profile.html">
+                        <div class="d-flex align-items-center">
+                          <div class="avatar avatar-l status-online me-2">
+                            <img class="rounded-circle" src="assets/img/team/1.jpg" alt="" />
+                          </div>
+                          <div class="flex-1">
+                            <h6 class="mb-0 title">Anna Karinina</h6>
+                            <p class="fs--2 mb-0 d-flex">Technext Limited</p>
+                          </div>
+                        </div>
+                      </a>
+                      <a class="dropdown-item px-card py-2" href="profile.html">
+                        <div class="d-flex align-items-center">
+                          <div class="avatar avatar-l me-2">
+                            <img class="rounded-circle" src="assets/img/team/2.jpg" alt="" />
+                          </div>
+                          <div class="flex-1">
+                            <h6 class="mb-0 title">Antony Hopkins</h6>
+                            <p class="fs--2 mb-0 d-flex">Brain Trust</p>
+                          </div>
+                        </div>
+                      </a>
+                      <a class="dropdown-item px-card py-2" href="profile.html">
+                        <div class="d-flex align-items-center">
+                          <div class="avatar avatar-l me-2">
+                            <img class="rounded-circle" src="assets/img/team/3.jpg" alt="" />
+                          </div>
+                          <div class="flex-1">
+                            <h6 class="mb-0 title">Emma Watson</h6>
+                            <p class="fs--2 mb-0 d-flex">Google</p>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="text-center mt-n3">
+                      <p class="fallback fw-bold fs-1 d-none">No Result Found.</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
+              <li class="nav-item">
+                <div class="theme-control-toggle fa-icon-wait px-2">
+                  <input
+                    class="form-check-input ms-0 theme-control-toggle-input"
+                    id="themeControlToggle"
+                    type="checkbox"
+                    data-theme-control="theme"
+                    value="dark"
+                  /><label
+                    class="mb-0 theme-control-toggle-label theme-control-toggle-light"
+                    for="themeControlToggle"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="left"
+                    title="Switch to light theme"
+                    ><span class="fas fa-sun fs-0"></span></label
+                  ><label
+                    class="mb-0 theme-control-toggle-label theme-control-toggle-dark"
+                    for="themeControlToggle"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="left"
+                    title="Switch to dark theme"
+                    ><span class="fas fa-moon fs-0"></span
+                  ></label>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait"
+                  id="navbarDropdownNotification"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><span
+                    class="fas fa-bell"
+                    data-fa-transform="shrink-6"
+                    style="font-size: 33px"
+                  ></span
+                ></a>
+                <div
+                  class="dropdown-menu dropdown-menu-end dropdown-menu-card dropdown-menu-notification"
+                  aria-labelledby="navbarDropdownNotification"
+                >
+                  <div class="card card-notification shadow-none">
+                    <div class="card-header">
+                      <div
+                        class="row justify-content-between align-items-center"
+                      >
+                        <div class="col-auto">
+                          <h6 class="card-header-title mb-0">Notifications</h6>
+                        </div>
+                        <div class="col-auto ps-0 ps-sm-3">
+                          <a class="card-link fw-normal" href="#"
+                            >Mark all as read</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="scrollbar-overlay" style="max-height: 19rem">
+                      <div class="list-group list-group-flush fw-normal fs--1">
+                        <div class="list-group-title border-bottom">NEW</div>
+                        <div class="list-group-item">
+                          <a
+                            class="notification notification-flush notification-unread"
+                            href="#!"
+                          >
+                            <div class="notification-avatar">
+                              <div class="avatar avatar-2xl me-3">
+                                <img
+                                  class="rounded-circle"
+                                  src="assets/img/team/1-thumb.png"
+                                  alt=""
+                                />
+                              </div>
+                            </div>
+                            <div class="notification-body">
+                              <p class="mb-1">
+                                <strong>Emma Watson</strong> replied to your
+                                comment : "Hello world 😍"
+                              </p>
+                              <span class="notification-time"
+                                ><span
+                                  class="me-2"
+                                  role="img"
+                                  aria-label="Emoji"
+                                  >💬</span
+                                >Just now</span
+                              >
+                            </div>
+                          </a>
+                        </div>
+                        <div class="list-group-item">
+                          <a
+                            class="notification notification-flush notification-unread"
+                            href="#!"
+                          >
+                            <div class="notification-avatar">
+                              <div class="avatar avatar-2xl me-3">
+                                <div class="avatar-name rounded-circle">
+                                  <span>AB</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="notification-body">
+                              <p class="mb-1">
+                                <strong>Albert Brooks</strong> reacted to
+                                <strong>Mia Khalifa's</strong> status
+                              </p>
+                              <span class="notification-time"
+                                ><span
+                                  class="me-2 fab fa-gratipay text-danger"
+                                ></span
+                                >9hr</span
+                              >
+                            </div>
+                          </a>
+                        </div>
+                        <div class="list-group-title border-bottom">
+                          EARLIER
+                        </div>
+                        <div class="list-group-item">
+                          <a class="notification notification-flush" href="#!">
+                            <div class="notification-avatar">
+                              <div class="avatar avatar-2xl me-3">
+                                <img
+                                  class="rounded-circle"
+                                  src="assets/img/icons/weather-sm.jpg"
+                                  alt=""
+                                />
+                              </div>
+                            </div>
+                            <div class="notification-body">
+                              <p class="mb-1">
+                                The forecast today shows a low of 20&#8451; in
+                                California. See today's weather.
+                              </p>
+                              <span class="notification-time"
+                                ><span
+                                  class="me-2"
+                                  role="img"
+                                  aria-label="Emoji"
+                                  >🌤️</span
+                                >1d</span
+                              >
+                            </div>
+                          </a>
+                        </div>
+                        <div class="list-group-item">
+                          <a
+                            class="border-bottom-0 notification-unread notification notification-flush"
+                            href="#!"
+                          >
+                            <div class="notification-avatar">
+                              <div class="avatar avatar-xl me-3">
+                                <img
+                                  class="rounded-circle"
+                                  src="assets/img/logos/oxford.png"
+                                  alt=""
+                                />
+                              </div>
+                            </div>
+                            <div class="notification-body">
+                              <p class="mb-1">
+                                <strong>University of Oxford</strong> created an
+                                event : "Causal Inference Hilary 2019"
+                              </p>
+                              <span class="notification-time"
+                                ><span
+                                  class="me-2"
+                                  role="img"
+                                  aria-label="Emoji"
+                                  >✌️</span
+                                >1w</span
+                              >
+                            </div>
+                          </a>
+                        </div>
+                        <div class="list-group-item">
+                          <a
+                            class="border-bottom-0 notification notification-flush"
+                            href="#!"
+                          >
+                            <div class="notification-avatar">
+                              <div class="avatar avatar-xl me-3">
+                                <img
+                                  class="rounded-circle"
+                                  src="assets/img/team/10.jpg"
+                                  alt=""
+                                />
+                              </div>
+                            </div>
+                            <div class="notification-body">
+                              <p class="mb-1">
+                                <strong>James Cameron</strong> invited to join
+                                the group: United Nations International
+                                Children's Fund
+                              </p>
+                              <span class="notification-time"
+                                ><span
+                                  class="me-2"
+                                  role="img"
+                                  aria-label="Emoji"
+                                  >🙋‍</span
+                                >2d</span
+                              >
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer text-center border-top">
+                      <a
+                        class="card-link d-block"
+                        href="../social/notifications.html"
+                        >View all</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                 <a class="nav-link pe-0" id="navbarDropdownUser" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     <div class="avatar avatar-xl">
+                          <img class="rounded-circle" src="assets/img/team/3-thumb.png" alt=""  />
+                     </div>
+                 </a>
+                 <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="navbarDropdownUser">
+                       <div class="bg-white dark__bg-1000 rounded-2 py-2">
+                           <a class="dropdown-item" href="pages/authentication/card/logout.html">Déconnecter</a>
+                       </div>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand-lg" style="display: none;" data-move-target="#navbarVerticalNav" data-navbar-top="combo">
+            <button class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+            <a class="navbar-brand me-1 me-sm-3" href="index.html">
+              <div class="d-flex align-items-center"><img class="me-2" src="assets/img/icons/spot-illustrations/falcon.png" alt="" width="40" /><span class="font-sans-serif">falcon</span></div>
+            </a>
+            <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
+              <ul class="navbar-nav" data-top-nav-dropdowns="data-top-nav-dropdowns">
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dashboards">Dashboard</a>
+                  <div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="dashboards">
+                    <div class="bg-white dark__bg-1000 rounded-3 py-2"><a class="dropdown-item link-600 fw-medium" href="index.html">Default</a><a class="dropdown-item link-600 fw-medium" href="dashboard/analytics.html">Analytics</a><a class="dropdown-item link-600 fw-medium" href="dashboard/crm.html">CRM</a><a class="dropdown-item link-600 fw-medium" href="dashboard/e-commerce.html">E commerce</a><a class="dropdown-item link-600 fw-medium" href="dashboard/project-management.html">Management</a><a class="dropdown-item link-600 fw-medium" href="dashboard/saas.html">SaaS</a></div>
+                  </div>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="apps">App</a>
+                  <div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="apps">
+                    <div class="card navbar-card-app shadow-none dark__bg-1000">
+                      <div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown" src="assets/img/icons/spot-illustrations/authentication-corner.png" width="130" alt="" />
+                        <div class="row">
+                          <div class="col-6 col-md-5">
+                            <div class="nav flex-column"><a class="nav-link py-1 link-600 fw-medium" href="app/calendar.html">Calendar</a><a class="nav-link py-1 link-600 fw-medium" href="app/chat.html">Chat</a><a class="nav-link py-1 link-600 fw-medium" href="app/kanban.html">Kanban</a>
+                              <p class="nav-link text-700 mb-0 fw-bold">Email</p><a class="nav-link py-1 link-600 fw-medium" href="app/email/inbox.html">Inbox</a><a class="nav-link py-1 link-600 fw-medium" href="app/email/email-detail.html">Email detail</a><a class="nav-link py-1 link-600 fw-medium" href="app/email/compose.html">Compose</a>
+                              <p class="nav-link text-700 mb-0 fw-bold">Events</p><a class="nav-link py-1 link-600 fw-medium" href="app/events/create-an-event.html">Create an event</a><a class="nav-link py-1 link-600 fw-medium" href="app/events/event-detail.html">Event detail</a><a class="nav-link py-1 link-600 fw-medium" href="app/events/event-list.html">Event list</a>
+                              <p class="nav-link text-700 mb-0 fw-bold">Social</p><a class="nav-link py-1 link-600 fw-medium" href="app/social/feed.html">Feed</a><a class="nav-link py-1 link-600 fw-medium" href="app/social/activity-log.html">Activity log</a><a class="nav-link py-1 link-600 fw-medium" href="app/social/notifications.html">Notifications</a><a class="nav-link py-1 link-600 fw-medium" href="app/social/followers.html">Followers</a>
+                            </div>
+                          </div>
+                          <div class="col-6 col-md-4">
+                            <div class="nav flex-column">
+                              <p class="nav-link text-700 mb-0 fw-bold">E-Commerce</p><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/product/product-list.html">Product list</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/product/product-grid.html">Product grid</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/product/product-details.html">Product details</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/orders/order-list.html">Order list</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/orders/order-details.html">Order details</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/customers.html">Customers</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/customer-details.html">Customer details</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/shopping-cart.html">Shopping cart</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/checkout.html">Checkout</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/billing.html">Billing</a><a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/invoice.html">Invoice</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="pagess">Pages</a>
+                  <div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="pagess">
+                    <div class="card navbar-card-pages shadow-none dark__bg-1000">
+                      <div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown" src="assets/img/icons/spot-illustrations/authentication-corner.png" width="130" alt="" />
+                        <div class="row">
+                          <div class="col-6 col-xxl-3">
+                            <div class="nav flex-column">
+                              <p class="nav-link text-700 mb-0 fw-bold">Simple Auth</p><a class="nav-link py-1 link-600 fw-medium" href="../authentication/simple/login.html">Login</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/simple/logout.html">Logout</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/simple/register.html">Register</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/simple/forgot-password.html">Forgot password</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/simple/confirm-mail.html">Confirm mail</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/simple/reset-password.html">Reset password</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/simple/lock-screen.html">Lock screen</a>
+                            </div>
+                          </div>
+                          <div class="col-6 col-xxl-3">
+                            <div class="nav flex-column">
+                              <p class="nav-link text-700 mb-0 fw-bold">Card Auth</p><a class="nav-link py-1 link-600 fw-medium" href="../authentication/card/login.html">Login</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/card/logout.html">Logout</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/card/register.html">Register</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/card/forgot-password.html">Forgot password</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/card/confirm-mail.html">Confirm mail</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/card/reset-password.html">Reset password</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/card/lock-screen.html">Lock screen</a>
+                            </div>
+                          </div>
+                          <div class="col-6 col-xxl-3">
+                            <div class="nav flex-column">
+                              <p class="nav-link text-700 mb-0 fw-bold">Split Auth</p><a class="nav-link py-1 link-600 fw-medium" href="../authentication/split/login.html">Login</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/split/logout.html">Logout</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/split/register.html">Register</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/split/forgot-password.html">Forgot password</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/split/confirm-mail.html">Confirm mail</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/split/reset-password.html">Reset password</a><a class="nav-link py-1 link-600 fw-medium" href="../authentication/split/lock-screen.html">Lock screen</a>
+                            </div>
+                          </div>
+                          <div class="col-6 col-xxl-3">
+                            <div class="nav flex-column">
+                              <p class="nav-link text-700 mb-0 fw-bold">Other Auth</p><a class="nav-link py-1 link-600 fw-medium" href="../authentication/wizard.html">Wizard</a><a class="nav-link py-1 link-600 fw-medium" href="index-2.html#authentication-modal" data-bs-toggle="modal">Modal</a>
+                              <p class="nav-link text-700 mb-0 fw-bold">Miscellaneous</p><a class="nav-link py-1 link-600 fw-medium" href="../miscellaneous/associations.html">Associations</a><a class="nav-link py-1 link-600 fw-medium" href="../miscellaneous/invite-people.html">Invite people</a><a class="nav-link py-1 link-600 fw-medium" href="../miscellaneous/privacy-policy.html">Privacy policy</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6 col-xxl-3">
+                            <div class="nav flex-column">
+                              <p class="nav-link text-700 mb-0 fw-bold">User</p><a class="nav-link py-1 link-600 fw-medium" href="profile.html">Profile</a><a class="nav-link py-1 link-600 fw-medium" href="settings.html">Settings</a>
+                            </div>
+                          </div>
+                          <div class="col-6 col-xxl-3">
+                            <div class="nav flex-column">
+                              <p class="nav-link text-700 mb-0 fw-bold">Pricing</p><a class="nav-link py-1 link-600 fw-medium" href="../pricing/pricing-default.html">Pricing default</a><a class="nav-link py-1 link-600 fw-medium" href="../pricing/pricing-alt.html">Pricing alt</a>
+                            </div>
+                          </div>
+                          <div class="col-6 col-xxl-3">
+                            <div class="nav flex-column">
+                              <p class="nav-link text-700 mb-0 fw-bold">Errors</p><a class="nav-link py-1 link-600 fw-medium" href="../errors/404.html">404</a><a class="nav-link py-1 link-600 fw-medium" href="../errors/500.html">500</a>
+                            </div>
+                          </div>
+                          <div class="col-6 col-xxl-3">
+                            <div class="nav flex-column">
+                              <p class="nav-link text-700 mb-0 fw-bold">Others</p><a class="nav-link py-1 link-600 fw-medium" href="../starter.html">Starter</a><a class="nav-link py-1 link-600 fw-medium" href="../landing.html">Landing</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="moduless">Modules</a>
+                  <div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="moduless">
+                    <div class="card navbar-card-components shadow-none dark__bg-1000">
+                      <div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown" src="assets/img/icons/spot-illustrations/authentication-corner.png" width="130" alt="" />
+                        <div class="row">
+                          <div class="col-6 col-xxl-3">
+                            <div class="nav flex-column">
+                              <p class="nav-link text-700 mb-0 fw-bold">Components</p><a class="nav-link py-1 link-600 fw-medium" href="modules/components/accordion.html">Accordion</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/alerts.html">Alerts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/anchor.html">Anchor</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/animated-icons.html">Animated icons</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/background.html">Background</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/badges.html">Badges</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/breadcrumbs.html">Breadcrumbs</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/buttons.html">Buttons</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/calendar.html">Calendar</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/cards.html">Cards</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/carousel/bootstrap.html">Bootstrap carousel</a>
+                            </div>
+                          </div>
+                          <div class="col-6 col-xxl-3">
+                            <div class="nav flex-column mt-md-4 pt-md-1"><a class="nav-link py-1 link-600 fw-medium" href="modules/components/carousel/swiper.html">Swiper</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/collapse.html">Collapse</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/cookie-notice.html">Cookie notice</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/countup.html">Countup</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/draggable.html">Draggable</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/dropdowns.html">Dropdowns</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/list-group.html">List group</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/modals.html">Modals</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/navs-and-tabs/navs.html">Navs</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/navs-and-tabs/navbar.html">Navbar</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/navs-and-tabs/vertical-navbar.html">Vertical navbar</a></div>
+                          </div>
+                          <div class="col-6 col-xxl-3">
+                            <div class="nav flex-column mt-xxl-4 pt-xxl-1"><a class="nav-link py-1 link-600 fw-medium" href="modules/components/navs-and-tabs/top-navbar.html">Top navbar</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/navs-and-tabs/combo-navbar.html">Combo navbar</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/navs-and-tabs/tabs.html">Tabs</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/offcanvas.html">Offcanvas</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/pictures/avatar.html">Avatar</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/pictures/images.html">Images</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/pictures/figures.html">Figures</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/pictures/hoverbox.html">Hoverbox</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/pictures/lightbox.html">Lightbox</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/progress-bar.html">Progress bar</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/placeholder.html">Placeholder</a></div>
+                          </div>
+                          <div class="col-6 col-xxl-3">
+                            <div class="nav flex-column mt-xxl-4 pt-xxl-1"><a class="nav-link py-1 link-600 fw-medium" href="modules/components/pagination.html">Pagination</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/popovers.html">Popovers</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/scrollspy.html">Scrollspy</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/search.html">Search</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/spinners.html">Spinners</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/toasts.html">Toasts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/tooltips.html">Tooltips</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/typed-text.html">Typed text</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/videos/embed.html">Embed</a><a class="nav-link py-1 link-600 fw-medium" href="modules/components/videos/plyr.html">Plyr</a></div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6 col-xxl-3">
+                            <div class="nav flex-column">
+                              <p class="nav-link text-700 mb-0 fw-bold">Forms</p><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/basic/form-control.html">Form control</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/basic/input-group.html">Input group</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/basic/select.html">Select</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/basic/checks.html">Checks</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/basic/range.html">Range</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/basic/layout.html">Layout</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/advance/advance-select.html">Advance select</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/advance/date-picker.html">Date picker</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/advance/editor.html">Editor</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/advance/emoji-button.html">Emoji button</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/advance/file-uploader.html">File uploader</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/advance/rating.html">Rating</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/floating-labels.html">Floating labels</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/wizard.html">Wizard</a><a class="nav-link py-1 link-600 fw-medium" href="modules/forms/validation.html">Validation</a>
+                            </div>
+                          </div>
+                          <div class="col-6 col-xxl-3">
+                            <div class="nav flex-column">
+                              <p class="nav-link text-700 mb-0 fw-bold">Tables</p><a class="nav-link py-1 link-600 fw-medium" href="modules/tables/basic-tables.html">Basic tables</a><a class="nav-link py-1 link-600 fw-medium" href="modules/tables/advance-tables.html">Advance tables</a><a class="nav-link py-1 link-600 fw-medium" href="modules/tables/bulk-select.html">Bulk select</a>
+                              <p class="nav-link text-700 mb-0 fw-bold">Charts</p><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/chartjs.html">Chartjs</a>
+                              <p class="nav-link text-700 mb-0 fw-bold">ECharts</p><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/line-charts.html">Line charts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/bar-charts.html">Bar charts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/candlestick-charts.html">Candlestick charts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/geo-map.html">Geo map</a><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/scatter-charts.html">Scatter charts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/pie-charts.html">Pie charts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/radar-charts.html">Radar charts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/heatmap-charts.html">Heatmap charts</a><a class="nav-link py-1 link-600 fw-medium" href="modules/charts/echarts/how-to-use.html">How to use</a>
+                            </div>
+                          </div>
+                          <div class="col-6 col-xxl-3">
+                            <div class="nav flex-column">
+                              <p class="nav-link text-700 mb-0 fw-bold">Utilities</p><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/borders.html">Borders</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/clearfix.html">Clearfix</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/colors.html">Colors</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/colored-links.html">Colored links</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/display.html">Display</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/flex.html">Flex</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/float.html">Float</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/grid.html">Grid</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/overlayscrollbars.html">Overlayscrollbars</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/position.html">Position</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/spacing.html">Spacing</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/sizing.html">Sizing</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/stretched-link.html">Stretched link</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/text-truncation.html">Text truncation</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/typography.html">Typography</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/vertical-align.html">Vertical align</a><a class="nav-link py-1 link-600 fw-medium" href="modules/utilities/visibility.html">Visibility</a>
+                            </div>
+                          </div>
+                          <div class="col-6 col-xxl-3">
+                            <div class="nav flex-column mt-xxl-4 pt-xxl-1">
+                              <p class="nav-link text-700 mb-0 fw-bold">Icons</p><a class="nav-link py-1 link-600 fw-medium" href="modules/icons/font-awesome.html">Font awesome</a><a class="nav-link py-1 link-600 fw-medium" href="modules/icons/bootstrap-icons.html">Bootstrap icons</a><a class="nav-link py-1 link-600 fw-medium" href="modules/icons/feather.html">Feather</a><a class="nav-link py-1 link-600 fw-medium" href="modules/icons/material-icons.html">Material icons</a>
+                              <p class="nav-link text-700 mb-0 fw-bold">Maps</p><a class="nav-link py-1 link-600 fw-medium" href="modules/maps/google-map.html">Google map</a><a class="nav-link py-1 link-600 fw-medium" href="modules/maps/leaflet-map.html">Leaflet map</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="documentations">Documentation</a>
+                  <div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="documentations">
+                    <div class="bg-white dark__bg-1000 rounded-3 py-2"><a class="dropdown-item link-600 fw-medium" href="documentation/getting-started.html">Getting started</a><a class="dropdown-item link-600 fw-medium" href="documentation/customization/configuration.html">Configuration</a><a class="dropdown-item link-600 fw-medium" href="documentation/customization/styling.html">Styling</a><a class="dropdown-item link-600 fw-medium" href="documentation/customization/dark-mode.html">Dark mode<span class="badge rounded-pill ms-2 badge-soft-success">New</span></a><a class="dropdown-item link-600 fw-medium" href="documentation/customization/plugin.html">Plugin</a><a class="dropdown-item link-600 fw-medium" href="documentation/gulp.html">Gulp</a><a class="dropdown-item link-600 fw-medium" href="documentation/design-file.html">Design file</a><a class="dropdown-item link-600 fw-medium" href="changelog.html">Changelog</a></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
+              <li class="nav-item">
+                <div class="theme-control-toggle fa-icon-wait px-2"><input class="form-check-input ms-0 theme-control-toggle-input" id="themeControlToggle" type="checkbox" data-theme-control="theme" value="dark" /><label class="mb-0 theme-control-toggle-label theme-control-toggle-light" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Switch to light theme"><span class="fas fa-sun fs-0"></span></label><label class="mb-0 theme-control-toggle-label theme-control-toggle-dark" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Switch to dark theme"><span class="fas fa-moon fs-0"></span></label></div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link px-0 notification-indicator notification-indicator-warning notification-indicator-fill fa-icon-wait" href="app/e-commerce/shopping-cart.html"><span class="fas fa-shopping-cart" data-fa-transform="shrink-7" style="font-size: 33px;"></span><span class="notification-indicator-number">1</span></a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait" id="navbarDropdownNotification" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-bell" data-fa-transform="shrink-6" style="font-size: 33px;"></span></a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-card dropdown-menu-notification" aria-labelledby="navbarDropdownNotification">
+                  <div class="card card-notification shadow-none">
+                    <div class="card-header">
+                      <div class="row justify-content-between align-items-center">
+                        <div class="col-auto">
+                          <h6 class="card-header-title mb-0">Notifications</h6>
+                        </div>
+                        <div class="col-auto ps-0 ps-sm-3"><a class="card-link fw-normal" href="#">Mark all as read</a></div>
+                      </div>
+                    </div>
+                    <div class="scrollbar-overlay" style="max-height:19rem">
+                      <div class="list-group list-group-flush fw-normal fs--1">
+                        <div class="list-group-title border-bottom">NEW</div>
+                        <div class="list-group-item">
+                          <a class="notification notification-flush notification-unread" href="#!">
+                            <div class="notification-avatar">
+                              <div class="avatar avatar-2xl me-3">
+                                <img class="rounded-circle" src="assets/img/team/1-thumb.png" alt="" />
+                              </div>
+                            </div>
+                            <div class="notification-body">
+                              <p class="mb-1"><strong>Emma Watson</strong> replied to your comment : "Hello world 😍"</p>
+                              <span class="notification-time"><span class="me-2" role="img" aria-label="Emoji">💬</span>Just now</span>
+                            </div>
+                          </a>
+                        </div>
+                        <div class="list-group-item">
+                          <a class="notification notification-flush notification-unread" href="#!">
+                            <div class="notification-avatar">
+                              <div class="avatar avatar-2xl me-3">
+                                <div class="avatar-name rounded-circle"><span>AB</span></div>
+                              </div>
+                            </div>
+                            <div class="notification-body">
+                              <p class="mb-1"><strong>Albert Brooks</strong> reacted to <strong>Mia Khalifa's</strong> status</p>
+                              <span class="notification-time"><span class="me-2 fab fa-gratipay text-danger"></span>9hr</span>
+                            </div>
+                          </a>
+                        </div>
+                        <div class="list-group-title border-bottom">EARLIER</div>
+                        <div class="list-group-item">
+                          <a class="notification notification-flush" href="#!">
+                            <div class="notification-avatar">
+                              <div class="avatar avatar-2xl me-3">
+                                <img class="rounded-circle" src="assets/img/icons/weather-sm.jpg" alt="" />
+                              </div>
+                            </div>
+                            <div class="notification-body">
+                              <p class="mb-1">The forecast today shows a low of 20&#8451; in California. See today's weather.</p>
+                              <span class="notification-time"><span class="me-2" role="img" aria-label="Emoji">🌤️</span>1d</span>
+                            </div>
+                          </a>
+                        </div>
+                        <div class="list-group-item">
+                          <a class="border-bottom-0 notification-unread  notification notification-flush" href="#!">
+                            <div class="notification-avatar">
+                              <div class="avatar avatar-xl me-3">
+                                <img class="rounded-circle" src="assets/img/logos/oxford.png" alt="" />
+                              </div>
+                            </div>
+                            <div class="notification-body">
+                              <p class="mb-1"><strong>University of Oxford</strong> created an event : "Causal Inference Hilary 2019"</p>
+                              <span class="notification-time"><span class="me-2" role="img" aria-label="Emoji">✌️</span>1w</span>
+                            </div>
+                          </a>
+                        </div>
+                        <div class="list-group-item">
+                          <a class="border-bottom-0 notification notification-flush" href="#!">
+                            <div class="notification-avatar">
+                              <div class="avatar avatar-xl me-3">
+                                <img class="rounded-circle" src="assets/img/team/10.jpg" alt="" />
+                              </div>
+                            </div>
+                            <div class="notification-body">
+                              <p class="mb-1"><strong>James Cameron</strong> invited to join the group: United Nations International Children's Fund</p>
+                              <span class="notification-time"><span class="me-2" role="img" aria-label="Emoji">🙋‍</span>2d</span>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer text-center border-top"><a class="card-link d-block" href="app/social/notifications.html">View all</a></div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown"><a class="nav-link pe-0" id="navbarDropdownUser" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div class="avatar avatar-xl">
+                    <img class="rounded-circle" src="assets/img/team/3-thumb.png" alt="" />
+                  </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="navbarDropdownUser">
+                  <div class="bg-white dark__bg-1000 rounded-2 py-2">
+                    <a class="dropdown-item fw-bold text-warning" href="#!"><span class="fas fa-crown me-1"></span><span>Go Pro</span></a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#!">Set status</a>
+                    <a class="dropdown-item" href="profile.html">Profile &amp; account</a>
+                    <a class="dropdown-item" href="#!">Feedback</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="settings.html">Settings</a>
+                    <a class="dropdown-item" href="../authentication/card/logout.html">Logout</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <script>
+            var navbarPosition = localStorage.getItem('navbarPosition');
+            var navbarVertical = document.querySelector('.navbar-vertical');
+            var navbarTopVertical = document.querySelector('.content .navbar-top');
+            var navbarTop = document.querySelector('[data-layout] .navbar-top');
+            var navbarTopCombo = document.querySelector('.content [data-navbar-top="combo"]');
+            if (navbarPosition === 'top') {
+              navbarTop.removeAttribute('style');
+              navbarTopVertical.remove(navbarTopVertical);
+              navbarVertical.remove(navbarVertical);
+              navbarTopCombo.remove(navbarTopCombo);
+            } else if (navbarPosition === 'combo') {
+              navbarVertical.removeAttribute('style');
+              navbarTopCombo.removeAttribute('style');
+              navbarTop.remove(navbarTop);
+              navbarTopVertical.remove(navbarTopVertical);
+            } else {
+              navbarVertical.removeAttribute('style');
+              navbarTopVertical.removeAttribute('style');
+              navbarTop.remove(navbarTop);
+              navbarTopCombo.remove(navbarTopCombo);
+            }
+          </script>
+          <div class="card mb-3">
+            <div class="card-header position-relative min-vh-25 mb-8">
+              <div class="cover-image">
+                <div class="bg-holder rounded-3 rounded-bottom-0" style="background-image:url(assets/img/generic/4.jpg);"></div>
+                <!--/.bg-holder-->
+                <input class="d-none" id="upload-cover-image" type="file" /><label class="cover-image-file-input" for="upload-cover-image"><span class="fas fa-camera me-2"></span><span>Change cover photo</span></label>
+              </div>
+              <div class="avatar avatar-5xl avatar-profile shadow-sm img-thumbnail rounded-circle">
+                <div class="h-100 w-100 rounded-circle overflow-hidden position-relative"> <img src="assets/img/team/joseph.png" width="200" alt="" data-dz-thumbnail="data-dz-thumbnail" /><input class="d-none" id="profile-image" type="file" /><label class="mb-0 overlay-icon d-flex flex-center" for="profile-image"><span class="bg-holder overlay overlay-0"></span><span class="z-index-1 text-white dark__text-white text-center fs--1"><span class="fas fa-camera"></span><span class="d-block">Changer</span></span></label></div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-8">
+                  <h4 class="mb-1"> Guetat Youssef<span data-bs-toggle="tooltip" data-bs-placement="right" title="Verified"><small class="fa fa-check-circle text-primary" data-fa-transform="shrink-4 down-2"></small></span></h4>
+                  <h5 class="fs-0 fw-normal">Admin sandbox</h5>
+                  <p class="text-500">Ariana , Tunisie</p><a href="index-2.html#modifier-modal" data-bs-toggle="modal" aria-expanded="false"><button class="btn btn-falcon-default btn-sm px-3" type="button">Modifier</button></a>
+                  <a href="index-2.html#mdp-modal" data-bs-toggle="modal" aria-expanded="false"><button class="btn btn-falcon-default btn-sm px-3 ms-2" type="button">Changer mot de passe</button></a>
+                  <div class="border-dashed-bottom my-4 d-lg-none"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row g-0">
+            <div class="col-lg-8 pe-lg-2">
+              <div class="card mb-3">
+                <div class="card-header bg-light">
+                  <h4 class="mb-0">détails</h4>
+                </div>
+                <div class="card-body text-justify">
+                  <div class="collapse show" id="profile-intro">
+                    <p class="mt-3 text-1000"> <h5>Nom et Prénom : </h5><span>Guetat Youssef</span></p>
+                    <p class="mt-3 text-1000"> <h5>Nom de l'utilisateur : </h5><span>Joseph15</span></p>
+                    <p class="mt-3 text-1000"> <h5>Addresse E-mail : </h5><span>guetat1youssef@gmail.com</span></p>
+                    <p class="mt-3 text-1000"> <h5>Numéro téléphone : </h5><span>+216 55 025 447</span></p>
+                    <p class="mt-3 text-1000"> <h5>Role : </h5><span>Admin</span></p>
+                    <p class="mt-3 text-1000"> <h5>Adresse : </h5><span>La Petite Ariana, Ariana, Tunisie </span></p>
+                    <p class="mt-3 text-1000"> <h5>Date de naissance : </h5><span>15-05-2001</span></p>
+                    <p class="mt-3 text-1000"> <h5>Date création compte : </h5><span>10-02-2023</span></p>
+                    <p class="mt-3 text-1000"> <h5>Description : </h5><span>It’s great that we live in an age where we can share so much with technology but I’m but I’m ready for the next phase of my career, with a healthy balance between the virtual world and a workplace where I help others face-to-face.</span></p>
+                  </div>
+                </div>
+                <div class="card-footer bg-light p-0 border-top"><button class="btn btn-link d-block w-100 btn-intro-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#profile-intro" aria-expanded="true" aria-controls="profile-intro">Show <span class="less">less<span class="fas fa-chevron-up ms-2 fs--2"></span></span><span class="full">full<span class="fas fa-chevron-down ms-2 fs--2"></span></span></button></div>
+              </div>
+              <div class="card mb-3">
+                <div class="card-header bg-light d-flex justify-content-between">
+                  <h5 class="mb-0">Annonces</h5><a class="font-sans-serif" href="app/social/activity-log.html">All logs</a>
+                </div>
+                <div class="card-body fs--1 p-0">
+                  <a class="border-bottom-0 notification rounded-0 border-x-0 border border-300" href="#!">
+                    <div class="notification-avatar">
+                      <div class="avatar avatar-xl me-3">
+                        <div class="avatar-emoji rounded-circle "><span role="img" aria-label="Emoji">🎁</span></div>
+                      </div>
+                    </div>
+                    <div class="notification-body">
+                      <p class="mb-1"><strong>Jennifer Kent</strong> Congratulated <strong>Anthony Hopkins</strong></p>
+                      <span class="notification-time">November 13, 5:00 Am</span>
+                    </div>
+                  </a>
+
+                  <a class="border-bottom-0 notification rounded-0 border-x-0 border border-300" href="#!">
+                    <div class="notification-avatar">
+                      <div class="avatar avatar-xl me-3">
+                        <div class="avatar-emoji rounded-circle "><span role="img" aria-label="Emoji">🏷️</span></div>
+                      </div>
+                    </div>
+                    <div class="notification-body">
+                      <p class="mb-1"><strong>California Institute of Technology</strong> tagged <strong>Anthony Hopkins</strong> in a post.</p>
+                      <span class="notification-time">November 8, 5:00 PM</span>
+                    </div>
+                  </a>
+
+                  <a class="border-bottom-0 notification rounded-0 border-x-0 border border-300" href="#!">
+                    <div class="notification-avatar">
+                      <div class="avatar avatar-xl me-3">
+                        <div class="avatar-emoji rounded-circle "><span role="img" aria-label="Emoji">📋️</span></div>
+                      </div>
+                    </div>
+                    <div class="notification-body">
+                      <p class="mb-1"><strong>Anthony Hopkins</strong> joined <strong>Victory day cultural Program</strong> with <strong>Tony Stark</strong></p>
+                      <span class="notification-time">November 01, 11:30 AM</span>
+                    </div>
+                  </a>
+
+                  <a class="notification border-x-0 border-bottom-0 border-300 rounded-top-0" href="#!">
+                    <div class="notification-avatar">
+                      <div class="avatar avatar-xl me-3">
+                        <div class="avatar-emoji rounded-circle "><span role="img" aria-label="Emoji">📅️</span></div>
+                      </div>
+                    </div>
+                    <div class="notification-body">
+                      <p class="mb-1"><strong>Massachusetts Institute of Technology</strong> invited <strong>Anthony Hopkin</strong> to an event</p>
+                      <span class="notification-time">October 28, 12:00 PM</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 ps-lg-2">
+              <div class="sticky-sidebar">
+                <div class="card mb-3 mb-lg-0">
+                  <div class="card-header bg-light">
+                    <h5 class="mb-0">Evènements</h5>
+                  </div>
+                  <div class="card-body fs--1">
+                    <div class="d-flex btn-reveal-trigger">
+                      <div class="calendar"><span class="calendar-month">Feb</span><span class="calendar-day">21</span></div>
+                      <div class="flex-1 position-relative ps-3">
+                        <h6 class="fs-0 mb-0"><a href="app/events/event-detail.html">Newmarket Nights</a></h6>
+                        <p class="mb-1">Organized by <a href="#!" class="text-700">University of Oxford</a></p>
+                        <p class="text-1000 mb-0">Time: 6:00AM</p>
+                        <p class="text-1000 mb-0">Duration: 6:00AM - 5:00PM</p>Place: Cambridge Boat Club, Cambridge<div class="border-dashed-bottom my-3"></div>
+                      </div>
+                    </div>
+                    <div class="d-flex btn-reveal-trigger">
+                      <div class="calendar"><span class="calendar-month">Dec</span><span class="calendar-day">31</span></div>
+                      <div class="flex-1 position-relative ps-3">
+                        <h6 class="fs-0 mb-0"><a href="app/events/event-detail.html">31st Night Celebration</a></h6>
+                        <p class="mb-1">Organized by <a href="#!" class="text-700">Chamber Music Society</a></p>
+                        <p class="text-1000 mb-0">Time: 11:00PM</p>
+                        <p class="text-1000 mb-0">280 people interested</p>Place: Tavern on the Greend, New York<div class="border-dashed-bottom my-3"></div>
+                      </div>
+                    </div>
+                    <div class="d-flex btn-reveal-trigger">
+                      <div class="calendar"><span class="calendar-month">Dec</span><span class="calendar-day">16</span></div>
+                      <div class="flex-1 position-relative ps-3">
+                        <h6 class="fs-0 mb-0"><a href="app/events/event-detail.html">Folk Festival</a></h6>
+                        <p class="mb-1">Organized by <a href="#!" class="text-700">Harvard University</a></p>
+                        <p class="text-1000 mb-0">Time: 9:00AM</p>
+                        <p class="text-1000 mb-0">Location: Cambridge Masonic Hall Association</p>Place: Porter Square, North Cambridge
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer bg-light p-0 border-top"><a class="btn btn-link d-block w-100" href="app/events/event-list.html">All Events<span class="fas fa-chevron-right ms-1 fs--2"></span></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="footer">
+            <div class="row g-0 justify-content-between fs--1 mt-4 mb-3">
+              <div class="col-12 col-sm-auto text-center">
+                <p class="mb-0 text-600">SandBoX | 2023</p>
+              </div>
+              <div class="col-12 col-sm-auto text-center">
+                <p class="mb-0 text-600">v3.3.0</p>
+              </div>
+            </div>
+          </footer>
+        </div>
+        <div class="modal fade" id="modifier-modal" tabindex="-1" role="dialog" aria-labelledby="authentication-modal-label" aria-hidden="true">
+					<div class="modal-dialog mt-6" role="document">
+						<div class="modal-content border-0">
+							<div class="modal-header px-5 position-relative modal-shape-header bg-shape">
+								<div class="position-relative z-index-1 light">
+									<h4 class="mb-0 text-white" id="authentication-modal-label">
+										Modifier votre données
+									</h4>
+								</div>
+								<button class="btn-close btn-close-white position-absolute top-0 end-0 mt-2 me-2" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body py-4 px-5">
+								<form>
+                <div class="row gx-2">
+									<div class="mb-3 col-sm-6">
+										<label class="form-label" for="modal-auth-name">Nom</label><input class="form-control" type="text" autocomplete="on" id="modal-auth-name"/>
+									</div>
+                  <div class="mb-3 col-sm-6">
+										<label class="form-label" for="modal-auth-name">Prénom</label><input class="form-control" type="text" autocomplete="on" id="modal-auth-name"/>
+									</div>
+                </div>
+                <div class="row gx-2">
+									<div class="mb-3 col-sm-6">
+										<label class="form-label" for="modal-auth-email">Addresse E-mail</label><input class="form-control" type="email" autocomplete="on" id="modal-auth-email"/>
+									</div>
+                  <div class="mb-3 col-sm-6">
+										<label class="form-label" for="modal-auth-name">Nom de l'utilisateur</label><input class="form-control" type="text" autocomplete="on" id="modal-auth-name"/>
+									</div>
+                </div>
+                <div class="row gx-2">
+									<div class="mb-3 col-sm-6">
+										<label class="form-label" for="modal-auth-name">Date de naissance</label><input class="form-control" type="date" autocomplete="on" id="modal-auth-name"/>
+									</div>
+                  <div class="mb-3 col-sm-6">
+										<label class="form-label" for="modal-auth-name">Numéro de téléphone</label><input class="form-control" type="number" autocomplete="on" id="modal-auth-name"/>
+									</div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="modal-auth-name">Adresse</label><input class="form-control" type="text" autocomplete="on" id="modal-auth-name"/>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="modal-auth-name">Description</label><textarea class="form-control" type="text" autocomplete="on" id="modal-auth-name"></textarea>
+                </div>
+									<div class="mb-3">
+										<button class="btn btn-primary d-block w-100 mt-3" type="submit" name="submit">
+											Modifier
+										</button>
+									</div>
+								</form>
+								</div>
+							</div>
+						</div>
+					</div>
+          <div class="modal fade" id="mdp-modal" tabindex="-1" role="dialog" aria-labelledby="authentication-modal-label" aria-hidden="true">
+            <div class="modal-dialog mt-6" role="document">
+              <div class="modal-content border-0">
+                <div class="modal-header px-5 position-relative modal-shape-header bg-shape">
+                  <div class="position-relative z-index-1 light">
+                    <h4 class="mb-0 text-white" id="authentication-modal-label">
+                      Changer votre mot de passe
+                    </h4>
+                  </div>
+                  <button class="btn-close btn-close-white position-absolute top-0 end-0 mt-2 me-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4 px-5">
+                  <form>
+                    <div class="mb-3">
+                      <label class="form-label" for="modal-auth-email">Votre mot de passe</label><input class="form-control" type="password" autocomplete="on" id="modal-auth-email"/>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="modal-auth-email">Nouveau mot de passe</label><input class="form-control" type="password" autocomplete="on" id="modal-auth-email"/>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="modal-auth-email">Confirmer mot de passe</label><input class="form-control" type="password" autocomplete="on" id="modal-auth-email"/>
+                    </div>
+                   
+                    <div class="mb-3">
+                      <button class="btn btn-primary d-block w-100 mt-3" type="submit" name="submit">
+                        Changer
+                      </button>
+                    </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal fade" id="photo-modal" tabindex="-1" role="dialog" aria-labelledby="authentication-modal-label" aria-hidden="true">
+              <div class="modal-dialog mt-6" role="document">
+                <div class="modal-content border-0">
+                  <div class="modal-header px-5 position-relative modal-shape-header bg-shape">
+                    <div class="position-relative z-index-1 light">
+                      <h4 class="mb-0 text-white" id="authentication-modal-label">
+                        Changer votre photo
+                      </h4>
+                    </div>
+                    <button class="btn-close btn-close-white position-absolute top-0 end-0 mt-2 me-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body py-4 px-5">
+                    <form>
+                      <div class="mb-3">
+                        <label class="form-label" for="modal-auth-email">Nouveau photo</label><input class="form-control" type="file" autocomplete="on" id="modal-auth-email"/>
+                      </div>
+                      <div class="mb-3">
+                        <button class="btn btn-primary d-block w-100 mt-3" type="submit" name="submit">
+                          Confirmer
+                        </button>
+                      </div>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <div class="modal fade" id="authentication-modal" tabindex="-1" role="dialog" aria-labelledby="authentication-modal-label" aria-hidden="true">
+            <div class="modal-dialog mt-6" role="document">
+              <div class="modal-content border-0">
+                <div class="modal-header px-5 position-relative modal-shape-header bg-shape">
+                  <div class="position-relative z-index-1 light">
+                    <h4 class="mb-0 text-white" id="authentication-modal-label">
+                      Ajouter un admin
+                    </h4>
+                  </div>
+                  <button class="btn-close btn-close-white position-absolute top-0 end-0 mt-2 me-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4 px-5">
+                  <form>
+                    <div class="row gx-2">
+                    <div class="mb-3 col-sm-6">
+                      <label class="form-label" for="modal-auth-name">Nom</label><input class="form-control" type="text" autocomplete="on" id="modal-auth-name"/>
+                    </div>
+                    <div class="mb-3 col-sm-6">
+                      <label class="form-label" for="modal-auth-name">Prénom</label><input class="form-control" type="text" autocomplete="on" id="modal-auth-name"/>
+                    </div>
+                  </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="modal-auth-email">Addresse E-mail</label><input class="form-control" type="email" autocomplete="on" id="modal-auth-email"/>
+                    </div>
+                    <div class="row gx-2">
+                      <div class="mb-3 col-sm-6">
+                        <label class="form-label" for="modal-auth-password">Mot de passe</label><input class="form-control" type="password" autocomplete="on" id="modal-auth-password"/>
+                      </div>
+                      <div class="mb-3 col-sm-6">
+                        <label class="form-label" for="modal-auth-confirm-password">Confirmer Mot de passe</label><input class="form-control" type="password" autocomplete="on" id="modal-auth-confirm-password"/>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <button class="btn btn-primary d-block w-100 mt-3" type="submit" name="submit">
+                        Ajouter
+                      </button>
+                    </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+				</div>
+      </div>
+    </main><!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="vendors/popper/popper.min.js"></script>
+    <script src="vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="vendors/anchorjs/anchor.min.js"></script>
+    <script src="vendors/is/is.min.js"></script>
+    <script src="vendors/glightbox/glightbox.min.js"></script>
+    <script src="vendors/fontawesome/all.min.js"></script>
+    <script src="vendors/lodash/lodash.min.js"></script>
+    <script src="../polyfill.io/v3/polyfill.min58be.js?features=window.scroll"></script>
+    <script src="vendors/list.js/list.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+  </body>
+
+
+<!-- Mirrored from prium.github.io/falcon/v3.3.0/pages/user/profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Nov 2021 08:41:36 GMT -->
+</html>
