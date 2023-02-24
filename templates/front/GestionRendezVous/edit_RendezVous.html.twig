@@ -1,0 +1,74 @@
+{% extends 'front/homeC.html.twig' %}
+
+   {% block contenu%}
+
+<!-- Header End -->
+      <!-- Breadcrumb Start -->
+      <section class="iq-breadcrumb text-left">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-8 col-md-8 text-left mb-4 mb-lg-0 align-self-center">
+                  <h2 class="title">Nos rendez-vous</h2>
+                  <nav aria-label="breadcrumb">
+                     <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+                        <li class="breadcrumb-item active">Rendez-vous</li>
+                     </ol>
+                  </nav>
+               </div>
+               <div class="col-lg-4 col-md-4 text-right">
+                  <img  src="{{asset('./front/images/about/09.png')}}" class="img-fluid" alt="#"/>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Breadcrumb End -->
+      <!-- Main-Content Start -->
+      <div class="main-content">
+         <!-- Pricing Plan Start  -->
+         <section class="overview-block-ptb gray-bg">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-lg-12">
+                     <div class="title-box  text-center">
+                        
+                        <h2 class="title">Nos rendez-vous</h2>
+                        
+                     </div>
+                  </div>
+               </div>
+
+                <h1>Edit RendezVous</h1>
+
+    {{ include('rendez_vous/_form.html.twig', {'button_label': 'Update'}) }}
+
+  
+
+    {{ include('rendez_vous/_delete_form.html.twig') }}
+                {# end row____________#}
+                   
+                 
+               </div>
+             </div>
+           </div>
+            <div class="scrolling-text top right default">
+               <div data-bottom="transform:translatex(300px)" data-top="transform:translatex(0);">Nos rendez_vous</div>
+            </div>
+         </section>
+         <!-- Pricing Plan End  -->
+         <!-- Project Start -->
+
+         <!--Our Blog End -->
+
+   <!-- Main-Content End -->
+      <!-- Footer Start -->
+
+      <!-- Footer End -->
+      <!-- back-to-top -->
+      <div id="back-to-top">
+         <a class="top" id="top" href="#top"> <i class="ion-ios-arrow-up"></i> </a>
+      </div>
+      <!-- back-to-top End -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+{% endblock %}

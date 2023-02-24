@@ -1,0 +1,99 @@
+{% extends 'front/homeC.html.twig' %}
+
+   {% block contenu%}
+
+<!-- Header End -->
+      <!-- Breadcrumb Start -->
+      <section class="iq-breadcrumb text-left">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-8 col-md-8 text-left mb-4 mb-lg-0 align-self-center">
+                  <h2 class="title">Nos rendez-vous</h2>
+                  <nav aria-label="breadcrumb">
+                     <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+                        <li class="breadcrumb-item active">Rendez-vous</li>
+                     </ol>
+                  </nav>
+               </div>
+               <div class="col-lg-4 col-md-4 text-right">
+                  <img  src="{{asset('./front/images/about/09.png')}}" class="img-fluid" alt="#"/>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Breadcrumb End -->
+      <!-- Main-Content Start -->
+      <div class="main-content">
+         <!-- Pricing Plan Start  -->
+         <section class="overview-block-ptb gray-bg">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-lg-12">
+                     
+                  </div>
+               </div>
+
+               <h1>RendezVous index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateRdv</th>
+                <th>Etat</th>
+                <th>Message</th>
+                <th>TypeLieu</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rendez_vou in rendez_vouses %}
+            <tr>
+                <td>{{ rendez_vou.id }}</td>
+                <td>{{ rendez_vou.dateRdv ? rendez_vou.dateRdv|date('Y-m-d') : '' }}</td>
+                <td>{{ rendez_vou.etat }}</td>
+                <td>{{ rendez_vou.message }}</td>
+                <td>{{ rendez_vou.typeLieu }}</td>
+                <td>
+                    <a href="{{ path('app_rendez_vous_show', {'id': rendez_vou.id}) }}">show</a>
+                    <a href="{{ path('app_rendez_vous_edit', {'id': rendez_vou.id}) }}">edit</a>
+                    <a href="{{ path('app_contrat_new', {'id': rendez_vou.id}) }}">contrat</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_rendez_vous_new') }}">Create new</a>
+                {# end row____________#}
+                   
+                 
+               </div>
+             </div>
+           </div>
+            <div class="scrolling-text top right default">
+               <div data-bottom="transform:translatex(300px)" data-top="transform:translatex(0);">Nos rendez_vous</div>
+            </div>
+         </section>
+         <!-- Pricing Plan End  -->
+         <!-- Project Start -->
+
+         <!--Our Blog End -->
+
+   <!-- Main-Content End -->
+      <!-- Footer Start -->
+
+      <!-- Footer End -->
+      <!-- back-to-top -->
+      <div id="back-to-top">
+         <a class="top" id="top" href="#top"> <i class="ion-ios-arrow-up"></i> </a>
+      </div>
+      <!-- back-to-top End -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+{% endblock %}
