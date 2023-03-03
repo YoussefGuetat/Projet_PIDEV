@@ -20,6 +20,9 @@
       <parameter key="MonologBundle">Symfony\Bundle\MonologBundle\MonologBundle</parameter>
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
+      <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
+      <parameter key="LexikJWTAuthenticationBundle">Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle</parameter>
+      <parameter key="MercureBundle">Symfony\Bundle\MercureBundle\MercureBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -65,6 +68,18 @@
       <parameter key="SensioFrameworkExtraBundle" type="collection">
         <parameter key="path">C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\sensio\framework-extra-bundle\src</parameter>
         <parameter key="namespace">Sensio\Bundle\FrameworkExtraBundle</parameter>
+      </parameter>
+      <parameter key="KnpPaginatorBundle" type="collection">
+        <parameter key="path">C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle</parameter>
+        <parameter key="namespace">Knp\Bundle\PaginatorBundle</parameter>
+      </parameter>
+      <parameter key="LexikJWTAuthenticationBundle" type="collection">
+        <parameter key="path">C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\lexik\jwt-authentication-bundle</parameter>
+        <parameter key="namespace">Lexik\Bundle\JWTAuthenticationBundle</parameter>
+      </parameter>
+      <parameter key="MercureBundle" type="collection">
+        <parameter key="path">C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\mercure-bundle\src</parameter>
+        <parameter key="namespace">Symfony\Bundle\MercureBundle</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -235,6 +250,23 @@
         </parameter>
       </parameter>
     </parameter>
+    <parameter key="knp_paginator.template.pagination">@KnpPaginator/Pagination/sliding.html.twig</parameter>
+    <parameter key="knp_paginator.template.filtration">@KnpPaginator/Pagination/filtration.html.twig</parameter>
+    <parameter key="knp_paginator.template.sortable">@KnpPaginator/Pagination/sortable_link.html.twig</parameter>
+    <parameter key="knp_paginator.page_range">5</parameter>
+    <parameter key="knp_paginator.page_limit">null</parameter>
+    <parameter key="lexik_jwt_authentication.pass_phrase">%env(JWT_PASSPHRASE)%</parameter>
+    <parameter key="lexik_jwt_authentication.token_ttl">3600</parameter>
+    <parameter key="lexik_jwt_authentication.clock_skew">0</parameter>
+    <parameter key="lexik_jwt_authentication.user_identity_field">username</parameter>
+    <parameter key="lexik_jwt_authentication.allow_no_expiration">false</parameter>
+    <parameter key="lexik_jwt_authentication.user_id_claim">username</parameter>
+    <parameter key="lexik_jwt_authentication.encoder.signature_algorithm">RS256</parameter>
+    <parameter key="lexik_jwt_authentication.encoder.crypto_engine">openssl</parameter>
+    <parameter key="mercure.hubs" type="collection">
+      <parameter key="default">%env(MERCURE_URL)%</parameter>
+    </parameter>
+    <parameter key="mercure.default_hub">%env(MERCURE_URL)%</parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
         <parameter>request</parameter>
@@ -316,6 +348,10 @@
         <parameter>notifier</parameter>
         <parameter>@WebProfiler/Collector/notifier.html.twig</parameter>
       </parameter>
+      <parameter key="data_collector.mercure" type="collection">
+        <parameter>mercure</parameter>
+        <parameter>@Mercure/Collector/mercure.html.twig</parameter>
+      </parameter>
       <parameter key="data_collector.config" type="collection">
         <parameter>config</parameter>
         <parameter>@WebProfiler/Collector/config.html.twig</parameter>
@@ -329,6 +365,13 @@
       <tag name="controller.service_arguments"/>
       <tag name="routing.route_loader"/>
     </service>
+    <service id="App\Controller\GoogleController" class="App\Controller\GoogleController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.mx0UMmY.App\Controller\GoogleController"/>
+      </call>
+    </service>
     <service id="App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -339,6 +382,7 @@
     <service id="App\Controller\SecurityController" class="App\Controller\SecurityController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
+      <argument type="service" id="security.user_password_encoder.generic"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.mx0UMmY.App\Controller\SecurityController"/>
       </call>
@@ -968,6 +1012,12 @@
               <argument type="collection"/>
             </argument>
           </argument>
+          <argument key="Symfony\Component\Mercure\Update" type="collection">
+            <argument type="collection">
+              <argument>mercure.hub.default.message_handler</argument>
+              <argument type="collection"/>
+            </argument>
+          </argument>
         </argument>
       </argument>
       <call method="setName">
@@ -1524,6 +1574,11 @@
       <argument type="service" id="assets.empty_version_strategy"/>
       <argument type="service" id="assets.context"/>
     </service>
+    <service id="psr18.http_client" class="Symfony\Component\HttpClient\Psr18Client">
+      <argument type="service" id=".debug.http_client"/>
+      <argument>null</argument>
+      <argument>null</argument>
+    </service>
     <service id="http_client.abstract_retry_strategy" class="Symfony\Component\HttpClient\Retry\GenericRetryStrategy" abstract="true">
       <argument type="abstract">http codes</argument>
       <argument type="abstract">delay ms</argument>
@@ -1647,6 +1702,7 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.ar.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.ar.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.ar.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.ar.xliff</argument>
           </argument>
           <argument key="az" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.az.xlf</argument>
@@ -1662,6 +1718,7 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.bg.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.bg.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.bg.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.bg.xliff</argument>
           </argument>
           <argument key="bs" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.bs.xlf</argument>
@@ -1677,6 +1734,7 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.cs.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.cs.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.cs.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.cs.xliff</argument>
           </argument>
           <argument key="cy" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.cy.xlf</argument>
@@ -1685,11 +1743,13 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.da.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.da.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.da.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.da.xliff</argument>
           </argument>
           <argument key="de" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.de.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.de.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.de.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.de.xliff</argument>
           </argument>
           <argument key="el" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.el.xlf</argument>
@@ -1700,11 +1760,13 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.en.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.en.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.en.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.en.xliff</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.es.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.es.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.es.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.es.xliff</argument>
           </argument>
           <argument key="et" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.et.xlf</argument>
@@ -1715,11 +1777,13 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.eu.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.eu.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.eu.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.eu.xliff</argument>
           </argument>
           <argument key="fa" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.fa.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.fa.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.fa.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.fa.xliff</argument>
           </argument>
           <argument key="fi" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.fi.xlf</argument>
@@ -1730,6 +1794,7 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.fr.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.fr.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.fr.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.fr.xliff</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.gl.xlf</argument>
@@ -1750,6 +1815,7 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.hu.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.hu.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.hu.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.hu.xliff</argument>
           </argument>
           <argument key="hy" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.hy.xlf</argument>
@@ -1760,16 +1826,19 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.id.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.id.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.id.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.id.xliff</argument>
           </argument>
           <argument key="it" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.it.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.it.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.it.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.it.xliff</argument>
           </argument>
           <argument key="ja" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.ja.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.ja.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.ja.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.ja.xliff</argument>
           </argument>
           <argument key="lb" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.lb.xlf</argument>
@@ -1780,6 +1849,7 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.lt.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.lt.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.lt.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.lt.xliff</argument>
           </argument>
           <argument key="lv" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.lv.xlf</argument>
@@ -1805,6 +1875,7 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.nl.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.nl.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.nl.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.nl.xliff</argument>
           </argument>
           <argument key="nn" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.nn.xlf</argument>
@@ -1815,11 +1886,13 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.no.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.no.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.no.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.no.xliff</argument>
           </argument>
           <argument key="pl" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.pl.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.pl.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.pl.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.pl.xliff</argument>
           </argument>
           <argument key="pt" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.pt.xlf</argument>
@@ -1830,16 +1903,19 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.pt_BR.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.pt_BR.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.pt_BR.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.pt_BR.xliff</argument>
           </argument>
           <argument key="ro" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.ro.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.ro.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.ro.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.ro.xliff</argument>
           </argument>
           <argument key="ru" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.ru.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.ru.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.ru.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.ru.xliff</argument>
           </argument>
           <argument key="sk" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.sk.xlf</argument>
@@ -1870,6 +1946,7 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.sv.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.sv.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.sv.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.sv.xliff</argument>
           </argument>
           <argument key="th" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.th.xlf</argument>
@@ -1885,11 +1962,13 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.tr.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.tr.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.tr.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.tr.xliff</argument>
           </argument>
           <argument key="uk" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.uk.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.uk.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.uk.xlf</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.uk.xliff</argument>
           </argument>
           <argument key="ur" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations\validators.ur.xlf</argument>
@@ -1916,11 +1995,18 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations\validators.zh_TW.xlf</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations\security.zh_TW.xlf</argument>
           </argument>
+          <argument key="ky" type="collection">
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.ky.xliff</argument>
+          </argument>
+          <argument key="sw" type="collection">
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations\KnpPaginatorBundle.sw.xliff</argument>
+          </argument>
         </argument>
         <argument key="scanned_directories" type="collection">
           <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations</argument>
           <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations</argument>
           <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations</argument>
+          <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations</argument>
           <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV/translations</argument>
           <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\framework-bundle/translations</argument>
           <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\doctrine\doctrine-bundle/translations</argument>
@@ -1933,12 +2019,15 @@
           <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\monolog-bundle/translations</argument>
           <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\maker-bundle\src/translations</argument>
           <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\sensio\framework-extra-bundle\src/translations</argument>
+          <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\lexik\jwt-authentication-bundle/translations</argument>
+          <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\mercure-bundle\src/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
           <argument key="scanned_directories" type="collection">
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\validator/Resources/translations</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\form/Resources/translations</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-core/Resources/translations</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/translations</argument>
             <argument>translations</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\framework-bundle/translations</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\doctrine\doctrine-bundle/translations</argument>
@@ -1951,6 +2040,8 @@
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\monolog-bundle/translations</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\maker-bundle\src/translations</argument>
             <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\sensio\framework-extra-bundle\src/translations</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\lexik\jwt-authentication-bundle/translations</argument>
+            <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\mercure-bundle\src/translations</argument>
           </argument>
         </argument>
       </argument>
@@ -2220,6 +2311,14 @@
         <argument type="collection">
           <argument type="service_closure" id="security.context_listener.0"/>
           <argument>onKernelResponse</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="knp_paginator.subscriber.sliding_pagination"/>
+          <argument>onKernelRequest</argument>
         </argument>
         <argument>0</argument>
       </call>
@@ -2736,6 +2835,14 @@
         <argument>0</argument>
       </call>
       <call method="addListener">
+        <argument>kernel.response</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="Symfony\Component\Mercure\EventSubscriber\SetCookieSubscriber"/>
+          <argument>onKernelResponse</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
         <argument>Symfony\Component\Security\Http\Event\CheckPassportEvent</argument>
         <argument type="collection">
           <argument type="service_closure" id="security.listener.csrf_protection"/>
@@ -2750,6 +2857,46 @@
           <argument>onLogout</argument>
         </argument>
         <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="knp_paginator.subscriber.paginate"/>
+          <argument>before</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>knp_pager.pagination</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="knp_paginator.subscriber.paginate"/>
+          <argument>pagination</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="knp_paginator.subscriber.sortable"/>
+          <argument>before</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListener">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="knp_paginator.subscriber.filtration"/>
+          <argument>before</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListener">
+        <argument>knp_pager.pagination</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="knp_paginator.subscriber.sliding_pagination"/>
+          <argument>pagination</argument>
+        </argument>
+        <argument>1</argument>
       </call>
     </service>
     <service id="debug.controller_resolver" class="Symfony\Component\HttpKernel\Controller\TraceableControllerResolver">
@@ -3844,6 +3991,9 @@
         <argument type="service" id="notifier.data_collector"/>
       </call>
       <call method="add">
+        <argument type="service" id="data_collector.mercure"/>
+      </call>
+      <call method="add">
         <argument type="service" id="data_collector.config"/>
       </call>
     </service>
@@ -4826,6 +4976,12 @@
       <call method="addExtension">
         <argument type="service" id="twig.extension.webprofiler"/>
       </call>
+      <call method="addExtension">
+        <argument type="service" id="knp_paginator.twig.extension.pagination"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="Symfony\Component\Mercure\Twig\MercureExtension"/>
+      </call>
       <call method="addGlobal">
         <argument>app</argument>
         <argument type="service" id="twig.app_variable"/>
@@ -4924,6 +5080,22 @@
       <call method="addPath">
         <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\security-bundle/Resources/views</argument>
         <argument>!Security</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/templates</argument>
+        <argument>KnpPaginator</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\knplabs\knp-paginator-bundle/templates</argument>
+        <argument>!KnpPaginator</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\mercure-bundle\src/Resources/views</argument>
+        <argument>Mercure</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV\vendor\symfony\mercure-bundle\src/Resources/views</argument>
+        <argument>!Mercure</argument>
       </call>
       <call method="addPath">
         <argument>C:\Users\Dell\Desktop\PI_DEV\Projet_PIDEV/templates</argument>
@@ -5617,6 +5789,7 @@
       <argument type="abstract">Authenticators</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument>true</argument>
+      <argument type="service" id="security.token_storage"/>
       <deprecated package="symfony/security-bundle" version="5.3">The "%service_id%" service is deprecated, use the new authenticator system instead.</deprecated>
     </service>
     <service id="debug.security.access.decision_manager" class="Symfony\Component\Security\Core\Authorization\TraceableAccessDecisionManager">
@@ -6212,6 +6385,274 @@
     <service id="framework_extra_bundle.argument_name_convertor" class="Sensio\Bundle\FrameworkExtraBundle\Request\ArgumentNameConverter">
       <argument type="service" id="argument_metadata_factory"/>
     </service>
+    <service id="knp_paginator" class="Knp\Component\Pager\Paginator" public="true" lazy="true">
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service" id="request_stack"/>
+      <call method="setDefaultPaginatorOptions">
+        <argument type="collection">
+          <argument key="pageParameterName">page</argument>
+          <argument key="sortFieldParameterName">sort</argument>
+          <argument key="sortDirectionParameterName">direction</argument>
+          <argument key="filterFieldParameterName">filterField</argument>
+          <argument key="filterValueParameterName">filterValue</argument>
+          <argument key="distinct">true</argument>
+          <argument key="pageOutOfRange">ignore</argument>
+          <argument key="defaultLimit">10</argument>
+        </argument>
+      </call>
+    </service>
+    <service id="knp_paginator.subscriber.paginate" class="Knp\Component\Pager\Event\Subscriber\Paginate\PaginationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.sortable" class="Knp\Component\Pager\Event\Subscriber\Sortable\SortableSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.filtration" class="Knp\Component\Pager\Event\Subscriber\Filtration\FiltrationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.sliding_pagination" class="Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+      <tag name="container.hot_path"/>
+      <argument type="collection">
+        <argument key="defaultPaginationTemplate">@KnpPaginator/Pagination/sliding.html.twig</argument>
+        <argument key="defaultSortableTemplate">@KnpPaginator/Pagination/sortable_link.html.twig</argument>
+        <argument key="defaultFiltrationTemplate">@KnpPaginator/Pagination/filtration.html.twig</argument>
+        <argument key="defaultPageRange">5</argument>
+        <argument key="defaultPageLimit">null</argument>
+      </argument>
+    </service>
+    <service id="knp_paginator.helper.processor" class="Knp\Bundle\PaginatorBundle\Helper\Processor">
+      <argument type="service" id="router.default"/>
+      <argument type="service" id="translator.data_collector"/>
+    </service>
+    <service id="knp_paginator.twig.extension.pagination" class="Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id="knp_paginator.helper.processor"/>
+    </service>
+    <service id="lexik_jwt_authentication.security.authentication.provider" class="Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Provider\JWTProvider">
+      <argument></argument>
+      <argument type="service" id="lexik_jwt_authentication.jwt_manager"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument>username</argument>
+      <call method="setUserIdentityField">
+        <argument>username</argument>
+      </call>
+      <deprecated package="lexik/jwt-authentication-bundle" version="2.0">The "%service_id%" service is deprecated since LexikJWTAuthenticationBundle version 2.0 and will be removed in 3.0</deprecated>
+    </service>
+    <service id="lexik_jwt_authentication.security.authentication.listener" class="Lexik\Bundle\JWTAuthenticationBundle\Security\Firewall\JWTListener">
+      <argument type="service" id="security.token_storage"/>
+      <argument type="service" id="security.authentication.manager"/>
+      <argument></argument>
+      <call method="setDispatcher">
+        <argument type="service" id="debug.event_dispatcher"/>
+      </call>
+      <deprecated package="lexik/jwt-authentication-bundle" version="2.0">The "%service_id%" service is deprecated since LexikJWTAuthenticationBundle version 2.0 and will be removed in 3.0</deprecated>
+    </service>
+    <service id="lexik_jwt_authentication.security.authentication.entry_point" class="Lexik\Bundle\JWTAuthenticationBundle\Security\Http\EntryPoint\JWTEntryPoint">
+      <deprecated package="lexik/jwt-authentication-bundle" version="2.0">The "%service_id%" service is deprecated since LexikJWTAuthenticationBundle version 2.0 and will be removed in 3.0</deprecated>
+    </service>
+    <service id="lexik_jwt_authentication.key_loader.openssl" class="Lexik\Bundle\JWTAuthenticationBundle\Services\KeyLoader\OpenSSLKeyLoader">
+      <argument></argument>
+      <argument></argument>
+      <argument>%env(JWT_PASSPHRASE)%</argument>
+      <argument type="collection"/>
+      <deprecated package="lexik/jwt-authentication-bundle" version="2.5">The "%service_id%" service is deprecated since version 2.5 and will be removed in 3.0. Use lexik_jwt_authentication.key_loader.raw instead.</deprecated>
+    </service>
+    <service id="lexik_jwt_authentication.jws_provider.default" class="Lexik\Bundle\JWTAuthenticationBundle\Services\JWSProvider\DefaultJWSProvider">
+      <argument type="service" id="lexik_jwt_authentication.key_loader.raw"/>
+      <argument>openssl</argument>
+      <argument>RS256</argument>
+      <argument>3600</argument>
+      <argument>0</argument>
+      <deprecated package="lexik/jwt-authentication-bundle" version="2.5">The "%service_id%" is deprecated since version 2.5 and will be removed in 5.0, use "lexik_jwt_authentication.jws_provider.lcobucci" instead.</deprecated>
+    </service>
+    <service id="lexik_jwt_authentication.jwt_manager" class="Lexik\Bundle\JWTAuthenticationBundle\Services\JWTManager" public="true">
+      <argument type="service" id="lexik_jwt_authentication.encoder.lcobucci"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument>username</argument>
+      <call method="setUserIdentityField">
+        <argument>username</argument>
+        <argument>false</argument>
+      </call>
+    </service>
+    <service id="lexik_jwt_authentication.key_loader.abstract" abstract="true">
+      <argument></argument>
+      <argument></argument>
+      <argument>%env(JWT_PASSPHRASE)%</argument>
+      <argument type="collection"/>
+    </service>
+    <service id="lexik_jwt_authentication.key_loader.raw" class="Lexik\Bundle\JWTAuthenticationBundle\Services\KeyLoader\RawKeyLoader">
+      <argument>%env(resolve:JWT_SECRET_KEY)%</argument>
+      <argument>%env(resolve:JWT_PUBLIC_KEY)%</argument>
+      <argument>%env(JWT_PASSPHRASE)%</argument>
+      <argument type="collection"/>
+    </service>
+    <service id="lexik_jwt_authentication.encoder.default" class="Lexik\Bundle\JWTAuthenticationBundle\Encoder\DefaultEncoder">
+      <argument type="service" id="lexik_jwt_authentication.jws_provider.default"/>
+    </service>
+    <service id="lexik_jwt_authentication.encoder.lcobucci" class="Lexik\Bundle\JWTAuthenticationBundle\Encoder\LcobucciJWTEncoder">
+      <argument type="service" id="lexik_jwt_authentication.jws_provider.lcobucci"/>
+    </service>
+    <service id="lexik_jwt_authentication.jws_provider.lcobucci" class="Lexik\Bundle\JWTAuthenticationBundle\Services\JWSProvider\LcobucciJWSProvider">
+      <argument type="service" id="lexik_jwt_authentication.key_loader.raw"/>
+      <argument>openssl</argument>
+      <argument>RS256</argument>
+      <argument>3600</argument>
+      <argument>0</argument>
+      <argument>false</argument>
+    </service>
+    <service id="lexik_jwt_authentication.handler.authentication_success" class="Lexik\Bundle\JWTAuthenticationBundle\Security\Http\Authentication\AuthenticationSuccessHandler">
+      <tag name="monolog.logger" channel="security"/>
+      <argument type="service" id="lexik_jwt_authentication.jwt_manager"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="collection"/>
+      <argument>true</argument>
+    </service>
+    <service id="lexik_jwt_authentication.handler.authentication_failure" class="Lexik\Bundle\JWTAuthenticationBundle\Security\Http\Authentication\AuthenticationFailureHandler">
+      <tag name="monolog.logger" channel="security"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service" id="translator.data_collector" on-invalid="null"/>
+    </service>
+    <service id="lexik_jwt_authentication.security.jwt_authenticator" class="Lexik\Bundle\JWTAuthenticationBundle\Security\Authenticator\JWTAuthenticator" abstract="true">
+      <argument type="service" id="lexik_jwt_authentication.jwt_manager"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service" id="lexik_jwt_authentication.extractor.chain_extractor"/>
+      <argument></argument>
+      <argument type="service" id="translator.data_collector" on-invalid="null"/>
+    </service>
+    <service id="lexik_jwt_authentication.extractor.chain_extractor" class="Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\ChainTokenExtractor">
+      <argument type="collection">
+        <argument type="service" id="lexik_jwt_authentication.extractor.authorization_header_extractor"/>
+      </argument>
+    </service>
+    <service id="lexik_jwt_authentication.extractor.authorization_header_extractor" class="Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\AuthorizationHeaderTokenExtractor">
+      <argument>Bearer</argument>
+      <argument>Authorization</argument>
+    </service>
+    <service id="lexik_jwt_authentication.extractor.query_parameter_extractor" class="Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\QueryParameterTokenExtractor">
+      <argument></argument>
+    </service>
+    <service id="lexik_jwt_authentication.extractor.cookie_extractor" class="Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\CookieTokenExtractor">
+      <argument></argument>
+    </service>
+    <service id="lexik_jwt_authentication.extractor.split_cookie_extractor" class="Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\SplitCookieExtractor">
+      <argument></argument>
+    </service>
+    <service id="lexik_jwt_authentication.security.jwt_user_provider" class="Lexik\Bundle\JWTAuthenticationBundle\Security\User\JWTUserProvider">
+      <argument></argument>
+    </service>
+    <service id=".1_TokenStorage~hB4lKRF" class="Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage"/>
+    <service id="lexik_jwt_authentication.security.guard.jwt_token_authenticator" class="Lexik\Bundle\JWTAuthenticationBundle\Security\Guard\JWTTokenAuthenticator">
+      <argument type="service" id="lexik_jwt_authentication.jwt_manager"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service" id="lexik_jwt_authentication.extractor.chain_extractor"/>
+      <argument type="service" id=".1_TokenStorage~hB4lKRF"/>
+      <argument type="service" id="translator.data_collector" on-invalid="null"/>
+    </service>
+    <service id="lexik_jwt_authentication.check_config_command" class="Lexik\Bundle\JWTAuthenticationBundle\Command\CheckConfigCommand">
+      <tag name="console.command" command="lexik:jwt:check-config"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id="lexik_jwt_authentication.key_loader.raw"/>
+      <argument>RS256</argument>
+      <call method="setName">
+        <argument>lexik:jwt:check-config</argument>
+      </call>
+      <call method="setDescription">
+        <argument>Checks that the bundle is properly configured.</argument>
+      </call>
+    </service>
+    <service id="lexik_jwt_authentication.generate_token_command" class="Lexik\Bundle\JWTAuthenticationBundle\Command\GenerateTokenCommand" public="true">
+      <tag name="console.command" command="lexik:jwt:generate-token"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id="lexik_jwt_authentication.jwt_manager"/>
+      <argument type="iterator">
+        <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
+      </argument>
+      <call method="setName">
+        <argument>lexik:jwt:generate-token</argument>
+      </call>
+      <call method="setDescription">
+        <argument>Generates a JWT token for a given user.</argument>
+      </call>
+    </service>
+    <service id="lexik_jwt_authentication.generate_keypair_command" class="Lexik\Bundle\JWTAuthenticationBundle\Command\GenerateKeyPairCommand">
+      <tag name="console.command" command="lexik:jwt:generate-keypair"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id="filesystem"/>
+      <argument>%env(resolve:JWT_SECRET_KEY)%</argument>
+      <argument>%env(resolve:JWT_PUBLIC_KEY)%</argument>
+      <argument>%env(JWT_PASSPHRASE)%</argument>
+      <argument>RS256</argument>
+      <call method="setName">
+        <argument>lexik:jwt:generate-keypair</argument>
+      </call>
+      <call method="setDescription">
+        <argument>Generate public/private keys for use in your application.</argument>
+      </call>
+    </service>
+    <service id="mercure.hub.default.jwt.factory" class="Symfony\Component\Mercure\Jwt\LcobucciFactory">
+      <tag name="mercure.jwt.factory"/>
+      <argument>%env(MERCURE_JWT_SECRET)%</argument>
+      <argument>hmac.sha256</argument>
+      <argument>null</argument>
+      <argument></argument>
+    </service>
+    <service id="mercure.hub.default.jwt.provider" class="Symfony\Component\Mercure\Jwt\FactoryTokenProvider">
+      <tag name="mercure.jwt.factory"/>
+      <argument type="service" id="mercure.hub.default.jwt.factory"/>
+      <argument type="collection"/>
+      <argument type="collection">
+        <argument>*</argument>
+      </argument>
+    </service>
+    <service id="mercure.hub.default.message_handler" class="Symfony\Component\Mercure\Messenger\UpdateHandler">
+      <tag name="messenger.message_handler"/>
+      <argument type="service" id="mercure.hub.default.traceable"/>
+    </service>
+    <service id="mercure.hub.default.publisher.traceable" class="Symfony\Component\Mercure\Debug\TraceablePublisher">
+      <tag name="mercure.publisher"/>
+      <argument type="service" id="mercure.hub.default.publisher.traceable.inner"/>
+      <argument type="service" id="debug.stopwatch"/>
+      <deprecated package="symfony/mercure-bundle" version="0.2">The "%service_id%" service is deprecated. Use "mercure.hub.default.traceable" instead.</deprecated>
+    </service>
+    <service id="mercure.hub.default.traceable" class="Symfony\Component\Mercure\Debug\TraceableHub">
+      <tag name="mercure.hub"/>
+      <argument type="service" id="mercure.hub.default.traceable.inner"/>
+      <argument type="service" id="debug.stopwatch"/>
+    </service>
+    <service id="data_collector.mercure" class="Symfony\Bundle\MercureBundle\DataCollector\MercureDataCollector">
+      <tag name="data_collector" template="@Mercure/Collector/mercure.html.twig" id="mercure"/>
+      <argument type="iterator">
+        <argument key="default" type="service" id="mercure.hub.default.traceable"/>
+      </argument>
+    </service>
+    <service id="Symfony\Component\Mercure\HubRegistry" class="Symfony\Component\Mercure\HubRegistry">
+      <argument type="service" id="mercure.hub.default.traceable"/>
+      <argument type="collection">
+        <argument key="default" type="service" id="mercure.hub.default.traceable"/>
+      </argument>
+    </service>
+    <service id="Symfony\Component\Mercure\Authorization" class="Symfony\Component\Mercure\Authorization">
+      <argument type="service" id="Symfony\Component\Mercure\HubRegistry"/>
+      <argument>null</argument>
+    </service>
+    <service id="Symfony\Component\Mercure\Discovery" class="Symfony\Component\Mercure\Discovery">
+      <argument type="service" id="Symfony\Component\Mercure\HubRegistry"/>
+    </service>
+    <service id="Symfony\Component\Mercure\EventSubscriber\SetCookieSubscriber" class="Symfony\Component\Mercure\EventSubscriber\SetCookieSubscriber">
+      <tag name="kernel.event_subscriber" priority="-10"/>
+      <tag name="container.hot_path"/>
+    </service>
+    <service id="Symfony\Component\Mercure\Twig\MercureExtension" class="Symfony\Component\Mercure\Twig\MercureExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id="Symfony\Component\Mercure\HubRegistry"/>
+      <argument type="service" id="Symfony\Component\Mercure\Authorization"/>
+      <argument type="service" id="request_stack"/>
+    </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\GoogleController" class="App\Controller\GoogleController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\GoogleController" class="App\Controller\GoogleController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\GoogleController" class="App\Controller\GoogleController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6582,6 +7023,12 @@
         <argument key="loader" type="service_closure" id=".errored..service_locator.xUrKPVU.Symfony\Component\Config\Loader\LoaderInterface"/>
       </argument>
     </service>
+    <service id=".service_locator.r2De49f" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="clientRegistry" type="service_closure" id=".errored..service_locator.r2De49f.KnpU\OAuth2ClientBundle\Client\ClientRegistry"/>
+      </argument>
+    </service>
     <service id=".service_locator.iQAD6w2" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -6595,6 +7042,12 @@
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
+      </argument>
+    </service>
+    <service id=".service_locator.aGWFcCo" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="repo" type="service_closure" id="App\Repository\UtilisateurRepository"/>
       </argument>
     </service>
     <service id=".service_locator.JMejbpE" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -6638,11 +7091,12 @@
         <argument key="utilisateurRepository" type="service_closure" id="App\Repository\UtilisateurRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.0htf4ZS" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.ebXvxMH" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="authenticator" type="service_closure" id="App\Security\AppCustomAuthenticator"/>
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="paginator" type="service_closure" id="knp_paginator"/>
         <argument key="userAuthenticator" type="service_closure" id="security.user_authenticator"/>
         <argument key="userPasswordHasher" type="service_closure" id="security.user_password_hasher"/>
         <argument key="utilisateurRepository" type="service_closure" id="App\Repository\UtilisateurRepository"/>
@@ -6662,46 +7116,92 @@
         <argument key="utilisateur" type="service_closure" id=".errored..service_locator.onts8Bo.App\Entity\Utilisateur"/>
       </argument>
     </service>
-    <service id=".service_locator.elTGQQm" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.2LF_KP_" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="hub" type="service_closure" id="mercure.hub.default.traceable"/>
+      </argument>
+    </service>
+    <service id=".service_locator.cdZX7Rt" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="Normalizer" type="service_closure" id="serializer"/>
+        <argument key="repo" type="service_closure" id="App\Repository\UtilisateurRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.qrL1nT4" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="Normalizer" type="service_closure" id="serializer"/>
+        <argument key="userPasswordHasher" type="service_closure" id="security.user_password_hasher"/>
+      </argument>
+    </service>
+    <service id=".service_locator.i9GOSYV" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="Normalizer" type="service_closure" id="serializer"/>
+      </argument>
+    </service>
+    <service id=".service_locator.mgmYzsp" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="App\Controller\GoogleController::connectAction" type="service_closure" id=".service_locator.r2De49f"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.iQAD6w2"/>
         <argument key="App\Controller\SecurityController::dashLog" type="service_closure" id=".service_locator.zFcJjKU"/>
         <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.zFcJjKU"/>
+        <argument key="App\Controller\SecurityController::loginmo" type="service_closure" id=".service_locator.aGWFcCo"/>
+        <argument key="App\Controller\UtilisateurController::AjoutjsonUser" type="service_closure" id=".service_locator.qrL1nT4"/>
         <argument key="App\Controller\UtilisateurController::changemdp" type="service_closure" id=".service_locator.iYlthPC"/>
+        <argument key="App\Controller\UtilisateurController::chat" type="service_closure" id=".service_locator.aGWFcCo"/>
         <argument key="App\Controller\UtilisateurController::dashActif" type="service_closure" id=".service_locator.onts8Bo"/>
         <argument key="App\Controller\UtilisateurController::dashBloq" type="service_closure" id=".service_locator.onts8Bo"/>
-        <argument key="App\Controller\UtilisateurController::dashListe" type="service_closure" id=".service_locator.0htf4ZS"/>
+        <argument key="App\Controller\UtilisateurController::dashForget" type="service_closure" id=".service_locator.cidI2f4"/>
+        <argument key="App\Controller\UtilisateurController::dashListe" type="service_closure" id=".service_locator.ebXvxMH"/>
+        <argument key="App\Controller\UtilisateurController::dashReset" type="service_closure" id=".service_locator.MK2r7O1"/>
         <argument key="App\Controller\UtilisateurController::dashmonprofile" type="service_closure" id=".service_locator.EbSz.pQ"/>
         <argument key="App\Controller\UtilisateurController::dashprofiledetail" type="service_closure" id=".service_locator.r5W7ygF"/>
         <argument key="App\Controller\UtilisateurController::delete" type="service_closure" id=".service_locator.KzL3gdR"/>
         <argument key="App\Controller\UtilisateurController::edit" type="service_closure" id=".service_locator.KzL3gdR"/>
         <argument key="App\Controller\UtilisateurController::forget" type="service_closure" id=".service_locator.cidI2f4"/>
         <argument key="App\Controller\UtilisateurController::index" type="service_closure" id=".service_locator.JMejbpE"/>
+        <argument key="App\Controller\UtilisateurController::jsonAll" type="service_closure" id=".service_locator.cdZX7Rt"/>
+        <argument key="App\Controller\UtilisateurController::jsonUser" type="service_closure" id=".service_locator.cdZX7Rt"/>
+        <argument key="App\Controller\UtilisateurController::modifierjsonUser" type="service_closure" id=".service_locator.i9GOSYV"/>
         <argument key="App\Controller\UtilisateurController::new" type="service_closure" id=".service_locator.JMejbpE"/>
         <argument key="App\Controller\UtilisateurController::photo" type="service_closure" id=".service_locator.KzL3gdR"/>
         <argument key="App\Controller\UtilisateurController::profile" type="service_closure" id=".service_locator.r5W7ygF"/>
+        <argument key="App\Controller\UtilisateurController::publish" type="service_closure" id=".service_locator.2LF_KP_"/>
         <argument key="App\Controller\UtilisateurController::resetpwd" type="service_closure" id=".service_locator.MK2r7O1"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
+        <argument key="App\Controller\GoogleController:connectAction" type="service_closure" id=".service_locator.r2De49f"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.iQAD6w2"/>
         <argument key="App\Controller\SecurityController:dashLog" type="service_closure" id=".service_locator.zFcJjKU"/>
         <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.zFcJjKU"/>
+        <argument key="App\Controller\SecurityController:loginmo" type="service_closure" id=".service_locator.aGWFcCo"/>
+        <argument key="App\Controller\UtilisateurController:AjoutjsonUser" type="service_closure" id=".service_locator.qrL1nT4"/>
         <argument key="App\Controller\UtilisateurController:changemdp" type="service_closure" id=".service_locator.iYlthPC"/>
+        <argument key="App\Controller\UtilisateurController:chat" type="service_closure" id=".service_locator.aGWFcCo"/>
         <argument key="App\Controller\UtilisateurController:dashActif" type="service_closure" id=".service_locator.onts8Bo"/>
         <argument key="App\Controller\UtilisateurController:dashBloq" type="service_closure" id=".service_locator.onts8Bo"/>
-        <argument key="App\Controller\UtilisateurController:dashListe" type="service_closure" id=".service_locator.0htf4ZS"/>
+        <argument key="App\Controller\UtilisateurController:dashForget" type="service_closure" id=".service_locator.cidI2f4"/>
+        <argument key="App\Controller\UtilisateurController:dashListe" type="service_closure" id=".service_locator.ebXvxMH"/>
+        <argument key="App\Controller\UtilisateurController:dashReset" type="service_closure" id=".service_locator.MK2r7O1"/>
         <argument key="App\Controller\UtilisateurController:dashmonprofile" type="service_closure" id=".service_locator.EbSz.pQ"/>
         <argument key="App\Controller\UtilisateurController:dashprofiledetail" type="service_closure" id=".service_locator.r5W7ygF"/>
         <argument key="App\Controller\UtilisateurController:delete" type="service_closure" id=".service_locator.KzL3gdR"/>
         <argument key="App\Controller\UtilisateurController:edit" type="service_closure" id=".service_locator.KzL3gdR"/>
         <argument key="App\Controller\UtilisateurController:forget" type="service_closure" id=".service_locator.cidI2f4"/>
         <argument key="App\Controller\UtilisateurController:index" type="service_closure" id=".service_locator.JMejbpE"/>
+        <argument key="App\Controller\UtilisateurController:jsonAll" type="service_closure" id=".service_locator.cdZX7Rt"/>
+        <argument key="App\Controller\UtilisateurController:jsonUser" type="service_closure" id=".service_locator.cdZX7Rt"/>
+        <argument key="App\Controller\UtilisateurController:modifierjsonUser" type="service_closure" id=".service_locator.i9GOSYV"/>
         <argument key="App\Controller\UtilisateurController:new" type="service_closure" id=".service_locator.JMejbpE"/>
         <argument key="App\Controller\UtilisateurController:photo" type="service_closure" id=".service_locator.KzL3gdR"/>
         <argument key="App\Controller\UtilisateurController:profile" type="service_closure" id=".service_locator.r5W7ygF"/>
+        <argument key="App\Controller\UtilisateurController:publish" type="service_closure" id=".service_locator.2LF_KP_"/>
         <argument key="App\Controller\UtilisateurController:resetpwd" type="service_closure" id=".service_locator.MK2r7O1"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
@@ -6825,6 +7325,10 @@
       <argument type="service" id="texter.messenger.push_handler"/>
       <argument type="collection"/>
     </service>
+    <service id=".messenger.handler_descriptor.oFKCS4G" class="Symfony\Component\Messenger\Handler\HandlerDescriptor">
+      <argument type="service" id="mercure.hub.default.message_handler"/>
+      <argument type="collection"/>
+    </service>
     <service id="messenger.bus.default.messenger.handlers_locator" class="Symfony\Component\Messenger\Handler\HandlersLocator">
       <argument type="collection">
         <argument key="Symfony\Component\Mailer\Messenger\SendEmailMessage" type="iterator">
@@ -6838,6 +7342,9 @@
         </argument>
         <argument key="Symfony\Component\Notifier\Message\PushMessage" type="iterator">
           <argument type="service" id=".messenger.handler_descriptor.Lml2ICs"/>
+        </argument>
+        <argument key="Symfony\Component\Mercure\Update" type="iterator">
+          <argument type="service" id=".messenger.handler_descriptor.oFKCS4G"/>
         </argument>
       </argument>
     </service>
@@ -7138,6 +7645,12 @@
         <argument key="twig" type="service_closure" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
+    <service id=".service_locator.mx0UMmY.App\Controller\GoogleController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\GoogleController"/>
+      <argument>App\Controller\GoogleController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.mx0UMmY" method="withContext"/>
+    </service>
     <service id=".service_locator.mx0UMmY.App\Controller\RegistrationController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\RegistrationController"/>
       <argument>App\Controller\RegistrationController</argument>
@@ -7278,7 +7791,11 @@
       <factory service="validator.builder" method="getValidator"/>
     </service>
     <service id=".debug.http_client.inner" class="Symfony\Contracts\HttpClient\HttpClientInterface">
-      <argument type="collection"/>
+      <argument type="collection">
+        <argument key="verify_peer">false</argument>
+        <argument key="headers" type="collection"/>
+        <argument key="resolve" type="collection"/>
+      </argument>
       <argument>6</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.http_client" on-invalid="ignore"/>
@@ -7331,6 +7848,19 @@
     <service id="debug.security.firewall.authenticator.main.inner" class="Symfony\Component\Security\Http\Firewall\AuthenticatorManagerListener">
       <argument type="service" id="security.authenticator.manager.main"/>
     </service>
+    <service id="mercure.hub.default.publisher.traceable.inner" class="Symfony\Component\Mercure\Publisher">
+      <argument>%env(MERCURE_URL)%</argument>
+      <argument type="service" id="mercure.hub.default.jwt.provider"/>
+      <argument type="service" id=".debug.http_client" on-invalid="ignore"/>
+      <deprecated package="symfony/mercure-bundle" version="0.2">The "%service_id%" service is deprecated. You should stop using it, as it will be removed in the future, use "mercure.hub.default" instead.</deprecated>
+    </service>
+    <service id="mercure.hub.default.traceable.inner" class="Symfony\Component\Mercure\Hub">
+      <argument>%env(MERCURE_URL)%</argument>
+      <argument type="service" id="mercure.hub.default.jwt.provider"/>
+      <argument type="service" id="mercure.hub.default.jwt.factory"/>
+      <argument>%env(MERCURE_PUBLIC_URL)%</argument>
+      <argument type="service" id=".debug.http_client" on-invalid="ignore"/>
+    </service>
     <service id="debug.argument_resolver.request_attribute.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestAttributeValueResolver"/>
     <service id="debug.argument_resolver.request.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver"/>
     <service id="debug.argument_resolver.session.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver"/>
@@ -7338,12 +7868,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.elTGQQm"/>
+      <argument type="service" id=".service_locator.mgmYzsp"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.elTGQQm"/>
+      <argument type="service" id=".service_locator.mgmYzsp"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -7363,6 +7893,7 @@
       </call>
     </service>
     <service id=".errored..service_locator.xUrKPVU.Symfony\Component\Config\Loader\LoaderInterface" class="Symfony\Component\Config\Loader\LoaderInterface"/>
+    <service id=".errored..service_locator.r2De49f.KnpU\OAuth2ClientBundle\Client\ClientRegistry" class="KnpU\OAuth2ClientBundle\Client\ClientRegistry"/>
     <service id=".errored..service_locator.KzL3gdR.App\Entity\Utilisateur" class="App\Entity\Utilisateur"/>
     <service id=".errored..service_locator.r5W7ygF.App\Entity\Utilisateur" class="App\Entity\Utilisateur"/>
     <service id=".errored..service_locator.iYlthPC.App\Entity\Utilisateur" class="App\Entity\Utilisateur"/>
@@ -7684,6 +8215,27 @@
       <argument>false</argument>
       <argument type="service_closure" id="security.command.user_password_hash"/>
     </service>
+    <service id=".lexik_jwt_authentication.check_config_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>lexik:jwt:check-config</argument>
+      <argument type="collection"/>
+      <argument>Checks that the bundle is properly configured.</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="lexik_jwt_authentication.check_config_command"/>
+    </service>
+    <service id=".lexik_jwt_authentication.generate_token_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>lexik:jwt:generate-token</argument>
+      <argument type="collection"/>
+      <argument>Generates a JWT token for a given user.</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="lexik_jwt_authentication.generate_token_command"/>
+    </service>
+    <service id=".lexik_jwt_authentication.generate_keypair_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>lexik:jwt:generate-keypair</argument>
+      <argument type="collection"/>
+      <argument>Generate public/private keys for use in your application.</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="lexik_jwt_authentication.generate_keypair_command"/>
+    </service>
     <service id=".maker.auto_command.make_auth.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>make:auth</argument>
       <argument type="collection"/>
@@ -7850,7 +8402,7 @@
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <tag name="container.no_preload"/>
-      <argument type="service" id=".service_locator.ttQ2U29"/>
+      <argument type="service" id=".service_locator.Xhg7b_W"/>
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -7930,6 +8482,9 @@
         <argument key="debug:firewall">security.command.debug_firewall</argument>
         <argument key="security:encode-password">security.command.user_password_encoder</argument>
         <argument key="security:hash-password">security.command.user_password_hash</argument>
+        <argument key="lexik:jwt:check-config">lexik_jwt_authentication.check_config_command</argument>
+        <argument key="lexik:jwt:generate-token">lexik_jwt_authentication.generate_token_command</argument>
+        <argument key="lexik:jwt:generate-keypair">lexik_jwt_authentication.generate_keypair_command</argument>
         <argument key="make:auth">maker.auto_command.make_auth</argument>
         <argument key="make:command">maker.auto_command.make_command</argument>
         <argument key="make:twig-component">maker.auto_command.make_twig_component</argument>
@@ -7957,7 +8512,7 @@
         <argument key="make:stimulus-controller">maker.auto_command.make_stimulus_controller</argument>
       </argument>
     </service>
-    <service id=".service_locator.ttQ2U29" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.Xhg7b_W" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="console.command.about" type="service_closure" id=".console.command.about.lazy"/>
@@ -8037,6 +8592,9 @@
         <argument key="security.command.debug_firewall" type="service_closure" id=".security.command.debug_firewall.lazy"/>
         <argument key="security.command.user_password_encoder" type="service_closure" id=".security.command.user_password_encoder.lazy"/>
         <argument key="security.command.user_password_hash" type="service_closure" id=".security.command.user_password_hash.lazy"/>
+        <argument key="lexik_jwt_authentication.check_config_command" type="service_closure" id=".lexik_jwt_authentication.check_config_command.lazy"/>
+        <argument key="lexik_jwt_authentication.generate_token_command" type="service_closure" id=".lexik_jwt_authentication.generate_token_command.lazy"/>
+        <argument key="lexik_jwt_authentication.generate_keypair_command" type="service_closure" id=".lexik_jwt_authentication.generate_keypair_command.lazy"/>
         <argument key="maker.auto_command.make_auth" type="service_closure" id=".maker.auto_command.make_auth.lazy"/>
         <argument key="maker.auto_command.make_command" type="service_closure" id=".maker.auto_command.make_command.lazy"/>
         <argument key="maker.auto_command.make_twig_component" type="service_closure" id=".maker.auto_command.make_twig_component.lazy"/>
@@ -8183,6 +8741,7 @@
     <service id="Symfony\Contracts\Translation\TranslatorInterface" alias="translator.data_collector"/>
     <service id="Symfony\Component\Asset\Packages" alias="assets.packages"/>
     <service id="Symfony\Contracts\HttpClient\HttpClientInterface" alias=".debug.http_client"/>
+    <service id="Psr\Http\Client\ClientInterface" alias="psr18.http_client"/>
     <service id="mailer" alias="mailer.mailer"/>
     <service id="Symfony\Component\Mailer\MailerInterface" alias="mailer.mailer"/>
     <service id="Symfony\Component\Mailer\Transport\TransportInterface" alias="mailer.default_transport"/>
@@ -8310,9 +8869,33 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="sensio_framework_extra.converter.doctrine.orm.expression_language" alias="sensio_framework_extra.converter.doctrine.orm.expression_language.default"/>
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
+    <service id="Knp\Component\Pager\PaginatorInterface" alias="knp_paginator"/>
+    <service id="Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenInterface" alias="lexik_jwt_authentication.jwt_manager"/>
+    <service id="Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface" alias="lexik_jwt_authentication.jwt_manager"/>
+    <service id="Lexik\Bundle\JWTAuthenticationBundle\Services\JWSProvider\JWSProviderInterface" alias="lexik_jwt_authentication.jws_provider.lcobucci"/>
+    <service id="Lexik\Bundle\JWTAuthenticationBundle\Security\Http\Authentication\AuthenticationSuccessHandler" alias="lexik_jwt_authentication.handler.authentication_success"/>
+    <service id="Lexik\Bundle\JWTAuthenticationBundle\Security\Http\Authentication\AuthenticationFailureHandler" alias="lexik_jwt_authentication.handler.authentication_failure"/>
+    <service id="Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\TokenExtractorInterface" alias="lexik_jwt_authentication.extractor.chain_extractor"/>
+    <service id="lexik_jwt_authentication.jwt_token_authenticator" alias="lexik_jwt_authentication.security.guard.jwt_token_authenticator"/>
+    <service id="lexik_jwt_authentication.encoder" alias="lexik_jwt_authentication.encoder.lcobucci" public="true"/>
+    <service id="Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface" alias="lexik_jwt_authentication.encoder.lcobucci"/>
+    <service id="lexik_jwt_authentication.key_loader" alias="lexik_jwt_authentication.key_loader.raw" public="true"/>
+    <service id="Symfony\Component\Mercure\Jwt\TokenFactoryInterface $default" alias="mercure.hub.default.jwt.factory"/>
+    <service id="Symfony\Component\Mercure\Jwt\TokenFactoryInterface $defaultFactory" alias="mercure.hub.default.jwt.factory"/>
+    <service id="Symfony\Component\Mercure\Jwt\TokenFactoryInterface $defaultTokenFactory" alias="mercure.hub.default.jwt.factory"/>
+    <service id="Symfony\Component\Mercure\Jwt\TokenProviderInterface $default" alias="mercure.hub.default.jwt.provider"/>
+    <service id="Symfony\Component\Mercure\Jwt\TokenProviderInterface $defaultProvider" alias="mercure.hub.default.jwt.provider"/>
+    <service id="Symfony\Component\Mercure\Jwt\TokenProviderInterface $defaultTokenProvider" alias="mercure.hub.default.jwt.provider"/>
+    <service id="Symfony\Component\Mercure\HubInterface $defaultHub" alias="mercure.hub.default.traceable"/>
+    <service id="Symfony\Component\Mercure\HubInterface $default" alias="mercure.hub.default.traceable"/>
+    <service id="Symfony\Component\Mercure\PublisherInterface $defaultPublisher" alias="mercure.hub.default.publisher.traceable"/>
+    <service id="Symfony\Component\Mercure\PublisherInterface $default" alias="mercure.hub.default.publisher.traceable"/>
+    <service id="Symfony\Component\Mercure\HubInterface" alias="mercure.hub.default.traceable"/>
+    <service id="Symfony\Component\Mercure\Publisher" alias="mercure.hub.default.publisher.traceable"/>
+    <service id="Symfony\Component\Mercure\PublisherInterface" alias="mercure.hub.default.publisher.traceable"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.elTGQQm"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.mgmYzsp"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -8340,10 +8923,11 @@
     <service id=".service_locator.nBtIPcI" alias=".service_locator.iYlthPC"/>
     <service id=".service_locator.kSK6Mou" alias=".service_locator.cidI2f4"/>
     <service id=".service_locator.Owi0Oh." alias=".service_locator.MK2r7O1"/>
-    <service id=".service_locator.6QIaSLy" alias=".service_locator.0htf4ZS"/>
+    <service id=".service_locator._31YMKd" alias=".service_locator.ebXvxMH"/>
     <service id=".service_locator.Hgvci_5" alias=".service_locator.EbSz.pQ"/>
     <service id=".service_locator.Mrd026y" alias=".service_locator.onts8Bo"/>
-    <service id=".service_locator.QOn_Lu4" alias=".service_locator.elTGQQm"/>
+    <service id=".service_locator.x2E2Yqz" alias=".service_locator.cdZX7Rt"/>
+    <service id=".service_locator.CpQsvAM" alias=".service_locator.mgmYzsp"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.ec.k2Ib" alias=".service_locator.irkTCtZ"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
@@ -8360,6 +8944,8 @@
     <service id="twig.error_renderer.html.inner" alias="error_handler.error_renderer.html"/>
     <service id="security.access.decision_manager" alias="debug.security.access.decision_manager"/>
     <service id="security.firewall.authenticator.main" alias="debug.security.firewall.authenticator.main"/>
+    <service id="mercure.hub.default.publisher" alias="mercure.hub.default.publisher.traceable"/>
+    <service id="mercure.hub.default" alias="mercure.hub.default.traceable"/>
     <service id="argument_resolver.request_attribute" alias="debug.argument_resolver.request_attribute"/>
     <service id="argument_resolver.request" alias="debug.argument_resolver.request"/>
     <service id="argument_resolver.session" alias="debug.argument_resolver.session"/>
@@ -8371,17 +8957,23 @@
     <service id="messenger.bus.default" alias="debug.traced.messenger.bus.default"/>
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.uo5c0SP" alias=".service_locator.xUrKPVU"/>
+    <service id=".service_locator.0NH79_W" alias=".service_locator.r2De49f"/>
     <service id=".service_locator.yhWEeZ1" alias=".service_locator.iQAD6w2"/>
     <service id=".service_locator.URfgn8g" alias=".service_locator.zFcJjKU"/>
+    <service id=".service_locator.R2D4LDV" alias=".service_locator.aGWFcCo"/>
     <service id=".service_locator.D6f1tFW" alias=".service_locator.JMejbpE"/>
     <service id=".service_locator.7qMQ8j_" alias=".service_locator.KzL3gdR"/>
     <service id=".service_locator.hCNOtTs" alias=".service_locator.r5W7ygF"/>
     <service id=".service_locator.rDTDb0h" alias=".service_locator.iYlthPC"/>
     <service id=".service_locator.tjvZZ.Z" alias=".service_locator.cidI2f4"/>
     <service id=".service_locator.3pgXjz6" alias=".service_locator.MK2r7O1"/>
-    <service id=".service_locator.e5rtn2c" alias=".service_locator.0htf4ZS"/>
+    <service id=".service_locator._pu6ZVh" alias=".service_locator.ebXvxMH"/>
     <service id=".service_locator.KXnfanu" alias=".service_locator.EbSz.pQ"/>
     <service id=".service_locator.TEb9K9p" alias=".service_locator.onts8Bo"/>
+    <service id=".service_locator.q8iYgGB" alias=".service_locator.2LF_KP_"/>
+    <service id=".service_locator.3oCxs6x" alias=".service_locator.cdZX7Rt"/>
+    <service id=".service_locator.JSX6ra7" alias=".service_locator.qrL1nT4"/>
+    <service id=".service_locator.5kp8gXO" alias=".service_locator.i9GOSYV"/>
     <service id=".service_locator.A740LBW" alias=".service_locator.mx0UMmY"/>
     <service id=".service_locator.L0rFhJm" alias=".service_locator.GVyCdgr"/>
     <service id=".service_locator.pFwChgS" alias=".service_locator.UkE3SaZ"/>

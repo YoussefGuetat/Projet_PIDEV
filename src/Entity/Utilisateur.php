@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
@@ -18,49 +19,62 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups("utilisateur")]
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\NotBlank(message:"il faut entrer votre email")]
     #[Assert\Email(message:"exemple : ******@****.***")]
+    #[Groups("utilisateur")]
     private ?string $email = null;
 
     #[ORM\Column]
+    #[Groups("utilisateur")]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Groups("utilisateur")]
     private ?string $password = null;
 
     #[ORM\Column(length: 50)]
     #[Assert\NotBlank(message:"il faut entrer votre nom")]
+    #[Groups("utilisateur")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 50)]
     #[Assert\NotBlank(message:"il faut entrer votre prenom")]
+    #[Groups("utilisateur")]
     private ?string $prenom = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups("utilisateur")]
     private ?int $tel = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups("utilisateur")]
     private ?string $adresse = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Groups("utilisateur")]
     private ?\DateTimeInterface $dateNaiss = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups("utilisateur")]
     private ?string $token = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups("utilisateur")]
     private ?string $photo = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups("utilisateur")]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Groups("utilisateur")]
     private ?bool $isActif = null;
 
     #[ORM\ManyToMany(targetEntity: RendezVous::class, mappedBy: 'utilsateur')]
@@ -77,6 +91,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 60)]
     #[Assert\NotBlank(message:"il faut entrer votre role")]
+    #[Groups("utilisateur")]
     private ?string $role = null;
 
     public function __construct()

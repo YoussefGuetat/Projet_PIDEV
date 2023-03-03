@@ -26,6 +26,12 @@ use App\Security\AppCustomAuthenticator;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use DateTime;
+use Symfony\Component\Mercure\HubInterface;
+use Symfony\Component\Mercure\Update;
 
 class UtilisateurController extends AbstractController
 {
@@ -253,21 +259,64 @@ class UtilisateurController extends AbstractController
         ]);
     }
     #[Route('/dashForget', name: 'app_dashForget')]
-    public function dashForget(): Response
+    public function dashForget(Request $request ,UtilisateurRepository $utilisateurRepository,MailerInterface $mailer): Response
     {
+        $form = $this->createFormBuilder()
+        ->add('email')
+        ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $utilisateur = $utilisateurRepository->findOneBy(['email' => $form->get('email')->getData()]);
+            if($utilisateur !== null){
+                $bytes = random_bytes(16);
+                $token = bin2hex($bytes);
+                $utilisateur->setToken($token);
+                $utilisateurRepository->save($utilisateur, true);
+                $resetUrl = $this->generateUrl('app_dashReset', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
+                $email = (new Email())
+                ->from('guetat1youssef@gmail.com')
+                ->to($utilisateur->getEmail())
+                ->subject('forget-password')
+                ->text($resetUrl)
+                ->html('<p>See Twig integration for better HTML integration!</p>');
+    
+            $mailer->send($email);
+            }
+            return $this->redirectToRoute('app_dashForget',[], Response::HTTP_SEE_OTHER);
+        }
         return $this->render('back/GestionUtilisateur/forgot-password.html.twig', [
-            'controller_name' => 'UtilisateurController',
+            'form' => $form->createView(),
         ]);
     }
     #[Route('/dashReset', name: 'app_dashReset')]
-    public function dashReset(): Response
+    public function dashReset(Request $request,UtilisateurRepository $utilisateurRepository,UserPasswordEncoderInterface $passwordEncoder): Response
     {
+        $utilisateur = $utilisateurRepository->findOneBy(['token' => $request->query->get('token')]);
+        $form = $this->createFormBuilder()
+        ->add('newPassword', RepeatedType::class, [
+            'type' => PasswordType::class,
+            'invalid_message' => 'Veuillez saisir un nouveau mot de passe',
+            'first_options'  => ['label' => 'nouveau mot de passe'],
+            'second_options' => ['label' => 'confirme nouveau mot de passe'],
+        ])
+        ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $newPassword = $data['newPassword'];
+                $encodedPassword = $passwordEncoder->encodePassword($utilisateur, $newPassword);
+                $utilisateur->setPassword($encodedPassword);
+                $utilisateur->setToken(null);
+                $utilisateurRepository->save($utilisateur, true);
+                $id = $utilisateur->getId();
+                return $this->redirectToRoute('app_dashLog',[], Response::HTTP_SEE_OTHER);
+            }
         return $this->render('back/GestionUtilisateur/reset-password.html.twig', [
-            'controller_name' => 'UtilisateurController',
+            'form' => $form->createView(),
         ]);
     }
     #[Route('/dashListe', name: 'app_dashListe')]
-    public function dashListe(UtilisateurRepository $utilisateurRepository,Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppCustomAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function dashListe(UtilisateurRepository $utilisateurRepository, Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppCustomAuthenticator $authenticator, EntityManagerInterface $entityManager, PaginatorInterface $paginator): Response
     {
         $data = $this->get('session')->get('data', []);
         $utilisateur = $utilisateurRepository->find($data['id'] ?? '');
@@ -289,12 +338,39 @@ class UtilisateurController extends AbstractController
 
             return $this->redirectToRoute('app_dashListe',[], Response::HTTP_SEE_OTHER);
         }
+
+        if ($request->isXmlHttpRequest()) { // If it's an AJAX request
+            $page = $request->query->getInt('page', 1);
+            $utilisateurs = $paginator->paginate(
+                $utilisateurRepository->findAll(),
+                $page,
+                12
+            );
+            $html = $this->renderView('back/GestionUtilisateur/followers.html.twig', [
+                'utilisateurs' => $utilisateurs,
+                'utilisateur' => $utilisateur,
+                'registrationForm' => $form->createView(),
+                'totalUsersCount' => $utilisateurs->getTotalItemCount()
+            ]);
+            return new JsonResponse($html);
+        } else {
+            $queryBuilder = $utilisateurRepository->createQueryBuilder('u');
+            $queryBuilder->select('COUNT(u.id)');
     
-        return $this->render('back/GestionUtilisateur/followers.html.twig', [
-            'utilisateurs' => $utilisateurRepository->findAll(),
-            'utilisateur' => $utilisateur,
-            'registrationForm' => $form->createView(),
-        ]);
+            $totalUsersCount = (int) $queryBuilder->getQuery()->getSingleScalarResult();
+    
+            $utilisateurs = $paginator->paginate(
+                $utilisateurRepository->findAll(),
+                $request->query->getInt('page', 1),
+                12
+            );
+            return $this->render('back/GestionUtilisateur/followers.html.twig', [
+                'utilisateurs' => $utilisateurs,
+                'utilisateur' => $utilisateur,
+                'registrationForm' => $form->createView(),
+                'totalUsersCount' => $totalUsersCount,
+            ]);
+        }
     }
     #[Route('/profilDetail/{id}', name: 'app_profilDetail')]
     public function dashprofiledetail(Utilisateur $utilisateur): Response
@@ -329,15 +405,15 @@ class UtilisateurController extends AbstractController
         $form2->handleRequest($request);
 
 
-        if ($isModalOpen = strpos($request->getRequestUri(), '#modifier-modal') !== false){
+        
             if ($form->isSubmitted() && $form->isValid()) {
                 $repo->save($utilisateur, true);
                 $id = $utilisateur->getId();
                 return $this->redirectToRoute('app_monprofil',[], Response::HTTP_SEE_OTHER);
             } 
-        }
+        
 
-        if ($isModalOpen = strpos($request->getRequestUri(), '#mdp-modal') !== false){
+        
         if ($form2->isSubmitted() && $form2->isValid()) {
             $data = $form2->getData();
             $currentPassword = $data['currentPassword'];
@@ -347,12 +423,12 @@ class UtilisateurController extends AbstractController
                 $utilisateur->setPassword($encodedPassword);
                 $repo->save($utilisateur, true);
                 $id = $utilisateur->getId();
-                return $this->redirectToRoute('app_profile',['id' => $id], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_monprofil',['id' => $id], Response::HTTP_SEE_OTHER);
             } else {
                 $form2->addError(new FormError('The current password is incorrect.'));
             }
             }
-        }
+       
 
         $filesystem = new Filesystem();
         if ($form1->isSubmitted() && $form1->isValid()) {
@@ -392,6 +468,96 @@ class UtilisateurController extends AbstractController
             'utilisateur' => $utilisateur,
         ]);
     }
-   
+    #[Route(path:'/404', name: 'app_404')]
+    public function login(): Response
+    {
+        return $this->render('front/GestionUtilisateur/404.html.twig');
+    }
+    #[Route(path:'/chat/{id}', name: 'app_chat')]
+    public function chat($id,UtilisateurRepository $repo): Response
+    {
+        $utilisateur = $repo->find($id);
+        $utilisateurs = $repo->findBy(['role' => 'Admin']);
+        return $this->render('back/GestionUtilisateur/chat.html.twig', [
+            'utilisateur' => $utilisateur,
+            'utilisateurs' => $utilisateurs,
+        ]);
+    }
+    #[Route('/publish', name: 'publish')]
+    public function publish(Request $request,HubInterface $hub): Response
+    {
+        $tabData = $request->query->get('tabData');
+        $msg = $tabData[0]['msg'];
+        $ida = $tabData[0]['id'];
+        $name = $tabData[0]['name'];
+        $photo = $tabData[0]['photo'];
+
+        $update = new Update(
+            'https://example.com/books/1',
+            json_encode(['message' => $msg,'ida' => $ida,'name' => $name,'photo' => $photo])
+        );
+
+        $hub->publish($update);
+
+        return new Response('published!');
+    }
+
+    #[Route(path:'/allUsersJson', name: 'app_allUsersJson')]
+    public function jsonAll(UtilisateurRepository $repo,NormalizerInterface $Normalizer): Response
+    {
+        $utilisateur = $repo->findAll();
+        $utilisateurNormalises = $Normalizer->normalize($utilisateur,'json',['groups' => "utilisateur"]);
+        $json = json_encode($utilisateurNormalises);
+        return new Response($json);
+    }
+    #[Route(path:'/UserJson/{id}', name: 'app_UserJson')]
+    public function jsonUser($id,UtilisateurRepository $repo,NormalizerInterface $Normalizer): Response
+    {
+        $utilisateur = $repo->find($id);
+        $utilisateurNormalises = $Normalizer->normalize($utilisateur,'json',['groups' => "utilisateur"]);
+        $json = json_encode($utilisateurNormalises);
+        return new Response($json);
+    }
+    #[Route(path:'/AjoutUserJson', name: 'app_AjoutUserJson')]
+    public function AjoutjsonUser(Request $req,NormalizerInterface $Normalizer, UserPasswordHasherInterface $userPasswordHasher)
+    {
+       $em = $this->getDoctrine()->getManager();
+       $utilisateur = new Utilisateur();
+       $utilisateur->setEmail($req->get('email'));
+       $utilisateur->setPassword(
+        $userPasswordHasher->hashPassword(
+            $utilisateur,
+            $req->get('password')
+        )
+       );
+       $utilisateur->setNom($req->get('nom'));
+       $utilisateur->setPrenom($req->get('prenom'));
+       $utilisateur->setRole($req->get('role'));
+       $utilisateur->setIsActif($req->get('isActif'));
+       $em->persist($utilisateur);
+       $em->flush();
+       $utilisateurNormalises = $Normalizer->normalize($utilisateur,'json',['groups' => "utilisateur"]);
+       $json = json_encode($utilisateurNormalises);
+       return new Response($json);
+    }
+    #[Route(path:'/modifierUserJson/{id}', name: 'app_modifierUserJson')]
+    public function modifierjsonUser(Request $req,NormalizerInterface $Normalizer, $id)
+    {
+       $em = $this->getDoctrine()->getManager();
+       $utilisateur = $em->getRepository(Utilisateur::class)->find($id);
+       $utilisateur->setEmail($req->get('email'));
+       $utilisateur->setNom($req->get('nom'));
+       $utilisateur->setPrenom($req->get('prenom'));
+       $utilisateur->setTel($req->get('tel'));
+       $dateNaiss=$req->get('dateNaiss');
+       $utilisateur->setDateNaiss(new DateTime($dateNaiss));
+       
+       $utilisateur->setAdresse($req->get('addresse'));
+       $utilisateur->setDescription($req->get('description'));
+       $em->flush();
+       $utilisateurNormalises = $Normalizer->normalize($utilisateur,'json',['groups' => "utilisateur"]);
+       $json = json_encode($utilisateurNormalises);
+       return new Response($json);
+    }
 
 }

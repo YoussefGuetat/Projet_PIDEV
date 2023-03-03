@@ -14,6 +14,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Component\HttpClient\HttpClient;
 
 class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
 {
@@ -43,38 +44,64 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+
+
         $user = $token->getUser();
-        $data = ['nom' => $user->getNom(),'prenom' => $user->getPrenom(),'id' => $user->getId()];
+        $data = ['nom' => $user->getNom(), 'prenom' => $user->getPrenom(), 'id' => $user->getId()];
         $request->getSession()->set('data', $data);
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
 
         $refererUrl = $request->headers->get('referer');
-        if($user->isIsActif()){
-        if (strpos($refererUrl, $this->urlGenerator->generate(self::LOGIN_ROUTE)) !== false) {
-            return new RedirectResponse($this->urlGenerator->generate('app_acceuil'));
-        } else {
-            if($user->getRole() == "Admin" || $user->getRole() == "Super_Admin")
-            return new RedirectResponse($this->urlGenerator->generate('app_monprofil'));
-            else
-            return new RedirectResponse($this->urlGenerator->generate('app_acceuil'));
+        if ($request->isMethod('POST')) {
+            // Verify the reCAPTCHA
+            $recaptchaResponse = $request->request->get('g-recaptcha-response');
+            $client = HttpClient::create();
+            $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
+                'body' => [
+                    'secret' => '6LfqXqYkAAAAAOTgEaN78ErHe7JPI1xeyiGHLWsJ',
+                    'response' => $recaptchaResponse,
+                ],
+            ]);
+            $data = json_decode($response->getContent(), true);
+            if (!$data['success']) {
+                // The reCAPTCHA was not successful
+                $message = ['errorC' => "merci de verifier Captcha"];
+                    if (strpos($refererUrl, $this->urlGenerator->generate(self::LOGIN_ROUTE)) !== false) {
+                        return new RedirectResponse($this->urlGenerator->generate('app_login',$message));
+                    } else {
+                        return new RedirectResponse($this->urlGenerator->generate('app_dashLog',$message));
+                    }
+            }
+
+            if ($data['success']) {
+
+                if ($user->isIsActif()) {
+                    if (strpos($refererUrl, $this->urlGenerator->generate(self::LOGIN_ROUTE)) !== false) {
+                        return new RedirectResponse($this->urlGenerator->generate('app_acceuil'));
+                    } else {
+                        if ($user->getRole() == "Admin" || $user->getRole() == "Super_Admin")
+                            return new RedirectResponse($this->urlGenerator->generate('app_monprofil'));
+                        else
+                            return new RedirectResponse($this->urlGenerator->generate('app_acceuil'));
+                    }
+                } 
+                else {
+                    return new RedirectResponse($this->urlGenerator->generate('app_404'));
+                }
+            }
         }
-    }
-    else
-    {
-        return new RedirectResponse($this->urlGenerator->generate('app_landing'));
-    }
     }
 
     protected function getLoginUrl(Request $request): string
     {
-        
+
         $refererUrl = $request->headers->get('referer');
-    if (strpos($refererUrl, $this->urlGenerator->generate(self::LOGIN_ROUTE)) !== false) {
-        return $this->urlGenerator->generate(self::LOGIN_ROUTE);
-    } else {
-        return $this->urlGenerator->generate(self::LOGIN_ROUTE2);
-    }
+        if (strpos($refererUrl, $this->urlGenerator->generate(self::LOGIN_ROUTE)) !== false) {
+            return $this->urlGenerator->generate(self::LOGIN_ROUTE);
+        } else {
+            return $this->urlGenerator->generate(self::LOGIN_ROUTE2);
+        }
     }
 }
