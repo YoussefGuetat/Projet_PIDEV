@@ -26,6 +26,8 @@ return [
     'app_dashForget' => [[], ['_controller' => 'App\\Controller\\UtilisateurController::dashForget'], [], [['text', '/dashForget']], [], [], []],
     'app_dashReset' => [[], ['_controller' => 'App\\Controller\\UtilisateurController::dashReset'], [], [['text', '/dashReset']], [], [], []],
     'app_dashListe' => [[], ['_controller' => 'App\\Controller\\UtilisateurController::dashListe'], [], [['text', '/dashListe']], [], [], []],
+    'search' => [[], ['_controller' => 'App\\Controller\\UtilisateurController::search'], [], [['text', '/search']], [], [], []],
+    'filterr' => [[], ['_controller' => 'App\\Controller\\UtilisateurController::filterr'], [], [['text', '/filterr']], [], [], []],
     'app_profilDetail' => [['id'], ['_controller' => 'App\\Controller\\UtilisateurController::dashprofiledetail'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/profilDetail']], [], [], []],
     'app_monprofil' => [[], ['_controller' => 'App\\Controller\\UtilisateurController::dashmonprofile'], [], [['text', '/monprofil']], [], [], []],
     'app_dashActif' => [['id'], ['_controller' => 'App\\Controller\\UtilisateurController::dashActif'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/dashActif']], [], [], []],

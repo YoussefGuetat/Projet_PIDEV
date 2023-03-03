@@ -56,6 +56,21 @@ class UtilisateurRepository extends ServiceEntityRepository implements PasswordU
         $this->save($user, true);
     }
 
+    public function search(string $query)
+{
+    $qb = $this->createQueryBuilder('u')
+        ->where('u.nom LIKE :query OR u.prenom LIKE :query')
+        ->setParameter('query', '%'.$query.'%');
+    return $qb->getQuery()->getResult();
+}
+public function filter(string $query)
+{
+    $qb = $this->createQueryBuilder('u')
+        ->where('u.role LIKE :query')
+        ->setParameter('query',$query);
+    return $qb->getQuery()->getResult();
+}
+
 //    /**
 //     * @return Utilisateur[] Returns an array of Utilisateur objects
 //     */

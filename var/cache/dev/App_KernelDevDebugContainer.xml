@@ -7142,7 +7142,7 @@
         <argument key="Normalizer" type="service_closure" id="serializer"/>
       </argument>
     </service>
-    <service id=".service_locator.mgmYzsp" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.Wb36M8_" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\GoogleController::connectAction" type="service_closure" id=".service_locator.r2De49f"/>
@@ -7162,6 +7162,7 @@
         <argument key="App\Controller\UtilisateurController::dashprofiledetail" type="service_closure" id=".service_locator.r5W7ygF"/>
         <argument key="App\Controller\UtilisateurController::delete" type="service_closure" id=".service_locator.KzL3gdR"/>
         <argument key="App\Controller\UtilisateurController::edit" type="service_closure" id=".service_locator.KzL3gdR"/>
+        <argument key="App\Controller\UtilisateurController::filterr" type="service_closure" id=".service_locator.ebXvxMH"/>
         <argument key="App\Controller\UtilisateurController::forget" type="service_closure" id=".service_locator.cidI2f4"/>
         <argument key="App\Controller\UtilisateurController::index" type="service_closure" id=".service_locator.JMejbpE"/>
         <argument key="App\Controller\UtilisateurController::jsonAll" type="service_closure" id=".service_locator.cdZX7Rt"/>
@@ -7172,6 +7173,7 @@
         <argument key="App\Controller\UtilisateurController::profile" type="service_closure" id=".service_locator.r5W7ygF"/>
         <argument key="App\Controller\UtilisateurController::publish" type="service_closure" id=".service_locator.2LF_KP_"/>
         <argument key="App\Controller\UtilisateurController::resetpwd" type="service_closure" id=".service_locator.MK2r7O1"/>
+        <argument key="App\Controller\UtilisateurController::search" type="service_closure" id=".service_locator.ebXvxMH"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
@@ -7193,6 +7195,7 @@
         <argument key="App\Controller\UtilisateurController:dashprofiledetail" type="service_closure" id=".service_locator.r5W7ygF"/>
         <argument key="App\Controller\UtilisateurController:delete" type="service_closure" id=".service_locator.KzL3gdR"/>
         <argument key="App\Controller\UtilisateurController:edit" type="service_closure" id=".service_locator.KzL3gdR"/>
+        <argument key="App\Controller\UtilisateurController:filterr" type="service_closure" id=".service_locator.ebXvxMH"/>
         <argument key="App\Controller\UtilisateurController:forget" type="service_closure" id=".service_locator.cidI2f4"/>
         <argument key="App\Controller\UtilisateurController:index" type="service_closure" id=".service_locator.JMejbpE"/>
         <argument key="App\Controller\UtilisateurController:jsonAll" type="service_closure" id=".service_locator.cdZX7Rt"/>
@@ -7203,6 +7206,7 @@
         <argument key="App\Controller\UtilisateurController:profile" type="service_closure" id=".service_locator.r5W7ygF"/>
         <argument key="App\Controller\UtilisateurController:publish" type="service_closure" id=".service_locator.2LF_KP_"/>
         <argument key="App\Controller\UtilisateurController:resetpwd" type="service_closure" id=".service_locator.MK2r7O1"/>
+        <argument key="App\Controller\UtilisateurController:search" type="service_closure" id=".service_locator.ebXvxMH"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
       </argument>
@@ -7868,12 +7872,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.mgmYzsp"/>
+      <argument type="service" id=".service_locator.Wb36M8_"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.mgmYzsp"/>
+      <argument type="service" id=".service_locator.Wb36M8_"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8895,7 +8899,7 @@
     <service id="Symfony\Component\Mercure\PublisherInterface" alias="mercure.hub.default.publisher.traceable"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.mgmYzsp"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.Wb36M8_"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -8927,7 +8931,7 @@
     <service id=".service_locator.Hgvci_5" alias=".service_locator.EbSz.pQ"/>
     <service id=".service_locator.Mrd026y" alias=".service_locator.onts8Bo"/>
     <service id=".service_locator.x2E2Yqz" alias=".service_locator.cdZX7Rt"/>
-    <service id=".service_locator.CpQsvAM" alias=".service_locator.mgmYzsp"/>
+    <service id=".service_locator.AYmKSXI" alias=".service_locator.Wb36M8_"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.ec.k2Ib" alias=".service_locator.irkTCtZ"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>

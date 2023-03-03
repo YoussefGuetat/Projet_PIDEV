@@ -26,6 +26,8 @@ return [
         '/dashForget' => [[['_route' => 'app_dashForget', '_controller' => 'App\\Controller\\UtilisateurController::dashForget'], null, null, null, false, false, null]],
         '/dashReset' => [[['_route' => 'app_dashReset', '_controller' => 'App\\Controller\\UtilisateurController::dashReset'], null, null, null, false, false, null]],
         '/dashListe' => [[['_route' => 'app_dashListe', '_controller' => 'App\\Controller\\UtilisateurController::dashListe'], null, null, null, false, false, null]],
+        '/search' => [[['_route' => 'search', '_controller' => 'App\\Controller\\UtilisateurController::search'], null, ['GET' => 0], null, false, false, null]],
+        '/filterr' => [[['_route' => 'filterr', '_controller' => 'App\\Controller\\UtilisateurController::filterr'], null, ['GET' => 0], null, false, false, null]],
         '/monprofil' => [[['_route' => 'app_monprofil', '_controller' => 'App\\Controller\\UtilisateurController::dashmonprofile'], null, null, null, false, false, null]],
         '/404' => [[['_route' => 'app_404', '_controller' => 'App\\Controller\\UtilisateurController::login'], null, null, null, false, false, null]],
         '/publish' => [[['_route' => 'publish', '_controller' => 'App\\Controller\\UtilisateurController::publish'], null, null, null, false, false, null]],

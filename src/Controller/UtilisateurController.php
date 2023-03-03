@@ -372,6 +372,105 @@ class UtilisateurController extends AbstractController
             ]);
         }
     }
+    #[Route('/search', name: 'search', methods: ['GET'])]
+    public function search(UtilisateurRepository $utilisateurRepository, Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppCustomAuthenticator $authenticator, EntityManagerInterface $entityManager, PaginatorInterface $paginator): Response
+    {
+        $data = $this->get('session')->get('data', []);
+        $utilisateur = $utilisateurRepository->find($data['id'] ?? '');
+        $user = new Utilisateur();
+        $form = $this->createForm(AdminType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+            // do anything else you need here, like send an email
+
+            return $this->redirectToRoute('app_dashListe',[], Response::HTTP_SEE_OTHER);
+        }
+        $query = $request->query->get('q');
+        $utilisateurs = $utilisateurRepository->search($query);
+        $page = $request->query->getInt('page', 1);
+        $utilisateurs = $paginator->paginate(
+            $utilisateurRepository->search($query),
+            $page,
+            12
+        );
+        $queryBuilder = $utilisateurRepository->createQueryBuilder('u');
+        $queryBuilder->select('COUNT(u.id)');
+        $totalUsersCount = (int) $queryBuilder->getQuery()->getSingleScalarResult();
+
+        $html = $this->renderView('back/GestionUtilisateur/followers.html.twig', [
+            'utilisateurs' => $utilisateurs,
+            'utilisateur' =>$utilisateur,
+            'registrationForm' => $form->createView(),
+            'totalUsersCount' => $totalUsersCount,
+        ]);
+    
+        return new Response($html);
+    }
+    #[Route('/filterr', name: 'filterr', methods: ['GET'])]
+    public function filterr(UtilisateurRepository $utilisateurRepository, Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppCustomAuthenticator $authenticator, EntityManagerInterface $entityManager, PaginatorInterface $paginator): Response
+    {
+        $data = $this->get('session')->get('data', []);
+        $utilisateur = $utilisateurRepository->find($data['id'] ?? '');
+        $user = new Utilisateur();
+        $form = $this->createForm(AdminType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+            // do anything else you need here, like send an email
+
+            return $this->redirectToRoute('app_dashListe',[], Response::HTTP_SEE_OTHER);
+        }
+        $query = $request->query->get('qqq');
+        if($query == ""){
+            $page = $request->query->getInt('page', 1);
+            $utilisateurs = $paginator->paginate(
+                $utilisateurRepository->findAll(),
+                $page,
+                12
+            );
+        }
+        else{
+            $page = $request->query->getInt('page', 1);
+            $utilisateurs = $paginator->paginate(
+                $utilisateurRepository->filter($query),
+                $page,
+                12
+            );
+        }
+
+        $queryBuilder = $utilisateurRepository->createQueryBuilder('u');
+        $queryBuilder->select('COUNT(u.id)');
+        $totalUsersCount = (int) $queryBuilder->getQuery()->getSingleScalarResult();
+
+        $html = $this->renderView('back/GestionUtilisateur/followers.html.twig', [
+            'utilisateurs' => $utilisateurs,
+            'utilisateur' =>$utilisateur,
+            'registrationForm' => $form->createView(),
+            'totalUsersCount' => $totalUsersCount,
+        ]);
+    
+        return new Response($html);
+    }
+
     #[Route('/profilDetail/{id}', name: 'app_profilDetail')]
     public function dashprofiledetail(Utilisateur $utilisateur): Response
     {

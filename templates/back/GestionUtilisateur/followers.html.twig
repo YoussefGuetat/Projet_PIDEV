@@ -1661,14 +1661,14 @@ navbarTopCombo.remove(navbarTopCombo);
 								<form>
 									<div class="row g-0">
 										<div class="col">
-											<input class="form-control form-control-sm" type="text" placeholder="Rechercher..."/>
+											<input id="search-input" class="form-control form-control-sm" type="text" placeholder="Rechercher..."/>
 										</div>
 										<div class="col d-md-block d-none">
-											<select id="filter-select" class="form-select form-select-sm ms-2" aria-label=".form-select-sm example">
+											<select id="filter-input" class="form-select form-select-sm ms-2" aria-label=".form-select-sm example">
 												<option value="">Tous utlisateurs</option>
-												<option value="Admins">Admins</option>
-												<option value="invistesseur">Invistesseur</option>
-												<option value="entrepreneur">Entrepreneur</option>
+												<option value="Admin">Admins</option>
+												<option value="investisseur">Invistesseurs</option>
+												<option value="entrepreneur">Entrepreneurs</option>
 											</select>
 										</div>
 									</div>
@@ -1739,7 +1739,40 @@ navbarTopCombo.remove(navbarTopCombo);
 							}
 						  });
 						});
-					  });					  
+					  });
+					  
+					  $(document).ready(function() {
+						$('#search-input').on('keyup', function() {
+							var query = $(this).val();
+							console.log(query);
+							$.ajax({
+								url: '{{ path('search') }}',
+								type: 'GET',
+								data: { q: query },
+								success: function(response) {
+									console.log(response);
+									$('#users-container').html($(response).find('#users-container').html());
+									$('#pagination-container').html($(response).find('#pagination-container').html());
+								}
+							});
+						});
+					});
+					$(document).ready(function() {
+						$('#filter-input').on('click', function() {
+							var query = $(this).val();
+							console.log(query);
+							$.ajax({
+								url: '{{ path('filterr') }}',
+								type: 'GET',
+								data: { qqq: query },
+								success: function(response) {
+									console.log(response);
+									$('#users-container').html($(response).find('#users-container').html());
+									$('#pagination-container').html($(response).find('#pagination-container').html());
+								}
+							});
+						});
+					});
 				  </script>
 				  
 
