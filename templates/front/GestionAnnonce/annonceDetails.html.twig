@@ -63,7 +63,8 @@
                   <span class="lead">Budget demandé:</span>
                   <span class="float-right">150 000 000 dt</span>
                 </li>
-                <li></li>
+                <li><span class="lead">Likes:</span>
+                  <span class="float-right">{{annonce.like_button}}</span></li>
               </ul>
 
               <div class="portfolio-button">
@@ -73,6 +74,15 @@
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ annonce.id) }}">
     <button class="button">Delete</button>
 </form>
+
+<div class="annonce-actions">
+            <form method="POST" action="{{ path('app_annonce_like', {'id': annonce.id}) }}">
+                <button type="submit" name="like" class="btn btn-success">J'aime ({{ annonce.like_button }})</button>
+
+            </form>
+<form method="POST" action="{{ path('app_annonce_dislike', {'id': annonce.id}) }}">
+        <button type="submit" name="dislike" class="btn btn-danger">Je n'aime pas ({{ annonce.dislike_button }})</button></form>
+        </div>
 
 {% for b in bmc %}
 {% set mys = annonce.titre ~ '' %}

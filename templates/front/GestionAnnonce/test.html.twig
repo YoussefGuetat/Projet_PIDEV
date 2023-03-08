@@ -55,9 +55,12 @@
             </div>
          </div>
 
-         
+          <h1>Search Annonces</h1>
 
-   
+    {{ form_start(form) }}
+    {{ form_row(form.titre) }}
+    {{ form_row(form.submit) }}
+    {{ form_end(form) }}
        
            
            <button ><a class="active" style=" color: Orange;" href="{{ path('app_annonce_sort', {'sortOrder': 'ASC'}) }}">Title ASC</a></button>

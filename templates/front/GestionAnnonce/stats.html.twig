@@ -317,7 +317,7 @@
                     <li class="nav-item">
                       <a
                         class="nav-link"
-                        href="{{ path('app_annonce_stats') }}"
+                        href="{{ path('app_annonce_index_back') }}"
                         aria-expanded="false">
                       
                         <div class="d-flex align-items-center">
@@ -3439,123 +3439,56 @@
               navbarTopCombo.remove(navbarTopCombo);
             }
           </script>
-          <div class="card mb-3">
-            <div class="card-body">
-              <div class="row flex-between-center">
-                <div class="col-sm-auto mb-2 mb-sm-0">
-                  <h6 class="mb-0">La liste des annonces</h6>
-                </div>
+    <div id="piechart" style="width: 500px; height: 300px;"></div>
+    <div id="barchart" style="width: 500px; height: 300px;"></div>
 
-              </div>
-            </div>
-          </div>
-                           <button ><a class="active" style=" color: Orange;" href="{{ path('app_annonce_back_sort', {'sortOrder': 'ASC'}) }}">Title ASC</a></button>
-<button><a class="active" style=" color: Orange;" href="{{ path('app_annonce_back_sort', {'sortOrder': 'DESC'}) }}">Title DESC</a></button>
-          {% for annonce in annonces %}
-          <div class="card">
-            <div class="card-body p-0 overflow-hidden">
-              <div class="row g-0">
-                <div class="col-12 p-card">
-                  <div class="row">
-                    <div class="col-sm-5 col-md-4">
-                      <div class="position-relative h-sm-100">
-                        <a class="d-block h-100" href="product-details.html"
-                          >{% set img = annonce.image %}<img
-                           class="iq-portfolio-img"><img src="{{ asset(img) }}" alt="Annonce Image" class="img-fluid" alt="#"
-                        /></a>
-                        <div
-                          class="badge rounded-pill bg-success position-absolute top-0 end-0 me-2 mt-2 fs--2 z-index-2"
-                        >
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawPieChart);
+        google.charts.setOnLoadCallback(drawBarChart);
 
-                        
-                          New
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-7 col-md-8">
-                      <div class="row">
-                        <div class="col-lg-8">
-                          <h5 class="mt-3 mt-sm-0">
-                            <a
-                              class="text-dark fs-0 fs-lg-1"
-                              href="product-details.html"
-                              >{{annonce.titre}}</a
-                            >
-                          </h5>
-                          <p class="fs--1 mb-2 mb-md-3">
-                            <a class="text-500" href="#!"
-                              >{{annonce.domaine}}</a
-                            >
-                          </p>
-                          <ul class="list-unstyled d-none d-lg-block">
-                              <span
-                                class="fas fa-circle"
-                                data-fa-transform="shrink-12"
-                              ></span
-                              ><div data-description="{{ annonce.description }}">{{ annonce.description|slice(0, 200) ~ '...' }} </div>
-                          </ul>
-                        </div>
-                        <div
-                          class="col-lg-4 d-flex justify-content-between flex-column"
-                        >
-                          <div>
-                            <h4 class="fs-1 fs-md-2 text-warning mb-0">
-                              Budget : 
-                              <br>
-                              15 000 Dt
-                            </h4>
-                            <div class="d-none d-lg-block">
-                              <p class="fs--1 mb-1">
-                                Date de publication : <br><strong>{{ annonce.dateCrea ? annonce.dateCrea|date('Y-m-d') : '' }}</strong>
-                              </p>
-                              <p class="fs--1 mb-1">
-                                Etat:
-                                <strong class="text-success">En cours</strong>
-                              </p>
-                            </div>
-                          </div>
-                          <div class="mt-2">
-                            <a
-                              class="btn btn-sm btn-primary d-lg-block mt-lg-2"
-                              href="{{path('app_annonce_show_back',{'id':annonce.id})}}"
-                              ><span class="ms-2 d-none d-md-inline-block" 
-                                >Voir details</span
-                              ></a
-                            >
-                             
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        function drawPieChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Domaine', 'Nombre d\'annonces'],
+                {% for domaine, count in counts %}
+                    ['{{ domaine }}', {{ count }}],
+                {% endfor %}
+            ]);
 
-{%endfor%}
+            var options = {
+                title: 'Répartition des annonces par domaine',
+                is3D: true,
+                width: 500,
+                height: 300
+            };
 
-              
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
 
+        function drawBarChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Domaine', 'Nombre d\'annonces'],
+                {% for domaine, count in counts %}
+                    ['{{ domaine }}', {{ count }}],
+                {% endfor %}
+            ]);
 
+            var options = {
+                title: 'Nombre d\'annonces par domaine',
+                legend: { position: 'none' },
+                bars: 'vertical',
+                vAxis: { format: 'decimal' },
+                height: 300,
+                width: 500,
+                colors: ['#1b9e77']
+            };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            var chart = new google.visualization.ColumnChart(document.getElementById('barchart'));
+            chart.draw(data, options);
+        }
+    </script>
 
 
 
@@ -4042,3 +3975,4 @@
   <!-- Mirrored from prium.github.io/falcon/v3.3.0/app/events/event-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Nov 2021 08:41:11 GMT -->
 </html>
 {%endblock%}
+

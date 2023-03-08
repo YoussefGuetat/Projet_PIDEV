@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Bmc;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Form\BmcType;
 use App\Repository\BmcRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,6 +48,36 @@ class BmcController extends AbstractController
         return $this->render('front/GestionAnnonce/tableaubmc.html.twig', [
             'bmc' => $bmc,
         ]);
+    }
+
+    #[Route('/{id}/print', name: 'pdf', methods: ['POST'])]
+public function printbmc(Bmc $bmc): Response
+    {
+         // Render the view to HTML
+         $html = $this->renderView('front/GestionAnnonce/pdf.html.twig', [
+            'title' => 'My PDF',
+            'bmc' => $bmc,
+            
+        ]);
+
+        // Create a new Dompdf instance
+        $dompdf = new Dompdf();
+
+        // Load the HTML into the Dompdf instance
+        $dompdf->loadHtml($html);
+
+        // Set the paper size and orientation
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the PDF
+        $dompdf->render();
+
+        // Generate the response containing the PDF
+        $response = new Response($dompdf->output());
+        $response->headers->set('Content-Type', 'application/pdf');
+        $response->headers->set('Content-Disposition', 'attachment;filename="bmc_' . $bmc->getId() . '.pdf"');
+
+        return $response;
     }
 
 

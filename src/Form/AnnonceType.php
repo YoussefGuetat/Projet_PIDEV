@@ -7,6 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class AnnonceType extends AbstractType
 {
@@ -22,7 +24,18 @@ class AnnonceType extends AbstractType
             ->add('dateCrea')
             ->add('statut')
             ->add('utilisateur')
+            ->add('titre', SearchType::class, [
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Search announcements'
+                ]
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Search'
+            ])
+            
         ;
+        
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -39,6 +39,23 @@ class AnnonceRepository extends ServiceEntityRepository
         }
     }
 
+    public function searchByTitre(string $titre)
+{
+    return $this->createQueryBuilder('a')
+        ->andWhere('a.titre LIKE :titre')
+        ->setParameter('titre', '%'.$titre.'%')
+        ->getQuery()
+        ->getResult();
+}
+
+public function findAllSortedByTitre($sortOrder)
+{
+    return $this->createQueryBuilder('a')
+        ->orderBy('a.titre', $sortOrder)
+        ->getQuery()
+        ->getResult();
+}
+
 //    /**
 //     * @return Annonce[] Returns an array of Annonce objects
 //     */

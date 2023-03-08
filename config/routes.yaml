@@ -1,8 +1,11 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
-
 upload_image:
     path: /upload-image
     methods: [POST]
     controller: App\Controller\YourController::uploadImage
+
+
+
+
+app_annonce_search_ajax:
+    path: /annonce/search_ajax
+    controller: App\Controller\AnnonceController::searchAjax

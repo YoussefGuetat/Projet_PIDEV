@@ -1,6 +1,7 @@
 {% extends 'front/homeC.html.twig' %}
 
 {%block contenu%}
+
 <html lang="en">
    <head>
       <!-- Required meta tags -->
@@ -33,6 +34,11 @@
                </ol>
             </nav>
          </div>
+
+
+        
+
+
          <div class="col-lg-4 col-md-4 text-right">
             <img  src="{{asset('front/images/portfolio/masonry/01.png')}}" class="img-fluid" alt="#"/>
          </div>
@@ -54,14 +60,24 @@
                </div>
             </div>
          </div>
+        <div class="container">
+        <h1>Liste des annonces</h1>
 
-         
-
-   
        
-           
-           <button ><a class="active" style=" color: Orange;" href="{{ path('app_annonce_sort', {'sortOrder': 'ASC'}) }}">Title ASC</a></button>
-<button><a class="active" style=" color: Orange;" href="{{ path('app_annonce_sort', {'sortOrder': 'DESC'}) }}">Title DESC</a></button>
+
+    
+
+
+
+
+
+
+
+
+
+
+           <th><a href="{{ path('app_annonce_sort', {'sortOrder': 'ASC'}) }}">Title ASC</a></th>
+<th><a href="{{ path('app_annonce_sort', {'sortOrder': 'DESC'}) }}">Title DESC</a></th>
          <div class="row">
             <div class="col-sm-12">
                <div class="iq-masonry-block">
@@ -72,15 +88,15 @@
                      <button><a  href="{{ path('app_annonce_domaine', { 'domaine': 'Informatique' }) }}" style="text-decoration: none; color: Black;">Informatique</a></button>
                   </div>
 
-                  
-                  <div class="iq-masonry iq-columns-2    ">
+
+             
 
 {% if annonces is empty %}
   <p>There are no products in this category.</p>
 {% else %}
  {% for annonce in annonces %}
 
- {% include 'front/GestionAnnonce/_annonces.html.twig' with {'annonce': annonce} %}
+{% include 'front/GestionAnnonce/_annonces.html.twig' with {'annonce': annonce} %}
 
                      {% endfor %}
 
@@ -92,7 +108,7 @@
                      
 
 
-                  </div>
+         
                </div>
             </div>
          </div>
@@ -101,6 +117,7 @@
    <!-- Portfolio End  -->
 </div>
 {% endif %}
+
 <!-- Main-Content End -->
 
 <!-- back-to-top -->

@@ -54,6 +54,7 @@ class Bmc
     public ?float $revenus = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'CASCADE')]
     public ?Annonce $annonce = null;
 
     public function getId(): ?int
@@ -181,5 +182,6 @@ class Bmc
         return $this;
     }
 
+   
     
 }
