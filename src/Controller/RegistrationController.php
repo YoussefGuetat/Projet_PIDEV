@@ -13,6 +13,8 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
 
 class RegistrationController extends AbstractController
 {
@@ -46,5 +48,27 @@ class RegistrationController extends AbstractController
         return $this->render('front/GestionUtilisateur/signup.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
+    }
+    #[Route(path:'/SignupUserJson', name: 'app_SignupUserJson')]
+    public function SignupjsonUser(Request $req,NormalizerInterface $Normalizer, UserPasswordHasherInterface $userPasswordHasher)
+    {
+       $em = $this->getDoctrine()->getManager();
+       $utilisateur = new Utilisateur();
+       $utilisateur->setEmail($req->get('email'));
+       $utilisateur->setPassword(
+        $userPasswordHasher->hashPassword(
+            $utilisateur,
+            $req->get('password')
+        )
+       );
+       $utilisateur->setNom($req->get('nom'));
+       $utilisateur->setPrenom($req->get('prenom'));
+       $utilisateur->setRole($req->get('role'));
+       $utilisateur->setIsActif(true);
+       $em->persist($utilisateur);
+       $em->flush();
+       $utilisateurNormalises = $Normalizer->normalize($utilisateur,'json',['groups' => "utilisateur"]);
+       $json = json_encode($utilisateurNormalises);
+       return new Response($json);
     }
 }

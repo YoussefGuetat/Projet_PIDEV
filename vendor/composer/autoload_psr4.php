@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'phpseclib3\\' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Twig\\Extra\\TwigExtraBundle\\' => array($vendorDir . '/twig/extra-bundle'),
@@ -96,6 +97,7 @@ return array(
     'Psr\\Clock\\' => array($vendorDir . '/psr/clock/src'),
     'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
+    'ParagonIE\\ConstantTime\\' => array($vendorDir . '/paragonie/constant_time_encoding/src'),
     'PHPStan\\PhpDocParser\\' => array($vendorDir . '/phpstan/phpdoc-parser/src'),
     'Namshi\\JOSE\\' => array($vendorDir . '/namshi/jose/src/Namshi/JOSE'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
@@ -109,6 +111,10 @@ return array(
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
+    'Google\\Service\\' => array($vendorDir . '/google/apiclient-services/src'),
+    'Google\\Auth\\' => array($vendorDir . '/google/auth/src'),
+    'Google\\' => array($vendorDir . '/google/apiclient/src'),
+    'Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
     'Egulias\\EmailValidator\\' => array($vendorDir . '/egulias/email-validator/src'),
     'Doctrine\\SqlFormatter\\' => array($vendorDir . '/doctrine/sql-formatter/src'),
     'Doctrine\\Persistence\\' => array($vendorDir . '/doctrine/persistence/src/Persistence'),

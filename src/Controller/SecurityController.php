@@ -74,7 +74,7 @@ class SecurityController extends AbstractController
     }
 
     // Return the JWT in the response body
-    return new JsonResponse('Valid');
+    return new JsonResponse($user->getId());
      }
 
 }

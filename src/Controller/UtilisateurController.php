@@ -32,9 +32,19 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use DateTime;
 use Symfony\Component\Mercure\HubInterface;
 use Symfony\Component\Mercure\Update;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+
+
 
 class UtilisateurController extends AbstractController
 {
+    private $tokenStorage;
+
+    public function __construct(TokenStorageInterface $tokenStorage)
+    {
+        $this->tokenStorage = $tokenStorage;
+    }
+
     #[Route('/zz', name: 'app_utilisateur_index', methods: ['GET'])]
     public function index(UtilisateurRepository $utilisateurRepository): Response
     {
@@ -573,13 +583,30 @@ class UtilisateurController extends AbstractController
         return $this->render('front/GestionUtilisateur/404.html.twig');
     }
     #[Route(path:'/chat/{id}', name: 'app_chat')]
-    public function chat($id,UtilisateurRepository $repo): Response
+    public function chat($id,UtilisateurRepository $repo,Request $request): Response
     {
         $utilisateur = $repo->find($id);
         $utilisateurs = $repo->findBy(['role' => 'Admin']);
+
+        $token = $this->tokenStorage->getToken();
+        $currentUser = $token->getUser();
+        $connectedUsers = [];
+        foreach ($utilisateurs as $user) {
+            $isConnected = ($currentUser instanceof Utilisateur && $currentUser->getId() === $user->getId());
+            if ($isConnected) {
+                $connectedUsers[] = $user;
+            }
+        }
+        if ($request->isXmlHttpRequest()) { 
+        $opacity = 0;
+        return new JsonResponse(['opacity' => $opacity]);
+        }
+
+
         return $this->render('back/GestionUtilisateur/chat.html.twig', [
             'utilisateur' => $utilisateur,
             'utilisateurs' => $utilisateurs,
+            'utilisateursc' =>$connectedUsers,
         ]);
     }
     #[Route('/publish', name: 'publish')]
@@ -590,10 +617,11 @@ class UtilisateurController extends AbstractController
         $ida = $tabData[0]['id'];
         $name = $tabData[0]['name'];
         $photo = $tabData[0]['photo'];
+        $image = $tabData[0]['image'];
 
         $update = new Update(
             'https://example.com/books/1',
-            json_encode(['message' => $msg,'ida' => $ida,'name' => $name,'photo' => $photo])
+            json_encode(['message' => $msg,'ida' => $ida,'name' => $name,'photo' => $photo,'image' => $image])
         );
 
         $hub->publish($update);
@@ -609,10 +637,10 @@ class UtilisateurController extends AbstractController
         $json = json_encode($utilisateurNormalises);
         return new Response($json);
     }
-    #[Route(path:'/UserJson/{id}', name: 'app_UserJson')]
-    public function jsonUser($id,UtilisateurRepository $repo,NormalizerInterface $Normalizer): Response
+    #[Route(path:'/UserJson', name: 'app_UserJson')]
+    public function jsonUser(Request $req,UtilisateurRepository $repo,NormalizerInterface $Normalizer): Response
     {
-        $utilisateur = $repo->find($id);
+        $utilisateur = $repo->find($req->get("id"));
         $utilisateurNormalises = $Normalizer->normalize($utilisateur,'json',['groups' => "utilisateur"]);
         $json = json_encode($utilisateurNormalises);
         return new Response($json);
