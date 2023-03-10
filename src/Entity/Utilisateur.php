@@ -329,7 +329,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->tickets;
     }
 
-    public function addTicket(Ticket $ticket): self
+    public function addTickets(Ticket $ticket): self
     {
         if (!$this->tickets->contains($ticket)) {
             $this->tickets->add($ticket);
@@ -339,7 +339,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeTicket(Ticket $ticket): self
+    public function removeTickets(Ticket $ticket): self
     {
         if ($this->tickets->removeElement($ticket)) {
             // set the owning side to null (unless already changed)
@@ -422,4 +422,36 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+  /**
+     * @return Collection<int, Ticket>
+     */    
+   public function getTicket(): Collection
+   {
+       return $this->tickets;
+   }
+
+   public function addTicket(Ticket $ticket): self
+   { 
+       if (!$this->tickets->contains($ticket)) {
+           $this->tickets->add($ticket);
+           $ticket->setUtilisateur($this);
+       }
+
+       return $this;
+   }
+
+   public function removeTicket(Ticket $ticket): self
+   {
+       if ($this->tickets->removeElement($ticket)) {
+           // set the owning side to null (unless already changed)
+           if ($ticket->getEvenements() === $this) {
+               $ticket->setEvenements(null);
+           }
+       }
+
+       return $this;
+   }
+   public function __toString(){
+       return (String)$this->getId();
+   }
 }

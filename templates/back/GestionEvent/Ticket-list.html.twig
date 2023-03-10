@@ -117,6 +117,12 @@ document.querySelector(".navbar-vertical").classList.add(`navbar-${navbarStyle}`
 													<span class="nav-link-text ps-1">Liste des évènements</span>
 												</div>
 											</a>
+                      <li class="nav-item">
+											<a class="nav-link" href="{{path('app_ticket_index')}}" aria-expanded="false">
+												<div class="d-flex align-items-center">
+													<span class="nav-link-text ps-1">Liste des Tickets </span>
+												</div>
+											</a>
 											<!-- more inner pages-->
 										</li>
 									</ul>
@@ -1064,42 +1070,49 @@ document.querySelector(".navbar-vertical").classList.add(`navbar-${navbarStyle}`
           </script>
           <div class="card mb-3 mb-lg-0">
             <div class="card-header bg-light d-flex justify-content-between">
-              <form class="form-inline"><select class="custom-select custom-select-sm">
-                  <option selected="selected">Choisir Evènements</option>
-                  <option>Health &amp; Wellness</option>
-                  <option>Business &amp; Professional</option>
-                  <option>Performing &amp; Visual Arts</option>
-                  <option>Science &amp; Technology</option>
-                  <option>Sports &amp; Fitness</option>
-                  <option>Charity &amp; Causes</option>
-                  <option>Film &amp; Media</option>
-                  <option>Fashion &amp; Beauty</option>
-                  <option>Travel &amp; Outdoor</option>
-                  <option>Entertainment</option>
-                  <option>Other</option>
-                </select></form>
             </div>
                <h1>Ticket index</h1>
-
+              <input type="text" class="form-control" id="searchInput" placeholder="Search&hellip;">
+            <script>
+                    function filterTable() {
+                        const filter = document.getElementById('searchInput').value.toUpperCase();
+                        const rows = document.querySelectorAll('table tr');
+                        for (let i = 1; i < rows.length; i++) {
+                            const cols = rows[i].querySelectorAll('td');
+                            let visible = false;
+                            for (let j = 0; j < cols.length; j++) {
+                                const cell = cols[j];
+                                if (cell.innerText.toUpperCase().indexOf(filter) > -1) {
+                                    visible = true;
+                                    break;
+                                }
+                            }
+                            rows[i].style.display = visible ? '' : 'none';
+                        }
+                    }
+                    document.getElementById('searchInput').addEventListener('keyup', filterTable);
+                </script>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Reference</th>
                 <th>DateReservation</th>
+                 <th>Nombre de place</th>
+                 <th>actions</th>
 
             </tr>
         </thead>
         <tbody>
-        {% for ticket in ticket %}
+        {% for ticket in tickets %}
             <tr>
                 <td>{{ ticket.id }}</td>
                 <td>{{ ticket.reference }}</td>
                 <td>{{ ticket.dateReservation ? ticket.dateReservation|date('Y-m-d') : '' }}</td>
-              
+                <td>{{ ticket.Nbrplace }}</td>
                 <td>
-                    <a href="{{ path('app_ticket_show', {'id': ticket.id}) }}">show</a>
-                    <a href="{{ path('app_ticket_edit', {'id': ticket.id}) }}">edit</a>
+                    <a href="{{ path('app_ticket_delete', {'id': ticket.id}) }}">Sup</a>
+
                 </td>
             </tr>
         {% else %}

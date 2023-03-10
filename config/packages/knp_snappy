@@ -1,0 +1,5 @@
+knp_snappy:
+    pdf:
+        enabled: true
+        binary: ticket/Pdf/{id} # Le chemin vers l'exécutable wkhtmltopdf
+          options: []

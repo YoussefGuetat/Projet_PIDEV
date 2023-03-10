@@ -1099,6 +1099,7 @@ document.querySelector(".navbar-vertical").classList.add(`navbar-${navbarStyle}`
                 <th>Id</th>
                 <th>Reference</th>
                 <th>DateReservation</th>
+                <th>Nombre de place </th>
 
             </tr>
         </thead>
@@ -1108,7 +1109,8 @@ document.querySelector(".navbar-vertical").classList.add(`navbar-${navbarStyle}`
                 <td>{{ ticket.id }}</td>
                 <td>{{ ticket.reference }}</td>
                 <td>{{ ticket.dateReservation ? ticket.dateReservation|date('Y-m-d') : '' }}</td>
-              
+               <td>{{ ticket.Nbrplace }}</td>
+
                 
             </tr>
         {% else %}

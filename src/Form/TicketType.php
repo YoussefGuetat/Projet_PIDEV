@@ -12,10 +12,8 @@ class TicketType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('reference')
-            ->add('dateReservation')
-            ->add('utilisateur')
-            ->add('evenements')
+
+            ->add('Nbrplace')
         ;
     }
 

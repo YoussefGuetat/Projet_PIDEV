@@ -23,42 +23,42 @@
       <div class="main-content">
          <!-- Our Blog Start -->
          <section id="our-blog" class="blog has-post-thumbnail gray-bg">
-            <div class="container"> 
+            <div class="container">
                <div class="row">
                   <div class="col-lg-8 col-md-8 order-lg-1 order-2">
 
                      <div class="iq-blog-box">
                         <div class="iq-blog-image clearfix">
                          <ul class="iq-blogtag">
-                              <li><a ><th>Id</th><td>{{ ticket.id }}</td></a></li>
+                             
                            </ul>
                         </div>
                         <div class="iq-blog-detail">
                            
                            <div class="blog-title">
-                                 <h5>Id</h5>
-                                 <p>{{ ticket.id }}</p>
-                                 <h5>Reference</h5>
-                                 <p>{{ ticket.reference }}</p>
-                                 <h5>DateReservation</h5>
-                                 <p>{{ ticket.dateReservation ? ticket.dateReservation|date('Y-m-d') : '' }}</p> 
-                       <div class="form-group"><label for="event-name">Nbrplace d'Evènement</label>
-                        <div class="form-group">
-                         {{  form_start(form.Nbrplace,{'attr': {'novalidate': 'novalidate'}} ) }}
-                       {{ form_widget(form.Nbrplace,{'attr':{'class':'form-control'}}) }}
-                       {% if form_errors(form.Nbrplace) is not empty %}
-                       <div class="alert alert-danger">
-                         {{ form_errors(form.Nbrplace) }}
-                       </div>
-                      {% endif %}
-                         <div class="col-auto"><button class="btn btn-falcon-primary btn-sm" role="button">{{button_label|default('Ajouter Evènement ')}}</button></div>
-                           <a href="{{ path('app_ticket_show', {'id': ticket.id}) }}">show</a>
-                          
-                         {{form_end(form.Nbrplace)}}
-                           </div>
-                           </div>
-                           
+                                 <h1>Ticket</h1>
 
+                                 <table class="table">
+                                  <tbody>
+                                    <tr>
+                                         <th>Nombre de places</th>
+                                           <td>{{ ticket.Nbrplace }}</td>
+                                           </tr>
+                                      <tr>
+                                          <th>Reference</th>
+                                          <td>{{ ticket.reference }}</td>
+                                        </tr>
+                                     <tr>
+                                          <th>DateReservation</th>
+                                             <td>{{ ticket.dateReservation ? ticket.dateReservation|date('Y-m-d') : '' }}</td>
+                                        </tr>
+                                         </tbody>
+                                         
+                                    </table>
+ 
+                           </div>
+                      <a class="button btn-yellow" href="{{ path('app_ticket_Pdf',{'id':ticket.id}) }}">S'inscrire</a>
+                      <a class="button btn-yellow" href="{{ path('app_qr_codes', {'id': ticket.id}) }}" >QrCode</a>
                      </div>
                      <ul class="page-numbers">
                         <li><span aria-current="page" class="page-numbers current">1</span></li>

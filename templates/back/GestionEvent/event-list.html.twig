@@ -18,9 +18,9 @@
         <nav class="navbar navbar-light navbar-vertical navbar-expand-xl" style="display: none">
 					<script>
 						var navbarStyle = localStorage.getItem("navbarStyle");
-if (navbarStyle && navbarStyle !== "transparent") {
-document.querySelector(".navbar-vertical").classList.add(`navbar-${navbarStyle}`);
-}
+            if (navbarStyle && navbarStyle !== "transparent") {
+            document.querySelector(".navbar-vertical").classList.add(`navbar-${navbarStyle}`);
+            }
 					</script>
 					<div class="d-flex align-items-center">
 						<div class="toggle-icon-wrapper">
@@ -1073,25 +1073,30 @@ document.querySelector(".navbar-vertical").classList.add(`navbar-${navbarStyle}`
           <div class="card mb-3 mb-lg-0">
             <div class="card-header bg-light d-flex justify-content-between">
               <h5 class="mb-0">Events</h5>
-              <form class="form-inline"><select class="custom-select custom-select-sm">
-                  <option selected="selected">Select Category</option>
-                  <option>Health &amp; Wellness</option>
-                  <option>Business &amp; Professional</option>
-                  <option>Performing &amp; Visual Arts</option>
-                  <option>Science &amp; Technology</option>
-                  <option>Sports &amp; Fitness</option>
-                  <option>Charity &amp; Causes</option>
-                  <option>Film &amp; Media</option>
-                  <option>Fashion &amp; Beauty</option>
-                  <option>Travel &amp; Outdoor</option>
-                  <option>Entertainment</option>
-                  <option>Other</option>
-                </select></form>
             </div>
             <div class="card-body fs--1">
               <div class="row">
                 <h1>Evenement index</h1>
-
+              <input type="text" class="form-control" id="searchInput" placeholder="Search&hellip;">
+            <script>
+                    function filterTable() {
+                        const filter = document.getElementById('searchInput').value.toUpperCase();
+                        const rows = document.querySelectorAll('table tr');
+                        for (let i = 1; i < rows.length; i++) {
+                            const cols = rows[i].querySelectorAll('td');
+                            let visible = false;
+                            for (let j = 0; j < cols.length; j++) {
+                                const cell = cols[j];
+                                if (cell.innerText.toUpperCase().indexOf(filter) > -1) {
+                                    visible = true;
+                                    break;
+                                }
+                            }
+                            rows[i].style.display = visible ? '' : 'none';
+                        }
+                    }
+                    document.getElementById('searchInput').addEventListener('keyup', filterTable);
+                </script>
     <table class="table">
         <thead>
             <tr>
@@ -1116,8 +1121,10 @@ document.querySelector(".navbar-vertical").classList.add(`navbar-${navbarStyle}`
                 <td>{{ evenement.description }}</td>
                 <td>{{ evenement.dateevent ? evenement.dateevent|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_evenement_show', {'id': evenement.id}) }}">show</a>
                     <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">edit</a>
+                    <a href="{{ path('app_evenement_Excel', {'id': evenement.id}) }}">Excel</a>
+                    <a href="{{ path('app_evenement_delete', {'id': evenement.id}) }}">Sup</a>
+
                 </td>
             </tr>
         {% else %}
@@ -1127,7 +1134,7 @@ document.querySelector(".navbar-vertical").classList.add(`navbar-${navbarStyle}`
         {% endfor %}
         </tbody>
     </table>
-
+    
     <a href="{{ path('app_evenement_new') }}">Create new</a>
               </div>
             </div>

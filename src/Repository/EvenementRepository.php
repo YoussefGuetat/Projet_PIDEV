@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Evenement;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @extends ServiceEntityRepository<Evenement>
@@ -39,6 +40,16 @@ class EvenementRepository extends ServiceEntityRepository
         }
     }
 
+   
+    public function orderByNbrDESC()
+    {
+        return $this->createQueryBuilder('E')
+            ->orderBy('E.nbrplaces', 'DESC')
+            ->getQuery()->getResult();
+    }
+   
+    
+    
 //    /**
 //     * @return Evenement[] Returns an array of Evenement objects
 //     */

@@ -38,7 +38,7 @@ class TicketRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+    
 //    /**
 //     * @return Ticket[] Returns an array of Ticket objects
 //     */

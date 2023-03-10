@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\TicketRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TicketRepository::class)]
 class Ticket
@@ -17,6 +20,17 @@ class Ticket
     #[ORM\Column(length: 100)]
     private ?string $reference = null;
 
+    #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\Positive]
+    #[Assert\Length(
+        min: 1,
+        max: 4,
+        minMessage: 'Nbrplace doit être au moins  {{ limit }} characteres ',
+        maxMessage: 'Nbrplace doit pas depasser {{ limit }} characteres',
+    )]
+    private ?int $Nbrplace = null;
+
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateReservation = null;
 
@@ -24,6 +38,7 @@ class Ticket
     private ?Utilisateur $utilisateur = null;
 
     #[ORM\ManyToOne(inversedBy: 'tickets')]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'CASCADE')]
     private ?Evenement $evenements = null;
 
     public function getId(): ?int
@@ -40,7 +55,7 @@ class Ticket
     {
         $this->reference = $reference;
 
-        return $this;
+        return $this; 
     }
 
     public function getDateReservation(): ?\DateTimeInterface
@@ -75,6 +90,17 @@ class Ticket
     public function setEvenements(?Evenement $evenements): self
     {
         $this->evenements = $evenements;
+
+        return $this;
+    }
+    public function getNbrplace(): ?int
+    {
+        return $this->Nbrplace;
+    }
+
+    public function setNbrplace(int $Nbrplace): self
+    {
+        $this->Nbrplace = $Nbrplace;
 
         return $this;
     }
