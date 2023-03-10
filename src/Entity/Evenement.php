@@ -79,6 +79,7 @@ class Evenement
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank]
     private ?\DateTimeInterface $dateevent = null;
 
     #[ORM\OneToMany(mappedBy: 'evenements', targetEntity: Ticket::class)]

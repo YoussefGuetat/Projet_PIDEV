@@ -23,7 +23,8 @@ class Evenement1Type extends AbstractType
             ->add('objet')
             ->add('description')
             ->add('dateevent',DateType::class,[
-                'widget'=>'single_text'])
+                'widget'=>'single_text',
+                'data' => new \DateTime(),])
         ;
     }
 
