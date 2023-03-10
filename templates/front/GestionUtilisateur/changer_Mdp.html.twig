@@ -1,0 +1,36 @@
+{% extends 'front/GestionUtilisateur/profile.html.twig' %}
+{%block contenu%}
+<div class="main-content">
+  <!-- Contact Us Start -->
+  <section class="iq-contactus gray-bg">
+     <div class="container">
+        <div class="row">
+           <div class="col-lg-6">
+              <img src="{{asset('front/images/project/02.png')}}" alt="login"></div>
+           <div class="col-lg-6">
+              <div class="title-box  text-left">
+                 <span class="text-warning">Bienvenue chez SandBoX</span>
+                 <h2 class="title">Changer votre mot de passe</h2>
+              </div>
+              {{ form_start(form,{'attr':{'class':'contact-us'}}) }}
+                 <div class="row">
+                     <div class="col-xl-12">
+                         <label>Ancien mot de passe<br>
+                         <span class="form-control-wrap your-subject">
+                           {{form_widget(form.currentPassword,{'attr':{'class':'form-control text'}})}}
+                        </span>
+                         </label>
+                 </div>
+                 <div class="col-xl-12">
+                  {{form_row(form.newPassword,{'attr':{'class':'form-control text'}})}}
+                  </div>
+                    <div class="col-xl-12" style="position: relative;left:73%;">
+                       <button id="submit" name="submit" type="submit" value="Send" class="button btn-yellow" >{{button_label|default('Changer')}}</button>
+                    </div>
+                 </div>
+                 {{ form_end(form) }}
+           </div>
+        </div>
+     </div>
+  </section>
+{%endblock%}

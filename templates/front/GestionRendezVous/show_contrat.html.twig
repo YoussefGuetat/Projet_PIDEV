@@ -1,0 +1,99 @@
+{% extends 'front/homeC.html.twig' %}
+
+   {% block contenu%}
+
+<!-- Header End -->
+      <!-- Breadcrumb Start -->
+      <section class="iq-breadcrumb text-left">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-8 col-md-8 text-left mb-4 mb-lg-0 align-self-center">
+                  <h2 class="title">Nos contrat</h2>
+                  <nav aria-label="breadcrumb">
+                     <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+                        <li class="breadcrumb-item active">contrat</li>
+                     </ol>
+                  </nav>
+               </div>
+               <div class="col-lg-4 col-md-4 text-right">
+                  <img  src="{{asset('./front/images/about/09.png')}}" class="img-fluid" alt="#"/>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Breadcrumb End -->
+      <!-- Main-Content Start -->
+      <div class="main-content">
+         <!-- Pricing Plan Start  -->
+         <section class="overview-block-ptb gray-bg">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-lg-12">
+                     <div class="title-box  text-center">
+                        
+                        <h2 class="title">Nos contrat</h2>
+                        
+                     </div>
+                  </div>
+               </div>
+
+               <h1>contrat</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ contrat.id }}</td>
+            </tr>
+            <tr>
+                <th>dateContart</th>
+                <td>{{ contrat.dateContart ? contrat.dateContart|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>dureeContart</th>
+                <td>{{ contrat.dureeContart }}</td>
+            </tr>
+            <tr>
+                <th>image</th>
+                <td>{{ contrat.image }}</td>
+            </tr>
+            <tr>
+                <th>tauxProfit</th>
+                <td>{{ contrat.tauxProfit }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    <a class="button btn-yellow" href="{{ path('app_contrat_Pdf', {'id': contrat.id}) }}" >pdf</a>
+
+
+
+                {# end row____________#}
+                   
+                 
+               </div>
+             </div>
+           </div>
+            <div class="scrolling-text top right default">
+               <div data-bottom="transform:translatex(300px)" data-top="transform:translatex(0);">Nos contrat</div>
+            </div>
+         </section>
+         <!-- Pricing Plan End  -->
+         <!-- Project Start -->
+
+         <!--Our Blog End -->
+
+   <!-- Main-Content End -->
+      <!-- Footer Start -->
+
+      <!-- Footer End -->
+      <!-- back-to-top -->
+      <div id="back-to-top">
+         <a class="top" id="top" href="#top"> <i class="ion-ios-arrow-up"></i> </a>
+      </div>
+      <!-- back-to-top End -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+{% endblock %}

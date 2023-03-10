@@ -1,0 +1,218 @@
+{% extends 'front/homeC.html.twig' %}
+{%block prof%}  <a href="{{path('app_profile', {'id': utilisateur.id})}}">PROFILE</a> {%endblock%} 
+{% block contenu%}
+<section class="iq-breadcrumb text-left green-bg">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-8 col-md-8 text-left mb-4 mb-lg-0 align-self-center">
+            <h2 class="title">Votre Profile</h2>
+            <nav aria-label="breadcrumb">
+               <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i>ACCEUIL</a></li>
+                  <li class="breadcrumb-item active">PROFILE</li>
+               </ol>
+            </nav>
+         </div>
+         <div class="col-lg-4 col-md-4 text-right">
+            <img  src="{{asset('front/images/team/05.png')}}" class="img-fluid" alt="#"/>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- Breadcrumb End -->
+<!-- Main-Content Start -->
+<div class="main-content">
+   <!-- Team Details Start -->
+   <section class="team-details gray-bg">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-4 col-md-3 ">
+               <div class="img-box text-center profil__img-container border">
+                  {% set imagePath = utilisateur.photo %}
+                  <img src="{{asset(imagePath)}}" class="img-fluid profil__img" alt="#">
+               </div>
+               <br><br>
+               <a class="button btn-hdr" href="{{path('app_photo',{'id':utilisateur.id})}}" style="position:relative;left:23%;">Changer photo</a>
+            </div>
+            <div class="col-lg-8 col-md-8 pl-5 mt-4 profile-content_container">
+               <h2>{{ utilisateur.nom }} {{ utilisateur.prenom }}</h2>
+               <h4 class="mb-3">JE SUIS<span class="main-color"> {{ utilisateur.role }}</span></h4>
+               <p class=""><h4>Description : </h4>{{ utilisateur.description }}</p>
+               <div class="row mt-5" >
+                  <div class="col-lg-6 col-sm-12">
+                     <ul class="team-details">
+                        <li class="mb-3">
+                           <h5 class="mr-3">Nom  :</h5>
+                           <p class="mb-0">{{ utilisateur.nom }}</p>
+                        </li>
+                        <li class="mb-3 mb-lg-0">
+                           <h5 class="mr-3" >Téléphone :</h5>
+                           <p class="mb-0">{{ utilisateur.tel }}</p>
+                        </li>
+                        <li class="mb-3 mb-lg-0" style="margin-top: 1rem;">
+                           <h5 class="mr-3" >Adresse :</h5>
+                           <p class="mb-0">{{ utilisateur.adresse }}</p>
+                        </li>
+                        <br>
+                        <li><a class="button btn-hdr" style="position:relative;left:50%;" href="{{path('app_editU',{'id':utilisateur.id})}}">Modifier</a></li>
+                     </ul>
+                  </div>
+                  <div class="col-lg-6 col-sm-12" >
+                     <ul class="team-details">
+                        <li class="mb-3">
+                           <h5 class="mr-3">Prénom :</h5>
+                           <p class="mb-0">{{ utilisateur.prenom }}</p>
+                        </li>
+                        <li class="mb-3 mb-lg-0">
+                           <h5 class="mr-3">E-mail :</h5>
+                           <p class="mb-0">{{ utilisateur.email }}</p>
+                        </li>
+                        <li class="mb-3 mb-lg-0" style="margin-top: 1rem;">
+                           <h5 class="mr-3">Date de naissance :</h5>
+                           <p class="mb-0">{{ utilisateur.dateNaiss ? utilisateur.dateNaiss|date('Y-m-d') : '' }}</p>
+                        </li>
+                        <br>
+                        <li><a class="button btn-hdr" href="{{path('app_changepwd',{'id':utilisateur.id})}}">Changer mot de passe</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            </div>
+         </div>
+      </div>
+      <div class="scrolling-text bottam right default">
+         <div data-bottom="transform:translatex(300px)" data-top="transform:translatex(0);">Votre Profile</div>
+      </div>
+      
+   </section>
+   <!-- Portfolio-start  -->
+   <section id="our-portfolio" class="iq-portfolio-page overview-block-ptb gray-light-bg">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-12">
+               <div class="title-box text-center">
+                  <span class="text-warning">We're in action</span>
+                  <h2 class="title">Our Amazing Portfolio</h2>
+                  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-sm-12">
+               <div class="iq-masonry-block">
+                  <div class="isotope-filters isotope-tooltip">
+                     <button data-filter="" class="active">All</button>
+                     <button data-filter=".branding">branding</button>
+                     <button data-filter=".illustration">Illustration</button>
+                     <button data-filter=".web-design">web design</button>
+                  </div>
+                  <div class="iq-masonry iq-columns-3 ">
+                     <div class="iq-masonry-item branding">
+                        <div class="iq-portfolio">
+                           <a href="#" class="iq-portfolio-img"><img src="{{asset('front/images/portfolio/04.jpg')}}" class="img-fluid" alt="#"/></a>
+                           <div class="iq-portfolio-content">
+                              <h6><a href="#">Projects 4</a></h6>
+                              <ul>
+                                 <li>branding</li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="iq-masonry-item web-design">
+                        <div class="iq-portfolio">
+                           <a href="#" class="iq-portfolio-img"><img src="{{asset('front/images/portfolio/03.jpg')}}" class="img-fluid" alt="#" /></a>
+                           <div class="iq-portfolio-content">
+                              <h6><a href="#">Projects 3</a></h6>
+                              <ul>
+                                 <li>web design</li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="iq-masonry-item illustration">
+                        <div class="iq-portfolio">
+                           <a href="#" class="iq-portfolio-img"><img src="{{asset('front/images/portfolio/02.jpg')}}" class="img-fluid" alt="#"  /></a>
+                           <div class="iq-portfolio-content">
+                              <h6><a href="#">Projects 2</a></h6>
+                              <ul>
+                                 <li>Illustration</li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="iq-masonry-item branding">
+                        <div class="iq-portfolio">
+                           <a href="#" class="iq-portfolio-img"><img src="{{asset('front/images/portfolio/06.jpg')}}" class="img-fluid" alt="#" /></a>
+                           <div class="iq-portfolio-content">
+                              <h6><a href="#">Projects 13</a></h6>
+                              <ul>
+                                 <li>branding</li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="iq-masonry-item branding">
+                        <div class="iq-portfolio">
+                           <a href="#" class="iq-portfolio-img"><img src="{{asset('front/images/portfolio/05.jpg')}}" class="img-fluid" alt="#"/></a>
+                           <div class="iq-portfolio-content">
+                              <h6><a href="#">Projects 14</a></h6>
+                              <ul>
+                                 <li>branding</li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="iq-masonry-item web-design">
+                        <div class="iq-portfolio">
+                           <a href="#" class="iq-portfolio-img"><img src="{{asset('front/images/portfolio/06.jpg')}}" class="img-fluid" alt="#"/></a>
+                           <div class="iq-portfolio-content">
+                              <h6><a href="#">Projects 12</a></h6>
+                              <ul>
+                                 <li>web design</li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="iq-masonry-item illustration">
+                        <div class="iq-portfolio">
+                           <a href="#" class="iq-portfolio-img"><img src="{{asset('front/images/portfolio/02.jpg')}}" class="img-fluid" alt="#"/></a>
+                           <div class="iq-portfolio-content">
+                              <h6><a href="#">Projects 11</a></h6>
+                              <ul>
+                                 <li>Illustration</li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="iq-masonry-item branding">
+                        <div class="iq-portfolio">
+                           <a href="#" class="iq-portfolio-img"><img src="{{asset('front/images/portfolio/01.jpg')}}" class="img-fluid" alt="#"/></a>
+                           <div class="iq-portfolio-content">
+                              <h6><a href="#">Projects 10</a></h6>
+                              <ul>
+                                 <li>branding</li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="iq-masonry-item branding">
+                        <div class="iq-portfolio">
+                           <a href="#" class="iq-portfolio-img"><img src="{{asset('front/images/portfolio/01.jpg')}}" class="img-fluid" alt="#" /></a>
+                           <div class="iq-portfolio-content">
+                              <h6><a href="#">Projects 1</a></h6>
+                              <ul>
+                                 <li>branding</li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="scrolling-text top right default">
+         <div data-bottom="transform:translatex(-300px)" data-top="transform:translatex(0);">In a Nutshell</div>
+      </div>
+   </section>
+{% endblock%}

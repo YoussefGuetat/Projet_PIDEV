@@ -1,0 +1,42 @@
+
+   <div class="iq-masonry-item branding">
+      <div class="iq-portfolio">
+         {% set img = annonce.image %}
+         <a href="{{path('app_annonce_show',{'id':annonce.id})}}" class="iq-portfolio-img">
+         <img src="{{ asset(img) }}" alt="Annonce Image" class="img-fluid" alt="#"/></a>
+         <div class="iq-portfolio-content">
+            <h6><a href="annonceDetails.html">{{ annonce.titre }}</a></h6>
+            <ul>
+               <li> 
+                  <style>
+                     .product {
+                        position: relative;
+                     }
+
+                     .product:hover::before {
+                        content: attr(annonce.description);
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 50%;
+                        background-color: rgba(255, 255, 255, 0.8);
+                        padding: 10px;
+                        box-sizing: border-box;
+                        z-index: 1;
+                        style="color: lightgrey;"
+                     }
+                  </style> 
+                  <div data-description="{{ annonce.description }}">{{ annonce.description|slice(0, 200) ~ '...' }} </div>
+               </li>   
+            </ul>
+            <ul>
+               <li><h5 style="color:Orange;">Click to see more details</h5></li>     
+            </ul>
+            <ul>
+               <li><h8 style="color:Orange;">Publiée le {{ annonce.dateCrea ? annonce.dateCrea|date('Y-m-d') : '' }}</h8></li> 
+            </ul>
+         </div>
+      </div>
+   </div>
+

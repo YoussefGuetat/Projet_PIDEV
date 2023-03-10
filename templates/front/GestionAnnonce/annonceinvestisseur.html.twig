@@ -1,0 +1,234 @@
+{%extends 'front/homeC.html.twig'%}
+{%block contenu%}
+      <section class="iq-breadcrumb text-left">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-8 col-md-8 text-left mb-4 mb-lg-0 align-self-center">
+                  <h2 class="title">Publier votre annonce</h2>
+                  <nav aria-label="breadcrumb">
+                     <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{path('app_annonce_sandbox')}}"><i class="fa fa-home" aria-hidden="true"></i>ACCEUIL</a></li>
+                        <li class="breadcrumb-item active">ANNONCES</li>
+                     </ol>
+                  </nav>
+               </div>
+               <div class="col-lg-4 col-md-4 text-right">
+                  <img  src="{{asset('front/images/contact-us/02.png')}}" class="img-fluid" alt="#"/>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Breadcrumb End -->
+      <!-- Main-Content Start -->
+      <div class="main-content">
+         <!-- Contact Us Start -->
+         <section class="iq-contactus gray-bg">
+            <div class="container">
+               <div class="row">
+                  
+                  <div class="col-lg-6">
+                     <div class="title-box  text-left">
+                        <span class="text-warning">Show the world your wonderful ideas</span>
+                        <h2 class="title">Publier votre annonce</h2>
+                        <p class="mb-0">It is a long established fact that a reader will be distracted</p>
+                     </div>
+                     {{ form_start(form,{'attr':{'class':'contact-us','novalidate':'novalidate'}}) }}
+
+                     
+                         
+
+
+
+
+
+
+
+
+
+
+                           
+
+
+
+
+
+
+
+
+
+
+                              <div class="col-xl-12">
+                              <label>Titre pour votre annonce<br>
+                              <span class="form-control-wrap your-subject">
+                              <input {{ form_widget(form.titre,{'attr':{'class':'form-control text'}}) }}</span>
+                              {% if form_errors(form.titre) is not empty %}
+                              <div class="alert alert-danger">
+                              {{ form_errors(form.titre) }}
+                              </div> {% endif %}
+                              </label>
+                           </div>
+
+
+                           <div class="col-xl-12">
+                              <label>Quel domaine vous cherchez<br>
+                              <span class="form-control-wrap your-subject">
+                              <input {{ form_widget(form.domaine,{'attr':{'class':'form-control text'}}) }}</span>
+                              {% if form_errors(form.domaine) is not empty %}
+                              <div class="alert alert-danger">
+                              {{ form_errors(form.domaine) }}
+                              </div> {% endif %}
+                              </label>
+                           </div>
+
+
+
+                           
+                          
+
+                     
+
+                           <div class="col-xl-12">
+                              <label>Select image:<br>
+                              <span class="form-control-wrap your-name">
+                              
+                              <input type="file"  Placeholder="image annonce" {{ form_widget(form.image,{'attr':{'class':'form-control file'}}) }}> </input>
+                              
+                              </span>
+                              
+                              
+                              
+                              </label>
+                              
+                           </div>
+
+
+                           
+
+
+
+                           <div class="col-md-7">
+                              <label>Date de création<br>
+                              <span class="form-control-wrap your-email">
+                              {{ form_widget(form.dateCrea,{'attr':{'class':'form-control text email'}}) }}
+                              
+
+
+                              </label>
+                              
+                           </div>
+
+                           <div class="col-md-7">
+                              <label>Utilisateur<br>
+                              <span class="form-control-wrap your-email">
+                              {{ form_widget(form.utilisateur,{'attr':{'class':'form-control text email'}}) }}
+                              
+                              </label>
+                              
+                           </div>
+
+
+                           <div class="col-xl-12">
+                              <label>Statut<br>
+                              <span class="form-control-wrap your-subject">
+                              <input {{ form_widget(form.statut,{'attr':{'class':'form-control text'}}) }}</span>
+                              {% if form_errors(form.statut) is not empty %}
+                              <div class="alert alert-danger">
+                              {{ form_errors(form.statut) }}
+                              </div> {% endif %}
+                              </label>
+                           </div>
+
+                           <div class="col-xl-12">
+                              <label>Description<br>
+                              <span class="form-control-wrap your-subject">
+                              <textarea {{ form_widget(form.description,{'attr':{'class':'form-control text'}}) }}></textarea></span>
+                              {% if form_errors(form.description) is not empty %}
+                              <div class="alert alert-danger">
+                              {{ form_errors(form.description) }}
+                              </div> {% endif %}
+                              </label>
+                           </div>
+                              <div class="col-xl-12">
+                           <button class="button btn-yellow">{{ button_label|default('Enregistrer ') }} <a href="{{ path('app_annonce_index_front') }}"></a></button>
+                        </div>
+                           
+                              
+
+                           
+                           </div>
+
+
+                              
+                           
+                           
+                           
+                           
+                           
+                           </div>
+                           
+                           
+                        
+                     {{ form_end(form) }}
+                     
+                  </div>
+                  
+               </div>
+               
+            </div>
+            
+         </section>
+         <!-- Contact Us End -->
+         <!-- Fancy-box Start -->
+         <section class="overview-block-ptb">
+            <div class="container">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="title-box  text-center">
+                        <span class="text-warning">Get In Touch</span>
+                        <h2 class="title">Quick Support</h2>
+                        <p class="mb-0">You can get all the contact information.</p>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-4">
+                     <div class="iq-fancy-box text-center">
+                        <div class="iq-icon">
+                           <i aria-hidden="true" class="ion ion-ios-location-outline"></i>
+                        </div>
+                        <div class="fancy-content">
+                           <h4>Our Address</h4>
+                           <p>1234 North Avenue Luke Lane, South Bend, IN 360001</p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-4">
+                     <div class="iq-fancy-box text-center">
+                        <div class="iq-icon">
+                           <i aria-hidden="true" class="ion ion-ios-email-outline"></i>
+                        </div>
+                        <div class="fancy-content">
+                           <h4>Our Email Address</h4>
+                           <p>support@bizbag.com<br>
+                              support@demo.com
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-4">
+                     <div class="iq-fancy-box text-center">
+                        <div class="iq-icon">
+                           <i aria-hidden="true" class="ion ion-ios-telephone-outline"></i>
+                        </div>
+                        <div class="fancy-content">
+                           <h4>Our Phone Number</h4>
+                           <p>+11 123 456 7890<br>
+                              +11 123 456 7890
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+{%endblock%}

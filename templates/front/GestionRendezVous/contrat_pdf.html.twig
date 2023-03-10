@@ -1,0 +1,29 @@
+<table class="table table-striped" border="1" style="background-color: #f5f5f5; color: #000000;">
+
+            <table>
+                <thead>
+                <tr>
+                    <th colspan="2" class="table-title">Votre Contrat</th>
+                </tr>
+                </thead>
+                <tbody class="table-data">
+                <tr>
+                    <td>ID de contrat</td>
+                    <td>{{ contrat.id  }}</td>
+                </tr>
+                <tr>
+                    <td>date de Contart</td>
+                    <td>{{ contrat.dateContart ? contrat.dateContart|date('Y-m-d') }}</td>
+                </tr>
+                <tr>
+                    <td>Duree de contrat</td>
+                    <td>{{ contrat.dureeContart  }}%</td>
+                </tr>
+                
+                
+                
+                </tbody>
+            </table>
+            <p class="table-subtitle">signature !</p>
+        </div>
+    </div>

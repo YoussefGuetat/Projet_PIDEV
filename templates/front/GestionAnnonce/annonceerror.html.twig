@@ -1,0 +1,125 @@
+{% extends 'front/homeC.html.twig' %}
+
+{%block contenu%}
+<html lang="en">
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>BizBag - Multipurpose Business Startup HTML Template</title>
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="images/favicon.ico" />
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <!-- Typography CSS -->
+      <link rel="stylesheet" href="css/typography.css">
+      <!-- Style CSS -->
+      <link rel="stylesheet" href="css/style.css">
+      <!-- Responsive CSS -->
+      <link rel="stylesheet" href="css/responsive.css">
+   </head>
+   <body>
+
+<!-- Breadcrumb Start -->
+<section class="iq-breadcrumb text-left">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-8 col-md-8 text-left mb-4 mb-lg-0 align-self-center">
+            <h2 class="title">Voici la liste des annonces</h2>
+            <nav aria-label="breadcrumb">
+               <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{{path('app_annonce_sandbox')}}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+                  <li class="breadcrumb-item active">Liste Annonces</li>
+               </ol>
+            </nav>
+         </div>
+         <div class="col-lg-4 col-md-4 text-right">
+            <img  src="images/portfolio/masonry/01.png" class="img-fluid" alt="#"/>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- Breadcrumb End -->
+<!-- Main-Content Start -->
+<div class="main-content">
+   <!-- Portfolio-start  -->
+   <section id="our-portfolio" class="iq-portfolio-page overview-block-ptb gray-bg">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-12">
+               <div class="title-box text-center">
+                  <span class="text-warning">We're in action</span>
+                  <h2 class="title">Mes annonces</h2>
+                  <p class="mb-0">Discover new projects ideas</p>
+               </div>
+            </div>
+         </div>
+           
+         <div class="row">
+            <div class="col-sm-12">
+               <div class="iq-masonry-block">
+                  <div class="isotope-filters isotope-tooltip">
+                     <button> <a href="{{ path('app_annonce_index_front') }}" class="active" style="text-decoration: none; color: Black;">All</button>
+                     <button> <a href="{{ path('app_annonce_domaine', { 'domaine': 'Finance' }) }}"  style="text-decoration: none; color: Black;">Finance</button>
+                     <button><a href="{{ path('app_annonce_domaine', { 'domaine': 'Sport' }) }}" style="text-decoration: none; color: Black;">Sport</a></button>
+                     <button><a  href="{{ path('app_annonce_domaine', { 'domaine': 'Informatique' }) }}" style="text-decoration: none; color: Black;">Informatique</a></button>
+                  </div>
+
+                  
+                  <div class="iq-masonry iq-columns-2    ">
+
+
+<h2 class="title" style="text-align: center;">Pas d'annonces dans cette catégorie </h2>
+                     
+
+                     
+
+                     
+
+
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <!-- Portfolio End  -->
+</div>
+
+<!-- Main-Content End -->
+
+<!-- back-to-top -->
+<div id="back-to-top">
+<a class="top" id="top" href="#top"> <i class="ion-ios-arrow-up"></i> </a>
+</div>
+<!-- back-to-top End -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="js/jquery-1.11.1.min.js" ></script>
+<!-- popper  -->
+<script src="js/popper.min.js"></script>
+<!--  bootstrap -->
+<script src="js/bootstrap.min.js" ></script>
+<!-- Appear JavaScript -->
+<script src="js/appear.js"></script>
+<!-- Mega menu JavaScript -->
+<script src="js/mega_menu.min.js"></script>
+<!-- Count Down JavaScript -->
+<script src="js/countdown.min.js"></script>
+<!-- Owl Carousel JavaScript -->
+<script src="js/owl.carousel.min.js"></script>
+<!-- Magnific Popup JavaScript -->
+<script src="js/jquery.magnific-popup.min.js"></script>
+<!--  Counter -->
+<script src="js/jquery.countTo.js" ></script>
+<!-- Skrollr JavaScript -->
+<script src="js/skrollr.js"></script>
+<!-- Isotope JavaScript -->
+<script src="js/isotope.pkgd.min.js"></script>
+<!-- Retina JavaScript -->
+<script src="js/retina.min.js"></script>
+<!--  Custom -->
+<script src="js/custom.js" ></script>
+</body>
+</html>
+
+{%endblock%}

@@ -1,0 +1,16 @@
+{% extends 'front/homeC.html.twig' %}
+              
+                
+
+{% block reclamation %}
+    <div>
+    <div>
+        <h3>Ajouter une réclamation</h3>
+        <br>
+    </div>
+    {{ include('front/GestionReclamation/_form.html.twig') }}
+
+    <a href="{{ path('app_reclamation_index') }}">back to list</a>
+    </div>
+
+{% endblock %}

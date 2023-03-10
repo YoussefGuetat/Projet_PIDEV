@@ -1,0 +1,156 @@
+{% extends 'front/homeC.html.twig' %}
+
+{%block contenu%}
+
+
+
+
+
+
+      
+
+      <head>
+    <meta charset="utf-8">
+    <title>Business Canvas Model</title>
+    <style>
+      body {
+        font-family: sans-serif ;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        background-color: orange ;
+        border-radius: 10px ;
+        color: white ;
+        padding: 10px ;
+        
+      }
+      
+      .row::after {
+        content: "" ;
+        clear: both ;
+        display: table ;
+      }
+
+      .column {
+        float: left ;
+        width: 50% ;
+        padding: 10px ;
+      }
+
+      .card {
+        padding: 10px ;
+        margin-bottom: 20px ;
+        border: 1px solid #ccc ;
+        border-radius: 10px ;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.3) ;
+
+        
+      }
+
+      .card-title {
+        font-size: 1.2em ;
+        font-weight: bold ;
+        margin-bottom: 10px ;
+        text-align: center ;
+      }
+
+      .card-description {
+        font-size: 1em ;
+      }
+
+      .card-icon {
+        font-size: 2em ;
+        margin-right: 10px ;
+        vertical-align: middle ;
+      }
+      
+      .row {
+        display: flex ;
+      }
+      
+      .column:nth-child(even) {
+        margin-left: 10px ;
+      }
+    </style>
+  </head>
+
+
+  <body>
+    <div class="row">
+      <div class="col-lg-4 col-md-4">
+        <div class="card">
+          <h2 class="card-title">Customer Segments</h2>
+          <p class="card-description">{{bmc.segments_marche}}</p>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Value Propositions</h2>
+          <p class="card-description">{{bmc.proposition_valeur}}</p>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Customer Relationships</h2>
+          <p class="card-description">{{bmc.relations_client}}</p>
+        </div>
+
+       
+      </div>
+
+      <div class="col-lg-4 col-md-4">
+        <div class="card">
+          <h2 class="card-title">Key Activities</h2>
+          <p class="card-description">{{bmc.activites_cles}}</p>
+        </div>
+
+        <div class="card">
+         <h2 class="card-title">Channels</h2>
+         <p class="card-description">{{bmc.canaux}}</p>
+       </div>
+
+        <div class="card">
+          <h2 class="card-title">Key Resources</h2>
+          <p class="card-description">{{bmc.ressources_cles}}</p>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 col-md-4">
+        <div class="card">
+          <h2 class="card-title">Key Partnerships</h2>
+          <p class="card-description">{{bmc.partenaires_cles}}</p>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Cost Structure</h2>
+          <p class="card-description">{{bmc.couts}}</p>
+        </div>
+
+
+        <div class="card">
+         <h2 class="card-title">Revenus</h2>
+         <p class="card-description">{{bmc.revenus}}</p>
+       </div>
+
+<div class="card">
+         <form action="{{ path('pdf', {'id': bmc.id}) }}" method="post">
+        <button type="submit" class="card-title" style="background-color: orange" ; >Generate PDF</button>
+    </form>
+       </div>
+
+       
+
+
+
+       
+
+                       
+   
+</div>
+      </div>
+
+                    
+
+   
+</body>
+</html>
+
+{%endblock%}

@@ -1,0 +1,24 @@
+// rendezvous/statistics.html.twig
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Rendez-vous Statistics</h1>
+    
+    <h2>Number of Rendez-vous per Month</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in countByMonth %}
+                <tr>
+                    <td>{{ data.month|date('F Y') }}</td>
+                    <td>{{ data.count }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
