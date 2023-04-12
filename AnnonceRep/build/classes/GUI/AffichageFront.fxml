@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" prefHeight="848.0" prefWidth="1318.0" stylesheets="@../style/style_1.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AffichageFrontController">
+   <children>
+      <TableView fx:id="annoncesTable" layoutX="6.0" layoutY="14.0" prefHeight="638.0" prefWidth="936.0">
+        <columns>
+          <TableColumn fx:id="idtable" prefWidth="46.0" text="ID" />
+          <TableColumn fx:id="titretable" minWidth="0.0" prefWidth="89.0" text="TITRE" />
+            <TableColumn fx:id="domainetable" prefWidth="95.0" text="DOMAINE" />
+            <TableColumn fx:id="descriptiontable" prefWidth="277.0" text="DESCRIPTION" />
+            <TableColumn fx:id="statuttable" minWidth="0.0" prefWidth="73.0" text="STATUT" />
+            <TableColumn fx:id="datetable" prefWidth="171.0" text="PUBLIEE LE" />
+            <TableColumn fx:id="imagetable" prefWidth="62.0" text="IMAGE" />
+            <TableColumn fx:id="deleteButtonColumn" prefWidth="121.0" text="Delete" />
+        </columns>
+      </TableView>
+      <Button fx:id="refresh" layoutX="6.0" layoutY="699.0" mnemonicParsing="false" onAction="#refreshTable" text="Refresh" />
+      <Pane layoutX="950.0" layoutY="29.0" prefHeight="484.0" prefWidth="343.0" style="-fx-background-color: white;">
+         <children>
+            <Button fx:id="btnupdate" layoutX="38.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleUpdateButtonAction" text="Update" />
+            <Label layoutX="52.0" layoutY="59.0" text="Titre" />
+            <Label layoutX="32.0" layoutY="115.0" text="Description" />
+            <TextField fx:id="updatetitrefield" layoutX="139.0" layoutY="56.0" />
+            <TextField fx:id="updatedescriptionfield" layoutX="139.0" layoutY="110.0" />
+            <Label layoutX="39.0" layoutY="175.0" text="Domaine" />
+            <Label layoutX="48.0" layoutY="233.0" text="Statut" />
+            <TextField fx:id="updatedomainefield" layoutX="139.0" layoutY="170.0" />
+            <TextField fx:id="updatestatutfield" layoutX="139.0" layoutY="228.0" />
+            <Label layoutX="46.0" layoutY="345.0" text="Image" />
+            <ImageView fx:id="ImagePreview" fitHeight="150.0" fitWidth="200.0" layoutX="110.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="onBtnImageClicked" layoutX="37.0" layoutY="392.0" mnemonicParsing="false" onAction="#onBtnImageClicked" text="Upload" />
+            <Label layoutX="55.0" layoutY="22.0" text="ID" />
+            <TextField fx:id="updateidfield" layoutX="139.0" layoutY="17.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
