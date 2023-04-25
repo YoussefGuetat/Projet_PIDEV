@@ -102,6 +102,11 @@ void AddAnnonce(ActionEvent event) {
     // Perform further processing
     AnnonceService newannonce = new AnnonceService();
     newannonce.ajouter(a);
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Annonce publiée");
+        alert.setHeaderText("Published");
+        alert.setContentText("The announce has been published successfully.");
+        alert.showAndWait();
 }
 
   @FXML

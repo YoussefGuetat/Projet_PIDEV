@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="965.0" prefWidth="1447.0" stylesheets="@../style/style_1.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AffichageFrontController">
+<AnchorPane id="AnchorPane" prefHeight="836.0" prefWidth="1447.0" stylesheets="@../style/style_1.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AffichageFrontController">
    <children>
-      <TableView fx:id="annoncesTable" layoutX="14.0" layoutY="14.0" prefHeight="638.0" prefWidth="1114.0">
+      <TableView fx:id="annoncesTable" layoutX="14.0" layoutY="14.0" prefHeight="638.0" prefWidth="965.0" stylesheets="@../style/style_1_1_1_1_1.css">
         <columns>
           <TableColumn fx:id="titretable" minWidth="0.0" prefWidth="89.0" text="TITRE" />
             <TableColumn fx:id="domainetable" prefWidth="95.0" text="DOMAINE" />
@@ -25,37 +25,38 @@
           <TableColumn fx:id="idtable" prefWidth="46.0" text="ID" />
         </columns>
       </TableView>
-      <Button fx:id="refresh" layoutX="6.0" layoutY="699.0" mnemonicParsing="false" onAction="#refreshTable" text="Refresh" />
-      <Pane layoutX="1128.0" prefHeight="484.0" prefWidth="319.0" style="-fx-background-color: white;">
+      <Button fx:id="refresh" layoutX="1039.0" layoutY="670.0" mnemonicParsing="false" onAction="#refreshTable" stylesheets="@../style/style_1_1.css" text="Refresh" />
+      <Pane layoutX="1031.0" prefHeight="484.0" prefWidth="394.0" style="-fx-background-color: white;">
          <children>
-            <Button fx:id="btnupdate" layoutX="31.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleUpdateButtonAction" text="Update" />
+            <Button fx:id="btnupdate" layoutX="307.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleUpdateButtonAction" stylesheets="@../style/style_1_1.css" text="Update" />
             <Label layoutX="28.0" layoutY="59.0" text="Titre" />
-            <Label layoutX="28.0" layoutY="115.0" text="Description" />
-            <TextField fx:id="updatetitrefield" layoutX="112.0" layoutY="54.0" />
-            <TextField fx:id="updatedescriptionfield" layoutX="112.0" layoutY="110.0" />
-            <Label layoutX="36.0" layoutY="165.0" text="Domaine" />
+            <Label layoutX="20.0" layoutY="126.0" text="Description" />
+            <TextField fx:id="updatetitrefield" layoutX="104.0" layoutY="65.0" />
+            <TextField fx:id="updatedescriptionfield" layoutX="104.0" layoutY="121.0" />
+            <Label layoutX="28.0" layoutY="176.0" text="Domaine" />
             <Label layoutX="38.0" layoutY="232.0" text="Statut" />
-            <TextField fx:id="updatedomainefield" layoutX="112.0" layoutY="160.0" />
-            <TextField fx:id="updatestatutfield" layoutX="121.0" layoutY="227.0" />
+            <TextField fx:id="updatedomainefield" layoutX="104.0" layoutY="171.0" />
+            <TextField fx:id="updatestatutfield" layoutX="104.0" layoutY="227.0" />
             <Label layoutX="45.0" layoutY="335.0" text="Image" />
             <ImageView fx:id="ImagePreview" fitHeight="150.0" fitWidth="200.0" layoutX="105.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="onBtnImageClicked" layoutX="146.0" layoutY="438.0" mnemonicParsing="false" onAction="#onBtnImageClicked" text="Upload" />
+            <Button fx:id="onBtnImageClicked" layoutX="214.0" layoutY="438.0" mnemonicParsing="false" onAction="#onBtnImageClicked" stylesheets="@../style/style_1_1.css" text="Upload" />
             <Label layoutX="28.0" layoutY="22.0" text="ID" />
             <TextField fx:id="updateidfield" layoutX="103.0" layoutY="17.0" />
+            <Button fx:id="triasc1" layoutX="11.0" layoutY="438.0" mnemonicParsing="false" onAction="#trierAnnoncesParTitreDesc" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #00A8A;" stylesheets="@../style/style_1_1_1.css" text="TRI DESC" />
          </children>
       </Pane>
-      <ImageView fitHeight="299.0" fitWidth="372.0" layoutX="1148.0" layoutY="670.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="91.0" fitWidth="419.0" layoutX="1042.0" layoutY="728.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/logo.png" />
+            <Image url="@../style/sandbox.png" />
          </image>
       </ImageView>
-      <Button fx:id="triasc" layoutX="872.0" layoutY="699.0" mnemonicParsing="false" onAction="#trierAnnoncesParTitreAsc" text="TRI ASC" />
-      <TextField fx:id="searchfield" layoutX="212.0" layoutY="699.0" />
-      <Button fx:id="search" layoutX="448.0" layoutY="699.0" mnemonicParsing="false" onAction="#searchAnnonceByTitre" text="Search" />
-      <Button fx:id="stats" layoutX="730.0" layoutY="699.0" mnemonicParsing="false" onAction="#stats" text="Stats" />
-      <Button fx:id="back" layoutX="14.0" layoutY="804.0" mnemonicParsing="false" onAction="#addback" text="Back" />
-      <Button fx:id="tridate" layoutX="872.0" layoutY="740.0" mnemonicParsing="false" onAction="#trierAnnoncesParDate" text="TRI Date" />
-      <Label fx:id="temperatureLabel" layoutX="212.0" layoutY="794.0" prefHeight="106.0" prefWidth="187.0" />
-      <Label fx:id="descriptionLabel" layoutX="500.0" layoutY="794.0" prefHeight="106.0" prefWidth="514.0" />
+      <Button fx:id="triasc" layoutX="1039.0" layoutY="485.0" mnemonicParsing="false" onAction="#trierAnnoncesParTitreAsc" prefHeight="31.0" prefWidth="365.0" style="-fx-background-color: #00A8A;" stylesheets="@../style/style_1_1_1.css" text="TRI ASC" />
+      <TextField fx:id="searchfield" layoutX="1039.0" layoutY="630.0" prefHeight="31.0" prefWidth="365.0" />
+      <Button fx:id="stats" layoutX="1039.0" layoutY="575.0" mnemonicParsing="false" onAction="#stats" prefHeight="31.0" prefWidth="365.0" stylesheets="@../style/style_1_1_1.css" text="Stats" />
+      <Button fx:id="back" layoutX="14.0" layoutY="670.0" mnemonicParsing="false" onAction="#addback" stylesheets="@../style/style_1_1_1.css" text="Back" />
+      <Button fx:id="tridate" layoutX="1039.0" layoutY="530.0" mnemonicParsing="false" onAction="#trierAnnoncesParDate" prefHeight="31.0" prefWidth="365.0" stylesheets="@../style/style_1_1_1.css" text="TRI Date" textFill="WHITE" />
+      <Label fx:id="temperatureLabel" layoutX="537.0" layoutY="674.0" prefHeight="54.0" prefWidth="187.0" stylesheets="@../style/label.css" text="aze" textAlignment="CENTER" />
+      <Label fx:id="descriptionLabel" layoutX="751.0" layoutY="674.0" prefHeight="54.0" prefWidth="228.0" stylesheets="@../style/label.css" text="aze" textAlignment="CENTER" />
+      <Pane layoutX="103.0" layoutY="661.0" prefHeight="74.0" prefWidth="410.0" stylesheets="@../style/style_1_1_1_1.css" />
    </children>
 </AnchorPane>

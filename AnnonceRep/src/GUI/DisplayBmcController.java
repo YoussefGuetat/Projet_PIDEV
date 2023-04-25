@@ -31,10 +31,17 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableRow;
+import javafx.stage.Stage;
 
 
 
@@ -215,6 +222,28 @@ private void generatePdf() throws FileNotFoundException, DocumentException {
     }
 }
 
+
+
+
+@FXML
+void addback(ActionEvent event){
+     try {
+        // Load stats.fxml
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AffichageFront.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        // Get the current window
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        // Set the scene in the current window
+        stage.setScene(scene);
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+}
 
 }
     

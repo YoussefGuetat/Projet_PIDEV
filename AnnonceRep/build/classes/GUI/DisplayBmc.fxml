@@ -5,10 +5,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="598.0" prefWidth="871.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="GUI.DisplayBmcController">
+<AnchorPane id="AnchorPane" prefHeight="598.0" prefWidth="871.0" stylesheets="@../style/style_3_1.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DisplayBmcController">
    <children>
-      <TableView fx:id="BmcTable" layoutX="119.0" layoutY="209.0" prefHeight="75.0" prefWidth="677.0" stylesheets="@../style/style_1_1.css">
+      <TableView fx:id="BmcTable" layoutX="119.0" layoutY="209.0" prefHeight="75.0" prefWidth="677.0" stylesheets="@../style/style_1_1_1_1_1.css">
         <columns>
           <TableColumn fx:id="pcles" prefWidth="75.0" text="Part_clés" />
           <TableColumn fx:id="actcles" prefWidth="75.0" text="Act_clés" />
@@ -21,6 +20,7 @@
             <TableColumn fx:id="revenus" prefWidth="75.0" text="Revenus" />
         </columns>
       </TableView>
-      <Button fx:id="pdf" layoutX="714.0" layoutY="498.0" mnemonicParsing="false" onAction="#generatePdf" text="pdf" />
+      <Button fx:id="pdf" layoutX="125.0" layoutY="373.0" mnemonicParsing="false" onAction="#generatePdf" prefHeight="31.0" prefWidth="677.0" stylesheets="@../style/style_1_1_1.css" text="Print" />
+      <Button fx:id="pdf1" layoutX="14.0" layoutY="553.0" mnemonicParsing="false" onAction="#addback" prefHeight="31.0" prefWidth="93.0" stylesheets="@../style/style_1_1_1.css" text="Back" />
    </children>
 </AnchorPane>

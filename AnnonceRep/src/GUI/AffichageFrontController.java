@@ -235,6 +235,12 @@ public void initialize(URL location, ResourceBundle resources) {
        bmcButton.setOnAction(event -> {
     Annonce annonce = getTableView().getItems().get(getIndex());
     try {
+        
+       
+        
+        
+        
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/DisplayBmc.fxml"));
         Parent root = (Parent) loader.load();
         DisplayBmcController controller = loader.getController();
@@ -352,6 +358,8 @@ public void initialize(URL location, ResourceBundle resources) {
                 Annonce annonce = getTableView().getItems().get(getIndex());
                 deleteAnnonce(annonce); // Pass the conx connection object
             });
+            
+            
         }
         
         
@@ -490,6 +498,12 @@ private void deleteAnnonce(Annonce annonce) {
         if (conx != null && !conx.isClosed()) {
             AnnonceService annonceService = new AnnonceService();
             annonceService.supprimer(annonce.getId(), conx);
+            
+                  Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Annonce supprimée");
+        alert.setHeaderText("Deleted");
+        alert.setContentText("The announce has been deleted successfully.");
+        alert.showAndWait();
         } else {
             System.err.println("Connection is closed or not properly initialized.");
         }
@@ -576,6 +590,16 @@ private void handleUpdateButtonAction(ActionEvent event) {
     String domaine = updatedomainefield.getText();
     String statut = updatestatutfield.getText();
     int id = Integer.parseInt(updateidfield.getText()); // assuming updateidfield contains integer input
+    
+    if (titre.isEmpty() || description.isEmpty() || domaine.isEmpty()  || statut.isEmpty() ) {
+        // Display an error message or perform appropriate error handling
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("Please fill in all fields.");
+        alert.showAndWait();
+        return; // Return early if any field is empty
+    }
 
     // Create an Annonce object with the updated values
     Annonce updatedAnnonce = new Annonce();
@@ -595,6 +619,11 @@ private void handleUpdateButtonAction(ActionEvent event) {
 
     // Print a success message
     System.out.println("Annonce modifiée !");
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Annonce mise à jour");
+    alert.setHeaderText("Mise à jour réussie");
+    alert.setContentText("L'annonce a été mise à jour avec succès.");
+    alert.showAndWait();
 }
 
 
@@ -608,6 +637,18 @@ public void trierAnnoncesParTitreAsc() {
         return annonce1.getTitre().compareTo(annonce2.getTitre());
     });
 }
+
+
+@FXML
+public void trierAnnoncesParTitreDesc() {
+    // Set a custom comparator to sort annonces by titre in descending order
+
+    // Sort the table data using the comparator
+    annoncesTable.getItems().sort((annonce1, annonce2) -> {
+        return annonce2.getTitre().compareTo(annonce1.getTitre());
+    });
+}
+
 
 
  @FXML

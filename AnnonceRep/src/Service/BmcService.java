@@ -15,6 +15,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -81,6 +83,7 @@ public class BmcService implements BmcCrud<Bmc> {
     
     return bmc;
 }
+
 
 
 }

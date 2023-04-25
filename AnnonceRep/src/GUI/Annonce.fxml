@@ -8,29 +8,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="656.0" prefWidth="990.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AnnonceController">
+<AnchorPane id="AnchorPane" prefHeight="656.0" prefWidth="990.0" stylesheets="@../style/style_3.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AnnonceController">
    <children>
       <Pane layoutX="42.0" layoutY="62.0" prefHeight="484.0" prefWidth="530.0" style="-fx-background-color: white;">
          <children>
-            <Button fx:id="btnpublier" layoutX="451.0" layoutY="438.0" mnemonicParsing="false" onAction="#AddAnnonce" text="Publier" />
-            <Label layoutX="52.0" layoutY="59.0" text="Titre" />
-            <Label layoutX="32.0" layoutY="115.0" text="Description" />
+            <Button fx:id="btnpublier" layoutX="451.0" layoutY="438.0" mnemonicParsing="false" onAction="#AddAnnonce" stylesheets="@../style/style_1_1_1.css" text="Publier" />
+            <Label layoutX="52.0" layoutY="59.0" prefHeight="21.0" prefWidth="50.0" stylesheets="@../style/orange%20label.css" text="Titre" />
+            <Label layoutX="18.0" layoutY="115.0" prefHeight="21.0" prefWidth="106.0" stylesheets="@../style/orange%20label.css" text="Description" />
             <TextField fx:id="titrefield" layoutX="139.0" layoutY="56.0" />
             <TextField fx:id="descriptionfield" layoutX="139.0" layoutY="110.0" />
-            <Label layoutX="39.0" layoutY="175.0" text="Domaine" />
-            <Label layoutX="48.0" layoutY="233.0" text="Statut" />
+            <Label layoutX="29.0" layoutY="175.0" prefHeight="21.0" prefWidth="84.0" stylesheets="@../style/orange%20label.css" text="Domaine" />
+            <Label layoutX="37.0" layoutY="232.0" prefHeight="21.0" prefWidth="68.0" stylesheets="@../style/orange%20label.css" text="Statut" />
             <TextField fx:id="domainefield" layoutX="139.0" layoutY="170.0" />
             <TextField fx:id="statutfield" layoutX="139.0" layoutY="228.0" />
-            <Label layoutX="46.0" layoutY="345.0" text="Image" />
-            <ImageView fx:id="ImagePreview" fitHeight="150.0" fitWidth="200.0" layoutX="110.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="onBtnImageClicked" layoutX="37.0" layoutY="392.0" mnemonicParsing="false" onAction="#onBtnImageClicked" text="Upload" />
-            <Button fx:id="btnliste" layoutX="358.0" layoutY="439.0" mnemonicParsing="false" onAction="#ListeAnnonces" text="Liste" />
-            <Button fx:id="ajoutbmc" layoutX="240.0" layoutY="441.0" mnemonicParsing="false" onAction="#ajoutbmc" text="Bmc" />
+            <Label layoutX="24.0" layoutY="342.0" prefHeight="21.0" prefWidth="94.0" stylesheets="@../style/orange%20label.css" text="Image" />
+            <ImageView fx:id="ImagePreview" fitHeight="150.0" fitWidth="200.0" layoutX="140.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="onBtnImageClicked" layoutX="37.0" layoutY="392.0" mnemonicParsing="false" onAction="#onBtnImageClicked" stylesheets="@../style/style_1_1_1.css" text="Upload" />
+            <Button fx:id="btnliste" layoutX="358.0" layoutY="439.0" mnemonicParsing="false" onAction="#ListeAnnonces" stylesheets="@../style/style_1_1_1.css" text="Liste" />
+            <Button fx:id="ajoutbmc" layoutX="240.0" layoutY="441.0" mnemonicParsing="false" onAction="#ajoutbmc" stylesheets="@../style/style_1_1_1.css" text="Bmc" />
          </children>
       </Pane>
-      <ImageView fx:id="logoview" fitHeight="327.0" fitWidth="346.0" layoutX="594.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="logoview" fitHeight="327.0" fitWidth="346.0" layoutX="615.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/logo.png" />
+            <Image url="@../style/02.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="logoview1" fitHeight="327.0" fitWidth="346.0" layoutX="644.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/sandbox.png" />
          </image>
       </ImageView>
    </children>

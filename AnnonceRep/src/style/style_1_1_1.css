@@ -1,5 +1,5 @@
 .button{
--fx-background-color:#ff8000;
+-fx-background-color:#239c9c;
 -fx-text-fill: white;
 -fx-border-radius:30 0 0 30;
 }
@@ -10,4 +10,8 @@
 -fx-border-radius:30 0 0 30;
 }
 
-
+.button:pressed{
+-fx-background-color:#ff8000;
+-fx-text-fill: white;
+-fx-border-radius:30 0 0 30;
+}
