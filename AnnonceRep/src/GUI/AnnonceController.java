@@ -22,6 +22,7 @@ import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -108,17 +109,45 @@ void AddAnnonce(ActionEvent event) {
   @FXML
 void ListeAnnonces(ActionEvent event){
      try {
+        // Load stats.fxml
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AffichageFront.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        Stage stage = new Stage();
+
+        // Get the current window
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        // Set the scene in the current window
         stage.setScene(scene);
-        stage.show();
+
     } catch (IOException e) {
         e.printStackTrace();
     }
+
 }
 
+ @FXML
+    private Button ajoutbmc;
+
+ @FXML
+void ajoutbmc(ActionEvent event){
+     try {
+        // Load stats.fxml
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Bmc.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        // Get the current window
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        // Set the scene in the current window
+        stage.setScene(scene);
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+}
 
 private int id; // Change the data type of 'id' to match the data type of the ID in your Annonce object
 

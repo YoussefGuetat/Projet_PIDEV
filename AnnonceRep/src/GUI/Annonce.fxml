@@ -25,6 +25,7 @@
             <ImageView fx:id="ImagePreview" fitHeight="150.0" fitWidth="200.0" layoutX="110.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="onBtnImageClicked" layoutX="37.0" layoutY="392.0" mnemonicParsing="false" onAction="#onBtnImageClicked" text="Upload" />
             <Button fx:id="btnliste" layoutX="358.0" layoutY="439.0" mnemonicParsing="false" onAction="#ListeAnnonces" text="Liste" />
+            <Button fx:id="ajoutbmc" layoutX="240.0" layoutY="441.0" mnemonicParsing="false" onAction="#ajoutbmc" text="Bmc" />
          </children>
       </Pane>
       <ImageView fx:id="logoview" fitHeight="327.0" fitWidth="346.0" layoutX="594.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">

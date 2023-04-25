@@ -7,6 +7,7 @@ package Entities;
 
 
 import java.io.ByteArrayInputStream;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -14,6 +15,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -24,6 +30,186 @@ public class Annonce {
     private String titre  , statut , description,domaine;
     private Date date_Crea;
     private String image;
+    
+   
+    
+  
+
+    
+      @Entity
+public class Bmc implements Serializable {
+        
+private int annonce_id;
+    // other fields and methods
+    
+    public void setAnnonce_id(int annonce_id) {
+        this.annonce_id = annonce_id;
+    }        
+
+    @Id
+    private int id;
+    private String partenaires_cles , activites_cles , ressources_cles,proposition_valeur,relations_clients,canaux,segments_marche;
+    private double couts,revenus;
+        private Bmc bmc;
+        
+        
+           @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "annonce_id")
+    private Annonce annonce;
+           
+           public void setAnnonce(Annonce annonce) {
+    this.annonce = annonce;
+}
+
+        public Bmc() {
+        }
+
+        public Bmc(int id, String partenaires_cles, String activites_cles, String ressources_cles, String proposition_valeur, String relations_clients, String canaux, String segments_marche, double couts, double revenus) {
+            this.id = id;
+            this.partenaires_cles = partenaires_cles;
+            this.activites_cles = activites_cles;
+            this.ressources_cles = ressources_cles;
+            this.proposition_valeur = proposition_valeur;
+            this.relations_clients = relations_clients;
+            this.canaux = canaux;
+            this.segments_marche = segments_marche;
+            this.couts = couts;
+            this.revenus = revenus;
+           
+        }
+        
+        
+        
+        public Bmc(String partenaires_cles, String activites_cles, String ressources_cles, String proposition_valeur, String relations_clients, String canaux, String segments_marche, double couts, double revenus) {
+            this.partenaires_cles = partenaires_cles;
+            this.activites_cles = activites_cles;
+            this.ressources_cles = ressources_cles;
+            this.proposition_valeur = proposition_valeur;
+            this.relations_clients = relations_clients;
+            this.canaux = canaux;
+            this.segments_marche = segments_marche;
+            this.couts = couts;
+            this.revenus = revenus;
+            this.bmc = bmc;
+        }
+        
+        
+        
+         public Bmc(String partenaires_cles, String activites_cles, String ressources_cles, String proposition_valeur, String relations_clients, String canaux, String segments_marche) {
+            this.partenaires_cles = partenaires_cles;
+            this.activites_cles = activites_cles;
+            this.ressources_cles = ressources_cles;
+            this.proposition_valeur = proposition_valeur;
+            this.relations_clients = relations_clients;
+            this.canaux = canaux;
+            this.segments_marche = segments_marche;
+            
+          
+        }
+        
+        
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getPartenaires_cles() {
+            return partenaires_cles;
+        }
+
+        public void setPartenaires_cles(String partenaires_cles) {
+            this.partenaires_cles = partenaires_cles;
+        }
+
+        public String getActivites_cles() {
+            return activites_cles;
+        }
+
+        public void setActivites_cles(String activites_cles) {
+            this.activites_cles = activites_cles;
+        }
+
+        public String getRessources_cles() {
+            return ressources_cles;
+        }
+
+        public void setRessources_cles(String ressources_cles) {
+            this.ressources_cles = ressources_cles;
+        }
+
+        public String getProposition_valeur() {
+            return proposition_valeur;
+        }
+
+        public void setProposition_valeur(String proposition_valeur) {
+            this.proposition_valeur = proposition_valeur;
+        }
+
+        public String getRelations_clients() {
+            return relations_clients;
+        }
+
+        public void setRelations_clients(String relations_clients) {
+            this.relations_clients = relations_clients;
+        }
+
+        public String getCanaux() {
+            return canaux;
+        }
+
+        public void setCanaux(String canaux) {
+            this.canaux = canaux;
+        }
+
+        public String getSegments_marche() {
+            return segments_marche;
+        }
+
+        public void setSegments_marche(String segments_marche) {
+            this.segments_marche = segments_marche;
+        }
+
+        public double getCouts() {
+            return couts;
+        }
+
+        public void setCouts(double couts) {
+            this.couts = couts;
+        }
+
+        public double getRevenus() {
+            return revenus;
+        }
+
+        public void setRevenus(double revenus) {
+            this.revenus = revenus;
+        }
+
+        @Override
+        public String toString() {
+            return "Bmc{" + "id=" + id + ", partenaires_cles=" + partenaires_cles + ", activites_cles=" + activites_cles + ", ressources_cles=" + ressources_cles + ", proposition_valeur=" + proposition_valeur + ", relations_clients=" + relations_clients + ", canaux=" + canaux + ", segments_marche=" + segments_marche + ", couts=" + couts + ", revenus=" + revenus + ", bmc=" + bmc + '}';
+        }
+
+        
+       
+        
+    
+    }
+    
+
+private Bmc bmc;
+    
+     public Bmc getBmc() {
+        return bmc;
+    }
+        public void setBmc(Bmc bmc) {
+        this.bmc = bmc;
+    }
+
 
     public Annonce() {
     }
@@ -163,8 +349,23 @@ public Annonce(int id, String titre, String description, String domaine, String 
 
     @Override
     public String toString() {
-        return "Annonce{" + "id=" + id + ", titre=" + titre + ", statut=" + statut + ", description=" + description + ", domaine=" + domaine + ", date_Crea=" + date_Crea + ", image=" + image + '}';
+        return  titre ;
     }
 
+   
+
+   
+
     
-    } 
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+     }
+

@@ -134,44 +134,5 @@ public void supprimer(int id, Connection conx) {
 
 
 
-public Annonce getAnnonceById(int id) {
-        // Initialize a null Annonce object
-        Annonce annonce = null;
-
-        try {
-            // Create a connection to the database
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pidev", "root", "root");
-
-            // Create a prepared statement with a SQL query to retrieve the Annonce object by its ID
-            String query = "SELECT * FROM annonces WHERE id = ?";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setInt(1, id);
-
-            // Execute the query and retrieve the result set
-            ResultSet rs = stmt.executeQuery();
-
-            // If a result is found, create a new Annonce object and set its properties
-            if (rs.next()) {
-                annonce = new Annonce();
-                annonce.setId(rs.getInt("id"));
-                annonce.setTitre(rs.getString("titre"));
-                annonce.setDescription(rs.getString("description"));
-                annonce.setDomaine(rs.getString("domaine"));
-                annonce.setImage(rs.getString("image"));
-                annonce.setStatut(rs.getString("statut"));
-            }
-
-            // Close the result set, statement, and connection
-            rs.close();
-            stmt.close();
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        // Return the retrieved Annonce object or null if not found
-        return annonce;
-    }
-
 
 }
