@@ -45,8 +45,8 @@ public Connection conx;
     pstmt.setString(1, email);
     ResultSet rs = pstmt.executeQuery();
     if (rs.next()) {
-        Utilisateur p = new Utilisateur(rs.getString("email"),
-                rs.getString("password"));
+        Utilisateur p = new Utilisateur(rs.getInt("id"),rs.getInt("tel"),rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),
+                rs.getString("password"),rs.getString("token"),rs.getString("photo"),rs.getString("adresse"),rs.getString("description"),rs.getString("role"),rs.getDate("date_naiss"),rs.getBoolean("is_actif"));
         return p;
     } else {
         return null; // no person found with this id
@@ -85,8 +85,6 @@ public Connection conx;
     pstmt.setBoolean(6, u.isIs_Actif());
      pstmt.setString(7, "  ");
     pstmt.executeUpdate();
-    pstmt.close();
-    conx.close();
     }
 
     @Override
@@ -95,7 +93,7 @@ public Connection conx;
     PreparedStatement pstmt = null;
     int rowsUpdated = 0;
     try {
-        String sql = "UPDATE `utilisateur` SET `nom`=?, `prenom`=?, `role`=?, `tel`=?, `adresse`=?, `date_naiss`=?, `description`=? WHERE `id`=?";
+        String sql = "UPDATE `utilisateur` SET `nom`=?, `prenom`=?, `role`=?, `tel`=?, `adresse`=?, `date_naiss`=?, `description`=?, `is_actif`=? WHERE `id`=?";
         pstmt = conx.prepareStatement(sql);
         pstmt.setString(1, u.getNom());
         pstmt.setString(2, u.getPrenom());
@@ -104,21 +102,29 @@ public Connection conx;
         pstmt.setString(5, u.getAddresse());
         pstmt.setDate(6, u.getDate_naiss());
         pstmt.setString(7, u.getDescription());
-        pstmt.setInt(8, id);
+        pstmt.setBoolean(8, u.isIs_Actif());
+        pstmt.setInt(9, id);
         rowsUpdated = pstmt.executeUpdate();
     } catch (SQLException e) {
         e.printStackTrace();
-    } finally {
-        try {
-            if (pstmt != null) {
-                pstmt.close();
-            }
-            if (conx != null) {
-                conx.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    }
+    return rowsUpdated > 0;
+
+
+    }
+     @Override
+    public boolean updatePwd(String pwd,int id) {
+      String hashPassword = PasswordHasher.hashPassword(pwd);
+    PreparedStatement pstmt = null;
+    int rowsUpdated = 0;
+    try {
+        String sql = "UPDATE `utilisateur` SET `password`=? WHERE `id`=?";
+        pstmt = conx.prepareStatement(sql);
+        pstmt.setString(1, hashPassword);
+        pstmt.setInt(2, id);
+        rowsUpdated = pstmt.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
     return rowsUpdated > 0;
 
@@ -150,5 +156,199 @@ public Connection conx;
 
         return users;
     }
+           @Override
+public List<Utilisateur> afficherListeS(String search) throws SQLException {
+    String req = "SELECT * FROM `utilisateur` WHERE `nom` LIKE ? OR `prenom` LIKE ? OR `email` LIKE ? OR `role` LIKE ?";
+    PreparedStatement ps = conx.prepareStatement(req);
+    ps.setString(1, "%" + search + "%");
+    ps.setString(2, "%" + search + "%");
+    ps.setString(3, "%" + search + "%");
+    ps.setString(4, "%" + search + "%");
+    ResultSet rs = ps.executeQuery();
+    List<Utilisateur> users = new ArrayList<Utilisateur>();
+    while (rs.next()) {
+        Utilisateur p = new Utilisateur(rs.getInt("id"),
+                rs.getInt("tel"),
+                rs.getString("nom"),
+                rs.getString("prenom"),
+                rs.getString("email"),
+                rs.getString("password"),
+                rs.getString("token"),
+                rs.getString("photo"),
+                rs.getString("adresse"),
+                rs.getString("description"),
+                rs.getString("role"),
+                rs.getDate("date_naiss"),
+                rs.getBoolean("is_Actif")
+        );
+        users.add(p);
+    }
+    return users;
+}
 
+
+    @Override
+    public boolean updateToken(String Email, String token) {
+        PreparedStatement pstmt = null;
+    int rowsUpdated = 0;
+    try {
+        String sql = "UPDATE `utilisateur` SET `token`=? WHERE `email`=?";
+        pstmt = conx.prepareStatement(sql);
+        pstmt.setString(1, token);
+        pstmt.setString(2, Email);
+        rowsUpdated = pstmt.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } 
+    return rowsUpdated > 0;
+    }
+
+    @Override
+    public int isTokenExist(String token) {
+         String req = "SELECT id FROM `utilisateur` WHERE `token` = ?";
+    try {
+        PreparedStatement pstmt = conx.prepareStatement(req);
+        pstmt.setString(1, token);
+        ResultSet rs = pstmt.executeQuery();
+        if (rs.next()) {
+            return rs.getInt("id");
+        } else {
+            return 0;
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return 0;
+    }    }
+    @Override
+    public int getUserCountAc() {
+    String query = "SELECT COUNT(*) as user_count FROM utilisateur WHERE is_actif = 1;";
+    try (PreparedStatement pstmt = conx.prepareStatement(query);
+         ResultSet rs = pstmt.executeQuery()) {
+        if (rs.next()) {
+            return rs.getInt("user_count");
+        } else {
+            return 0;
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return 0;
+    }
+    }
+
+    @Override
+    public int getUserCountB() {
+    String query = "SELECT COUNT(*) as user_count FROM utilisateur WHERE is_actif = 0;";
+    try (PreparedStatement pstmt = conx.prepareStatement(query);
+         ResultSet rs = pstmt.executeQuery()) {
+        if (rs.next()) {
+            return rs.getInt("user_count");
+        } else {
+            return 0;
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return 0;
+    }
+    }
+
+    @Override
+    public int getUserCountI() {
+    String query = "SELECT COUNT(*) as user_count FROM utilisateur WHERE role = 'investisseur';";
+    try (PreparedStatement pstmt = conx.prepareStatement(query);
+         ResultSet rs = pstmt.executeQuery()) {
+        if (rs.next()) {
+            return rs.getInt("user_count");
+        } else {
+            return 0;
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return 0;
+    }
+    }
+
+    @Override
+    public int getUserCountE() {
+    String query = "SELECT COUNT(*) as user_count FROM utilisateur WHERE role = 'entrepreneur';";
+    try (PreparedStatement pstmt = conx.prepareStatement(query);
+         ResultSet rs = pstmt.executeQuery()) {
+        if (rs.next()) {
+            return rs.getInt("user_count");
+        } else {
+            return 0;
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return 0;
+    }
+    }
+
+    @Override
+    public int getUserCountAd() {
+    String query = "SELECT COUNT(*) as user_count FROM utilisateur WHERE role = 'Admin' Or role = 'Super_Admin';";
+    try (PreparedStatement pstmt = conx.prepareStatement(query);
+         ResultSet rs = pstmt.executeQuery()) {
+        if (rs.next()) {
+            return rs.getInt("user_count");
+        } else {
+            return 0;
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return 0;
+    }
+    }
+
+        @Override
+    public List<Utilisateur> triPrenom() throws SQLException {
+        String req = "SELECT * FROM `utilisateur` order by prenom";
+        stm = conx.createStatement();
+        ResultSet rs = stm.executeQuery(req);
+        List<Utilisateur> users = new ArrayList<Utilisateur>();
+        while (rs.next()) {
+            Utilisateur p = new Utilisateur(rs.getInt("id"),
+                    rs.getInt("tel"),
+                    rs.getString("nom"),
+                    rs.getString("prenom"),
+                    rs.getString("email"),
+                    rs.getString("password"),
+                    rs.getString("token"),
+                    rs.getString("photo"),
+                    rs.getString("adresse"),
+                    rs.getString("description"),
+                    rs.getString("role"),
+                    rs.getDate("date_naiss"),
+                    rs.getBoolean("is_Actif")
+            );
+            users.add(p);
+        }
+
+        return users;
+    }
+        @Override
+    public List<Utilisateur> triNom() throws SQLException {
+        String req = "SELECT * FROM `utilisateur` order by nom";
+        stm = conx.createStatement();
+        ResultSet rs = stm.executeQuery(req);
+        List<Utilisateur> users = new ArrayList<Utilisateur>();
+        while (rs.next()) {
+            Utilisateur p = new Utilisateur(rs.getInt("id"),
+                    rs.getInt("tel"),
+                    rs.getString("nom"),
+                    rs.getString("prenom"),
+                    rs.getString("email"),
+                    rs.getString("password"),
+                    rs.getString("token"),
+                    rs.getString("photo"),
+                    rs.getString("adresse"),
+                    rs.getString("description"),
+                    rs.getString("role"),
+                    rs.getDate("date_naiss"),
+                    rs.getBoolean("is_Actif")
+            );
+            users.add(p);
+        }
+
+        return users;
+    }
 }

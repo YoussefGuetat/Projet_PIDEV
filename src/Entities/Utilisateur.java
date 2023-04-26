@@ -65,6 +65,14 @@ public class Utilisateur {
         this.role = role;
         this.is_Actif = is_Actif;
     }
+
+    public Utilisateur(String nom, String prenom, String email, String password) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.password = password;
+    }
+    
     
 
     public Utilisateur(String email, String password) {

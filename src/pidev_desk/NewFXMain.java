@@ -5,6 +5,7 @@
  */
 package pidev_desk;
 
+import Entities.Utilisateur;
 import GUI.LoginController;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -31,6 +32,9 @@ public class NewFXMain extends Application {
     private Parent fxml;
         private VBox vbox;
         public static int page=0;
+        public static Utilisateur connecteduser = new Utilisateur();
+        public static int m = 0;
+        public static int idd = 0;
 
     @Override
     

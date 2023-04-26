@@ -5,16 +5,25 @@
  */
 package GUI;
 
+import Entities.Utilisateur;
+import Services.UtilisateurServices;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.Properties;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -22,6 +31,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import pidev_desk.NewFXMain;
 
 /**
  * FXML Controller class
@@ -29,9 +39,10 @@ import javax.mail.internet.MimeMessage;
  * @author Dell
  */
 public class ForgetPasswordController implements Initializable {
-
-    @FXML
+    
+@FXML
     private TextField emailField;
+
 
     /**
      * Initializes the controller class.
@@ -42,7 +53,7 @@ public class ForgetPasswordController implements Initializable {
     }    
 
     @FXML
-    private void sendMail(ActionEvent event) {
+    private void sendMail(ActionEvent event) throws IOException {
         // Set the SMTP host and port for sending the email
     String host = "smtp.gmail.com";
     String port = "587";
@@ -75,13 +86,16 @@ public class ForgetPasswordController implements Initializable {
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("guetat1youssef@gmail.com"));
 
         // Set the subject and body text for the email
-        msg.setSubject("Demande d'une charge.");
-        msg.setText("Mr , j'ai besoin d'une charge le plus tôt possible et merci!");
+                Random random = new Random();
+        int randomNumber = random.nextInt(900000) + 100000;
+        msg.setSubject("Mot de passe oublié");
+        msg.setText("Mr guetat youssef , voila votre code pour modifier votre mot de passe : "+ Integer.toString(randomNumber));
+
                 // Create an alert to notify the user that the email was sent successfully
 
                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
        alert.setTitle("Confirmation d'envoie");
-        alert.setHeaderText("Voulez-vous envoyez ce mail à  ?");
+        alert.setHeaderText("Voulez-vous envoyez ce mail à guetat youusef ?");
         alert.setContentText("Cette action est requise.");
 
         // Show the confirmation dialog and wait for the user's response
@@ -93,6 +107,16 @@ public class ForgetPasswordController implements Initializable {
               System.out.println("En cours d'envoie...");
            Transport.send(msg);
                    System.out.println("Envoyé avec succès !");
+                           UtilisateurServices Us = new UtilisateurServices();
+        Utilisateur p1 = new Utilisateur();
+        System.out.println(Us.updateToken(emailField.getText(),Integer.toString(randomNumber)));
+                  NewFXMain.page=2;
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+            // Get the current scene and set the new scene
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
         } else {
             // Close the dialog and do nothing
             alert.close();

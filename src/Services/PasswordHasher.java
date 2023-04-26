@@ -15,13 +15,15 @@ import org.mindrot.jbcrypt.BCrypt;
  */
 public class PasswordHasher {
 public static String hashPassword(String password) {
-    int costFactor = 13;
-    String salt = BCrypt.gensalt(costFactor);
-    return BCrypt.hashpw(password, salt);
+    //int costFactor = 13;
+    //String salt = BCrypt.gensalt(costFactor);
+  //  return BCrypt.hashpw(password, salt);
+    return BCrypt.hashpw(password, BCrypt.gensalt());
+
 }
     
     public static boolean checkPassword(String password, String hashedPassword) {
-        return BCrypt.checkpw(password, hashedPassword);
+        return (BCrypt.checkpw(password, hashedPassword.replace("$2y$", "$2a$")));
     }
 
 }

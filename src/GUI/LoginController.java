@@ -43,6 +43,10 @@ public class LoginController implements Initializable {
             try {
                 if(NewFXMain.page==1)
                 fxml = FXMLLoader.load(getClass().getResource("ForgetPassword.fxml"));
+                else if(NewFXMain.page==2)
+                    fxml = FXMLLoader.load(getClass().getResource("CodePass.fxml"));
+                                else if(NewFXMain.page==3)
+                    fxml = FXMLLoader.load(getClass().getResource("changeForget.fxml"));
                 else
                 fxml = FXMLLoader.load(getClass().getResource("Singin.fxml"));
                 vbox.getChildren().removeAll();
