@@ -14,7 +14,7 @@ import java.time.LocalDate;
  */
 public class Evenement {
     public int id;
-    private String nom;
+    private String nom; 
     private String adresse;
     public String photo;
     private int nbrplaces;
