@@ -33,19 +33,8 @@ import pidev_desk.NewFXMain;
  */
 public class frontController implements Initializable {
 
-    @FXML
     private ImageView adminIMG;
-    @FXML
     private Label username;
-    @FXML
-    private Button btnOrders;
-    @FXML
-    private Button btnSignout;
-    @FXML
-    private ImageView adminIMG1;
-    @FXML
-    private Pane pnlOverview;
-    @FXML
     private VBox pnItems;
 
     /**
@@ -84,11 +73,7 @@ public class frontController implements Initializable {
         }
     }    
 
-    @FXML
-    private void btnOrders(ActionEvent event) {
-    }
 
-    @FXML
     private void btnSignout(ActionEvent event) {
                 pnItems.getChildren().clear();
           try {

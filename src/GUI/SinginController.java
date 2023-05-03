@@ -122,7 +122,7 @@ private void signin(ActionEvent event) throws SQLException, IOException, NullPoi
             if(NewFXMain.connecteduser.isIs_Actif() == true){
                    try {
             // Load the new FXML file
-            Parent root = FXMLLoader.load(getClass().getResource("/GUI/FrontProfil.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front.fxml"));
             // Get the current scene and set the new scene
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

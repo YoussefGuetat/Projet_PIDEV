@@ -359,7 +359,7 @@ public class Controller implements Initializable {
         pnItems.getChildren().clear();
           try {
             // Load the new FXML file
-            Parent root = FXMLLoader.load(getClass().getResource("/GUI/Chat.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
             // Get the current scene and set the new scene
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -410,8 +410,6 @@ public class Controller implements Initializable {
         titre_dash.setText("Mon Profile");
         Node[] nodes = new Node[1];
                 nodes[0] = FXMLLoader.load(getClass().getResource("/GUI/Stat.fxml"));
-             
-             
                 pnItems.getChildren().add(nodes[0]);
     }
             }

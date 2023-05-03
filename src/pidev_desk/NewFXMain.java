@@ -41,13 +41,11 @@ public class NewFXMain extends Application {
     public void start(Stage primaryStage) throws IOException {
                          MyDB db = MyDB.getInstance();
          System.out.println(db);        
-          Parent root = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
-        
-        Scene scene = new Scene(root);
-        scene.setFill(Color.TRANSPARENT);
-        primaryStage.setScene(scene);
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
+        primaryStage.setTitle("SandBox");
+        primaryStage.setScene(new Scene(root,1315,810));
         primaryStage.show();
+        
     }
 
     /**
