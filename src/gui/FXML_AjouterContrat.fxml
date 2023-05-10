@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="400.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXML_AjouterContratController">
+   <children>
+       
+      <VBox alignment="CENTER" layoutX="29.0" layoutY="37.0" spacing="10.0">
+         <Label text="Ajouter un contrat" />
+         <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Label text="Date du contrat" />
+            <DatePicker fx:id="date_contart_field" style="-fx-background-color: #FFFFE0;" />
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Label text="Durée du contrat (en mois)" />
+            <TextField fx:id="duree_contrat_field" style="-fx-background-color: #FFFFE0;" />
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Label text="Taux de profit (%)" />
+            <TextField fx:id="taux_profit_field" style="-fx-background-color: #FFFFE0;" />
+         </HBox>
+         <HBox spacing="10.0">
+            <Label text="Image du contrat" />
+            <Button fx:id="choisir_image_button" onAction="#choisirImage" style="-fx-background-color: #FFFFE0;" text="Choisir une image" />
+            <Label fx:id="image_label" />
+         </HBox>
+         <Button fx:id="ajouter_contrat_button" onAction="#ajouterContrat" text="Ajouter le contrat" />
+      </VBox>
+      <ImageView fitHeight="63.0" fitWidth="84.0">
+         <image>
+            <Image url="@../../../3eme/Projet_PIDEV-GestionRendezVous-houssem/public/front/images/logo1.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
